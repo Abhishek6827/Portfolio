@@ -16,8 +16,6 @@ import {
   Star,
   Calendar,
   GitBranch,
-  Shield,
-  ShieldAlert,
 } from "lucide-react";
 import {
   FaGithub,
@@ -106,14 +104,14 @@ import CalendarImage13 from "../images/Market-Seasonality-Explorer/image13.png";
 import CalendarImage14 from "../images/Market-Seasonality-Explorer/image14.png";
 import CalendarImage15 from "../images/Market-Seasonality-Explorer/image15.png";
 
-// Enhanced projects data with updated URLs
+// Enhanced projects data from the second code
 const enhancedProjects = [
   {
     id: 1,
     name: "Myntra Clone",
     description:
       "A fully responsive e-commerce fashion website clone with modern UI/UX, product catalog, shopping cart, and user authentication features.",
-    demo: "https://myntra-clone-abhishek6827.vercel.app/",
+    demo: "https://Abhishek6827.github.io/Myntra/",
     backend: null,
     github: "https://github.com/Abhishek6827/Myntra",
     technologies: ["React", "Redux", "CSS", "JavaScript"],
@@ -124,12 +122,12 @@ const enhancedProjects = [
   },
   {
     id: 2,
-    name: "Amazon",
+    name: "Amazon Clone",
     description:
       "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
-    demo: "https://amazon-clone-abhishek6827.vercel.app/",
+    demo: "https://Abhishek6827.github.io/Amazon-Clone/",
     backend: null,
-    github: "https://github.com/Abhishek6827/Amazon",
+    github: "https://github.com/Abhishek6827/Amazon-Clone",
     technologies: ["React", "JavaScript", "CSS", "HTML"],
     category: "E-commerce",
     featured: false,
@@ -141,7 +139,7 @@ const enhancedProjects = [
     name: "Skill_Up",
     description:
       "An educational platform for skill development with course listings, progress tracking, and interactive learning modules.",
-    demo: "https://skill-up-abhishek6827.vercel.app/",
+    demo: "https://Abhishek6827.github.io/Skill_Up/",
     backend: null,
     github: "https://github.com/Abhishek6827/Skill_Up",
     technologies: ["React", "Bootstrap", "JavaScript"],
@@ -155,7 +153,7 @@ const enhancedProjects = [
     name: "Bharat Clock",
     description:
       "A beautiful digital clock application showing Indian time zones with elegant design and smooth animations.",
-    demo: "https://bharat-clock-abhishek6827.vercel.app/",
+    demo: "https://Abhishek6827.github.io/Bharat-Clock/",
     backend: null,
     github: "https://github.com/Abhishek6827/Bharat-Clock",
     technologies: ["JavaScript", "CSS", "HTML"],
@@ -169,7 +167,7 @@ const enhancedProjects = [
     name: "Calculator",
     description:
       "A modern calculator application with scientific functions, memory operations, and responsive design.",
-    demo: "https://calculator-abhishek6827.vercel.app/",
+    demo: "https://Abhishek6827.github.io/Calculator/",
     backend: null,
     github: "https://github.com/Abhishek6827/Calculator",
     technologies: ["JavaScript", "CSS", "HTML"],
@@ -183,10 +181,10 @@ const enhancedProjects = [
     name: "Elante Mall",
     description:
       "A shopping mall website with store directory, event listings, and interactive mall map functionality.",
-    demo: "https://elante-mall-abhishek6827.vercel.app/",
+    demo: "https://Abhishek6827.github.io/Elante_Mall/",
     backend: null,
     github: "https://github.com/Abhishek6827/Elante_Mall",
-    technologies: ["JavaScript", "HTML", "CSS"],
+    technologies: ["React", "CSS", "JavaScript"],
     category: "Business",
     featured: true,
     stargazers_count: 7,
@@ -197,7 +195,7 @@ const enhancedProjects = [
     name: "Kanban_WorkBoard",
     description:
       "A full-stack project management dashboard with Django backend and React frontend. Features task tracking, team collaboration, and intuitive drag-and-drop interface.",
-    demo: "https://kanban-workboard-abhishek6827.vercel.app/",
+    demo: "https://Abhishek6827.github.io/Kanban_WorkBoard/",
     backend: "https://abhishektiwari6827.pythonanywhere.com/",
     github: "https://github.com/Abhishek6827/Kanban_WorkBoard",
     technologies: ["Django", "React", "Redux", "Tailwind CSS"],
@@ -211,7 +209,7 @@ const enhancedProjects = [
     name: "Market-Seasonality-Explorer",
     description:
       "A calendar application highlighting seasonal market trends and patterns for traders and investors.",
-    demo: "https://market-seasonality-explorer.vercel.app/",
+    demo: "https://abhishek6827.github.io/Market-Seasonality-Explorer/",
     backend: null,
     github: "https://github.com/Abhishek6827/Market-Seasonality-Explorer",
     technologies: ["React", "Tailwind CSS", "Recharts", "Binance API"],
@@ -240,28 +238,6 @@ export default function Projects() {
     MyntraImage4,
     MyntraImage5,
     MyntraImage6,
-  ];
-
-  const elanteImages = [
-    ElanteImage1,
-    ElanteImage2,
-    ElanteImage3,
-    ElanteImage4,
-    ElanteImage5,
-    ElanteImage6,
-    ElanteImage7,
-    ElanteImage8,
-    ElanteImage9,
-    ElanteImage10,
-    ElanteImage11,
-    ElanteImage12,
-    ElanteImage13,
-    ElanteImage14,
-    ElanteImage15,
-    ElanteImage16,
-    ElanteImage17,
-    ElanteImage18,
-    ElanteImage19,
   ];
 
   const skillUpImages = [
@@ -298,6 +274,28 @@ export default function Projects() {
     WorkboardImage13,
     WorkboardImage14,
     WorkboardImage15,
+  ];
+
+  const elanteImages = [
+    ElanteImage1,
+    ElanteImage2,
+    ElanteImage3,
+    ElanteImage4,
+    ElanteImage5,
+    ElanteImage6,
+    ElanteImage7,
+    ElanteImage8,
+    ElanteImage9,
+    ElanteImage10,
+    ElanteImage11,
+    ElanteImage12,
+    ElanteImage13,
+    ElanteImage14,
+    ElanteImage15,
+    ElanteImage16,
+    ElanteImage17,
+    ElanteImage18,
+    ElanteImage19,
   ];
 
   const calendarImages = [
@@ -338,12 +336,6 @@ export default function Projects() {
     return backendMap[projectName] || null;
   };
 
-  // Check if URL is safe (HTTPS)
-  const isUrlSafe = (url) => {
-    if (!url) return false;
-    return url.startsWith("https://");
-  };
-
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchProjects());
@@ -357,6 +349,7 @@ export default function Projects() {
     "Utility",
     "Business",
     "Education",
+    "Portfolio",
   ];
 
   // Use enhancedProjects instead of Redux projects for demonstration
@@ -462,7 +455,6 @@ export default function Projects() {
               onDemoClick={() => handleDemoClick(project)}
               onHover={setHoveredProject}
               getTechIcon={getTechIcon}
-              isUrlSafe={isUrlSafe}
             />
           ))}
         </div>
@@ -506,7 +498,6 @@ export default function Projects() {
               onDemoClick={() => handleDemoClick(project)}
               onHover={setHoveredProject}
               getTechIcon={getTechIcon}
-              isUrlSafe={isUrlSafe}
             />
           ))}
         </AnimatePresence>
@@ -517,7 +508,6 @@ export default function Projects() {
           <DemoModal
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
-            images={getProjectImages(selectedProject.name)}
           />
         )}
       </AnimatePresence>
@@ -541,16 +531,7 @@ export default function Projects() {
 
 const FeaturedProjectCard = React.forwardRef(
   (
-    {
-      project,
-      images,
-      backend,
-      index,
-      onDemoClick,
-      onHover,
-      getTechIcon,
-      isUrlSafe,
-    },
+    { project, images, backend, index, onDemoClick, onHover, getTechIcon },
     ref
   ) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -599,21 +580,23 @@ const FeaturedProjectCard = React.forwardRef(
           <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
             <div className="flex space-x-2">
               {(project.demo || project.deployedUrl) && (
-                <motion.button
-                  onClick={() => onDemoClick(project)}
+                <motion.a
+                  href={project.demo || project.deployedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors flex-1 justify-center"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Eye size={16} />
                   <span>Live Demo</span>
-                </motion.button>
+                </motion.a>
               )}
               {backend && (
                 <motion.a
                   href={backend}
                   target="_blank"
-                  rel="noopener noreferrer nofollow"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-1 bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors flex-1 justify-center"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -625,7 +608,7 @@ const FeaturedProjectCard = React.forwardRef(
               <motion.a
                 href={project.github}
                 target="_blank"
-                rel="noopener noreferrer nofollow"
+                rel="noopener noreferrer"
                 className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -678,13 +661,6 @@ const FeaturedProjectCard = React.forwardRef(
               {project.category || "Other"}
             </span>
           </div>
-
-          {!isUrlSafe(project.demo || project.deployedUrl) && (
-            <div className="mt-3 p-2 bg-yellow-900 text-yellow-200 rounded text-xs flex items-center">
-              <ShieldAlert size={12} className="mr-1" />
-              Demo might not be secure
-            </div>
-          )}
         </div>
       </motion.div>
     );
@@ -695,16 +671,7 @@ FeaturedProjectCard.displayName = "FeaturedProjectCard";
 
 const ProjectCard = React.forwardRef(
   (
-    {
-      project,
-      images,
-      backend,
-      index,
-      onDemoClick,
-      onHover,
-      getTechIcon,
-      isUrlSafe,
-    },
+    { project, images, backend, index, onDemoClick, onHover, getTechIcon },
     ref
   ) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -775,21 +742,23 @@ const ProjectCard = React.forwardRef(
           <div className="flex justify-between items-center">
             <div className="flex space-x-2">
               {(project.demo || project.deployedUrl) && (
-                <motion.button
-                  onClick={() => onDemoClick(project)}
+                <motion.a
+                  href={project.demo || project.deployedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Eye size={16} />
                   <span>Live Demo</span>
-                </motion.button>
+                </motion.a>
               )}
               {backend && (
                 <motion.a
                   href={backend}
                   target="_blank"
-                  rel="noopener noreferrer nofollow"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -803,7 +772,7 @@ const ProjectCard = React.forwardRef(
             <motion.a
               href={project.github}
               target="_blank"
-              rel="noopener noreferrer nofollow"
+              rel="noopener noreferrer"
               className="flex items-center space-x-1 text-gray-400 hover:text-white transition-colors text-sm"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -812,13 +781,6 @@ const ProjectCard = React.forwardRef(
               <span>Code</span>
             </motion.a>
           </div>
-
-          {!isUrlSafe(project.demo || project.deployedUrl) && (
-            <div className="mt-3 p-1 bg-yellow-900 text-yellow-200 rounded text-xs flex items-center">
-              <ShieldAlert size={10} className="mr-1" />
-              Demo might not be secure
-            </div>
-          )}
         </div>
       </motion.div>
     );
@@ -827,36 +789,9 @@ const ProjectCard = React.forwardRef(
 
 ProjectCard.displayName = "ProjectCard";
 
-function DemoModal({ project, onClose, images }) {
+function DemoModal({ project, onClose }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showScreenshots, setShowScreenshots] = useState(false);
-  const [isSafe, setIsSafe] = useState(false);
-
-  useEffect(() => {
-    // Check if URL is safe before loading
-    checkUrlSafety(project.demo || project.deployedUrl);
-  }, [project]);
-
-  const checkUrlSafety = (url) => {
-    try {
-      // Simple check for HTTPS
-      if (!url.startsWith("https://")) {
-        setIsSafe(false);
-        setError("This demo is not served over a secure connection (HTTPS).");
-        setLoading(false);
-        setShowScreenshots(true);
-        return;
-      }
-
-      setIsSafe(true);
-    } catch (err) {
-      setIsSafe(false);
-      setError("Security check failed for this URL.");
-      setLoading(false);
-      setShowScreenshots(true);
-    }
-  };
 
   const handleIframeLoad = () => {
     setLoading(false);
@@ -867,7 +802,6 @@ function DemoModal({ project, onClose, images }) {
     setError(
       "Failed to load the demo. The project might not be deployed or the URL might be incorrect."
     );
-    setShowScreenshots(true);
   };
 
   return (
@@ -890,15 +824,13 @@ function DemoModal({ project, onClose, images }) {
             <h3 className="text-2xl font-semibold text-white">
               {project.name}
             </h3>
-            <p className="text-gray-400 text-sm mt-1">
-              {showScreenshots ? "Project Screenshots" : "Live Demo Preview"}
-            </p>
+            <p className="text-gray-400 text-sm mt-1">Live Demo Preview</p>
           </div>
           <div className="flex items-center space-x-4">
             <motion.a
               href={project.demo || project.deployedUrl}
               target="_blank"
-              rel="noopener noreferrer nofollow"
+              rel="noopener noreferrer"
               className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -906,17 +838,6 @@ function DemoModal({ project, onClose, images }) {
               <ExternalLink size={16} />
               <span>Open in New Tab</span>
             </motion.a>
-            {images && images.length > 0 && !showScreenshots && (
-              <motion.button
-                onClick={() => setShowScreenshots(true)}
-                className="flex items-center space-x-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Eye size={16} />
-                <span>View Screenshots</span>
-              </motion.button>
-            )}
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-white transition-colors p-2"
@@ -927,7 +848,7 @@ function DemoModal({ project, onClose, images }) {
         </div>
 
         <div className="relative" style={{ height: "70vh" }}>
-          {loading && !showScreenshots && (
+          {loading && (
             <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
               <motion.div
                 animate={{ rotate: 360 }}
@@ -942,68 +863,33 @@ function DemoModal({ project, onClose, images }) {
             </div>
           )}
 
-          {error && !showScreenshots && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-gray-900">
+          {error && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
               <AlertCircle className="text-red-500 mb-4" size={48} />
               <p className="text-red-400 text-lg mb-4">{error}</p>
-              <div className="bg-yellow-900 text-yellow-200 p-4 rounded-lg mb-4 max-w-md">
-                <p className="text-sm flex items-center">
-                  <ShieldAlert size={16} className="mr-2" />
-                  This site might not be safe to visit. Proceed with caution.
-                </p>
-              </div>
               <motion.a
                 href={project.demo || project.deployedUrl}
                 target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors mb-4"
+                rel="noopener noreferrer"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Open in New Tab Anyway
+                Open in New Tab
               </motion.a>
-              {images && images.length > 0 && (
-                <motion.button
-                  onClick={() => setShowScreenshots(true)}
-                  className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Project Screenshots Instead
-                </motion.button>
-              )}
             </div>
           )}
 
-          {showScreenshots && images && images.length > 0 ? (
-            <div className="p-6 overflow-y-auto h-full">
-              <div className="grid grid-cols-1 gap-6">
-                {images.map((image, index) => (
-                  <div key={index} className="bg-gray-900 rounded-lg p-2">
-                    <img
-                      src={image}
-                      alt={`${project.name} screenshot ${index + 1}`}
-                      className="rounded-md shadow-md w-full"
-                    />
-                    <p className="text-gray-400 text-center mt-2 text-sm">
-                      Screenshot {index + 1} of {images.length}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : isSafe && !showScreenshots ? (
-            <iframe
-              src={project.demo || project.deployedUrl}
-              title={`${project.name} Demo`}
-              className={`w-full h-full border-0 ${loading ? "hidden" : ""}`}
-              onLoad={handleIframeLoad}
-              onError={handleIframeError}
-              allowFullScreen
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-              referrerPolicy="no-referrer"
-            />
-          ) : null}
+          <iframe
+            src={project.demo || project.deployedUrl}
+            title={`${project.name} Demo`}
+            className={`w-full h-full border-0 ${
+              loading || error ? "hidden" : ""
+            }`}
+            onLoad={handleIframeLoad}
+            onError={handleIframeError}
+            allowFullScreen
+          />
         </div>
       </motion.div>
     </motion.div>
