@@ -42,14 +42,7 @@ export const fetchProjects = createAsyncThunk(
         category: "Education",
         featured: true,
       },
-      "Bharat-Clock": {
-        description:
-          "A beautiful digital clock application showing Indian time zones with elegant design and smooth animations.",
-        technologies: ["JavaScript", "CSS", "HTML"],
-        demo: "https://Abhishek6827.github.io/Bharat-Clock/",
-        category: "Utility",
-        featured: false,
-      },
+
       Calculator: {
         description:
           "A modern calculator application with scientific functions, memory operations, and responsive design.",
@@ -83,23 +76,86 @@ export const fetchProjects = createAsyncThunk(
         category: "Productivity",
         featured: true,
       },
+      "E-commerce": {
+        description:
+          "A modern e-commerce platform with product listings, shopping cart, and user authentication.",
+        technologies: ["React", "JavaScript", "CSS", "HTML"],
+        demo: "https://abhishek6827.github.io/E-commerce/",
+        category: "E-commerce",
+        featured: false,
+      },
+      Currency_Converter: {
+        description:
+          "A currency converter application with real-time exchange rates and intuitive interface.",
+        technologies: ["JavaScript", "CSS", "HTML", "API"],
+        demo: "https://abhishek6827.github.io/Currency_Converter/",
+        category: "Utility",
+        featured: false,
+      },
+      Password_Generator: {
+        description:
+          "A secure password generator with customizable options for length and character types.",
+        technologies: ["JavaScript", "CSS", "HTML"],
+        demo: "https://abhishek6827.github.io/Password_Generator/",
+        category: "Utility",
+        featured: false,
+      },
+      RPS: {
+        description:
+          "A Rock Paper Scissors game with interactive UI and score tracking.",
+        technologies: ["JavaScript", "CSS", "HTML"],
+        demo: "https://abhishek6827.github.io/RPS/",
+        category: "Game",
+        featured: false,
+      },
+      "Tic-Tac-Toe": {
+        description:
+          "A Tic Tac Toe game with multiplayer functionality and win detection.",
+        technologies: ["JavaScript", "CSS", "HTML"],
+        demo: "https://abhishek6827.github.io/Tic-Tac-Toe/",
+        category: "Game",
+        featured: false,
+      },
+      "Bharat-Clock": {
+        description:
+          "A beautiful digital clock application showing Indian time zones with elegant design and smooth animations.",
+        technologies: ["JavaScript", "CSS", "HTML"],
+        demo: "https://Abhishek6827.github.io/Bharat-Clock/",
+        category: "Utility",
+        featured: false,
+      },
     };
 
+    const availableRepos = data.map((repo) => repo.name);
+    console.log("Available repositories:", availableRepos);
+
     // Make sure these names match exactly with your GitHub repo names
-    const orderedProjects = [
+    const projectsToKeep = [
       "Myntra",
-      "Amazon-Clone",
+      "Amazon",
       "Kanban_WorkBoard",
       "Skill_Up",
       "Elante_Mall",
       "Bharat-Clock",
       "Calculator",
       "Market-Seasonality-Explorer",
-    ];
+      "E-commerce",
+      "Currency_Converter",
+      "Password_Generator",
+      "RPS",
+      "Tic-Tac-Toe",
+    ].filter((name) => availableRepos.includes(name));
 
-    const sortedProjects = orderedProjects
+    console.log("Projects to keep:", projectsToKeep);
+
+    const filteredProjects = data.filter((project) =>
+      projectsToKeep.includes(project.name)
+    );
+
+    // Order the projects
+    const orderedProjects = projectsToKeep
       .map((name) => {
-        const repo = data.find((project) => project.name === name);
+        const repo = filteredProjects.find((project) => project.name === name);
         if (!repo) {
           console.warn(`Project not found: ${name}`);
           return null;
@@ -108,11 +164,7 @@ export const fetchProjects = createAsyncThunk(
       })
       .filter(Boolean);
 
-    const otherProjects = data.filter(
-      (project) => !orderedProjects.includes(project.name)
-    );
-
-    return [...sortedProjects, ...otherProjects].map((project) => {
+    return orderedProjects.map((project) => {
       const details = projectDetails[project.name] || {};
 
       return {

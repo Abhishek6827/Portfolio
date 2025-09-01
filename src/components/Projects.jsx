@@ -42,7 +42,7 @@ export default function Projects() {
     "Utility",
     "Business",
     "Education",
-    "Portfolio",
+    "Game",
   ];
 
   const handleDemoClick = (project) => {

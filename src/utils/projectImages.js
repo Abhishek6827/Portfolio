@@ -1,6 +1,10 @@
-// src/utils/projectImages.js
+import CurrencyConverterImage1 from "../images/Currency_Converter/image1.png";
+import PasswordGeneratorImage1 from "../images/Password_Generator/image1.png";
+import RPSImage1 from "../images/RPS/image1.png";
+import CalculatorImage1 from "../images/Calculator/image1.png";
+import TicTacToeImage1 from "../images/Tic-Tac-Toe/image1.png";
+import BharatClockImage1 from "../images/Bharat-Clock/image1.png";
 
-// Myntra Images
 import MyntraImage1 from "../images/Myntra/image1.png";
 import MyntraImage2 from "../images/Myntra/image2.png";
 import MyntraImage3 from "../images/Myntra/image3.png";
@@ -80,7 +84,21 @@ import CalendarImage13 from "../images/Market-Seasonality-Explorer/image13.png";
 import CalendarImage14 from "../images/Market-Seasonality-Explorer/image14.png";
 import CalendarImage15 from "../images/Market-Seasonality-Explorer/image15.png";
 
-// Create arrays of images for each project
+import AmazonImage1 from "../images/Amazon/image1.png";
+import AmazonImage2 from "../images/Amazon/image2.png";
+
+import Commerce1 from "../images/E-commerce/image1.png";
+import Commerce2 from "../images/E-commerce/image2.png";
+
+export const amazonImages = [AmazonImage1, AmazonImage2];
+export const CommerceImages = [Commerce1, Commerce2];
+export const currencyConverterImages = [CurrencyConverterImage1];
+export const passwordGeneratorImages = [PasswordGeneratorImage1];
+export const rpsImages = [RPSImage1];
+export const ticTacToeImages = [TicTacToeImage1];
+export const calculatorImages = [CalculatorImage1];
+export const bharatClockImages = [BharatClockImage1];
+
 export const myntraImages = [
   MyntraImage1,
   MyntraImage2,
@@ -166,16 +184,23 @@ export const calendarImages = [
   CalendarImage15,
 ];
 
-// Map local images to projects
 export const getProjectImages = (projectName) => {
   const imageMap = {
     "Myntra Clone": myntraImages,
     Myntra: myntraImages,
+    Amazon: amazonImages,
     "Elante Mall": elanteImages,
     Elante_Mall: elanteImages,
     Skill_Up: skillUpImages,
     Kanban_WorkBoard: workboardImages,
     "Market-Seasonality-Explorer": calendarImages,
+    "E-commerce": CommerceImages,
+    Currency_Converter: currencyConverterImages,
+    Password_Generator: passwordGeneratorImages,
+    RPS: rpsImages,
+    "Tic-Tac-Toe": ticTacToeImages,
+    Calculator: calculatorImages,
+    "Bharat-Clock": bharatClockImages,
   };
   return imageMap[projectName] || null;
 };
