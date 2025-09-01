@@ -21,11 +21,11 @@ export default function Certifications() {
     {
       title: "Full Stack Web Development",
       issuer: "FreeCodeCamp",
-      date: "2023",
+      date: "2024",
       description:
         "Comprehensive full-stack development covering frontend and backend technologies",
       status: "completed",
-      skills: ["HTML", "CSS", "JavaScript", "Node.js"],
+      skills: ["React", "JavaScript", "Node.js", "Bootstrap"],
       certificateUrl: "./images/internship.png",
     },
     {

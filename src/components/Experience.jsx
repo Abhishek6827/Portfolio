@@ -7,7 +7,7 @@ export default function Experience() {
     {
       title: "Full-Stack Developer Intern",
       company: "Hoping Minds",
-      period: "01/2025 - 06/2025",
+      period: "01/2024 - 06/2024",
       responsibilities: [
         "Developed and maintained web applications using React, Redux, and Django",
         "Collaborated with cross-functional teams to deliver high-quality software solutions",
@@ -19,7 +19,7 @@ export default function Experience() {
     {
       title: "Web Developer",
       company: "Quizario",
-      period: "11/2023 - 01/2025",
+      period: "11/2023 - 12/2023",
       responsibilities: [
         "Built interactive quiz applications with modern web technologies",
         "Coordinated with team members to ensure project deliverables",
