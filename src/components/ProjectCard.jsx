@@ -1,4 +1,3 @@
-// components/ProjectCard.jsx
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Calendar, GitBranch, Eye, Code } from "lucide-react";
@@ -42,7 +41,7 @@ const ProjectCard = React.forwardRef(
         whileHover={{ y: isFeatured ? -8 : -5, scale: isFeatured ? 1.02 : 1 }}
       >
         <div className="relative overflow-hidden">
-          {images ? (
+          {images && images.length > 0 ? (
             <img
               src={images[currentImageIndex]}
               alt={project.name}
@@ -99,7 +98,7 @@ const ProjectCard = React.forwardRef(
                 </motion.a>
               )}
               <motion.a
-                href={project.github}
+                href={project.html_url} // Use the GitHub URL from the API
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
@@ -174,6 +173,50 @@ const ProjectCard = React.forwardRef(
               <GitBranch size={12} className="mr-1" />
               {project.category || "Other"}
             </span>
+          </div>
+
+          {/* Bottom GitHub link */}
+          <div className="mt-4 flex justify-between items-center">
+            <div className="flex space-x-2">
+              {(project.demo || project.deployedUrl) && (
+                <motion.a
+                  href={project.demo || project.deployedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Eye size={16} />
+                  <span>Live Demo</span>
+                </motion.a>
+              )}
+              {backend && (
+                <motion.a
+                  href={backend}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Code size={16} />
+                  <span>Backend</span>
+                </motion.a>
+              )}
+            </div>
+
+            <motion.a
+              href={project.html_url} // GitHub URL from API
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1 text-gray-400 hover:text-white transition-colors text-sm"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaGithub size={16} />
+              <span>Code</span>
+            </motion.a>
           </div>
         </div>
       </motion.div>
