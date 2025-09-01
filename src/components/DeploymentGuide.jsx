@@ -27,7 +27,7 @@ export default function DeploymentGuide() {
 
   const projects = [
     { name: "Myntra", type: "React", status: "ready" },
-    { name: "Amazon-Clone", type: "React", status: "ready" },
+    { name: "Amazon", type: "React", status: "ready" },
     { name: "Kanban_WorkBoard", type: "React", status: "ready" },
     { name: "Bharat-Clock", type: "Vanilla JS", status: "ready" },
     { name: "Calculator", type: "Vanilla JS", status: "ready" },
@@ -192,7 +192,7 @@ export default function DeploymentGuide() {
           <div className="bg-gray-800 p-8 rounded-lg border border-gray-700 mb-8">
             <h3 className="text-2xl font-bold mb-6 flex items-center">
               <FaReact className="mr-3 text-blue-400" />
-              For React Projects (Myntra, Amazon-Clone, Kanban_WorkBoard, etc.)
+              For React Projects (Myntra, Amazon, Kanban_WorkBoard, etc.)
             </h3>
 
             <div className="space-y-6">

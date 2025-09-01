@@ -125,9 +125,9 @@ const enhancedProjects = [
     name: "Amazon Clone",
     description:
       "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
-    demo: "https://Abhishek6827.github.io/Amazon-Clone/",
+    demo: "https://Abhishek6827.github.io/Amazon/",
     backend: null,
-    github: "https://github.com/Abhishek6827/Amazon-Clone",
+    github: "https://github.com/Abhishek6827/Amazon",
     technologies: ["React", "JavaScript", "CSS", "HTML"],
     category: "E-commerce",
     featured: false,

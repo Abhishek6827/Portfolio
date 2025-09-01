@@ -23,11 +23,11 @@ export const fetchProjects = createAsyncThunk(
         image:
           "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&h=300&fit=crop&crop=center",
       },
-      "Amazon-Clone": {
+      Amazon: {
         description:
           "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
         technologies: ["React", "JavaScript", "CSS", "HTML"],
-        demo: "https://Abhishek6827.github.io/Amazon-Clone/",
+        demo: "https://Abhishek6827.github.io/Amazon/",
         category: "E-commerce",
         featured: true,
         image:
@@ -97,7 +97,7 @@ export const fetchProjects = createAsyncThunk(
 
     const orderedProjects = [
       "Myntra",
-      "Amazon-Clone",
+      "Amazon",
       "Kanban_WorkBoard",
       "Skill_Up",
       "Elante_Mall",

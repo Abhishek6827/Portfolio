@@ -11703,11 +11703,11 @@ const ws = P0("projects/fetchProjects", async () => {
           image:
             "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&h=300&fit=crop&crop=center",
         },
-        "Amazon-Clone": {
+        Amazon: {
           description:
             "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
           technologies: ["React", "JavaScript", "CSS", "HTML"],
-          demo: "https://Abhishek6827.github.io/Amazon-Clone/",
+          demo: "https://Abhishek6827.github.io/Amazon/",
           category: "E-commerce",
           featured: !0,
           image:
@@ -11776,7 +11776,7 @@ const ws = P0("projects/fetchProjects", async () => {
       },
       r = [
         "Myntra",
-        "Amazon-Clone",
+        "Amazon",
         "Kanban_WorkBoard",
         "Skill_Up",
         "Elante_Mall",
@@ -19802,8 +19802,8 @@ function R8() {
         name: "Amazon Clone",
         image:
           "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop&crop=center",
-        demo: "https://Abhishek6827.github.io/Amazon-Clone/",
-        github: "https://github.com/Abhishek6827/Amazon-Clone",
+        demo: "https://Abhishek6827.github.io/Amazon/",
+        github: "https://github.com/Abhishek6827/Amazon",
         tech: ["React", "JavaScript", "CSS"],
         description: "E-commerce platform with advanced features",
         color: "from-orange-500 to-amber-500",
@@ -20436,8 +20436,8 @@ function A8() {
           "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
         image:
           "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop&crop=center",
-        demo: "https://Abhishek6827.github.io/Amazon-Clone/",
-        github: "https://github.com/Abhishek6827/Amazon-Clone",
+        demo: "https://Abhishek6827.github.io/Amazon/",
+        github: "https://github.com/Abhishek6827/Amazon",
         tech: ["React", "JavaScript", "CSS", "HTML"],
         category: "E-commerce",
         featured: !0,

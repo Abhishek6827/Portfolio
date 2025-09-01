@@ -9,7 +9,7 @@ This guide will help you deploy all your projects to GitHub Pages and make them 
 | Project          | Type       | Status          | Live URL                                         |
 | ---------------- | ---------- | --------------- | ------------------------------------------------ |
 | Myntra           | React      | Ready to Deploy | https://Abhishek6827.github.io/Myntra/           |
-| Amazon-Clone     | React      | Ready to Deploy | https://Abhishek6827.github.io/Amazon-Clone/     |
+| Amazon           | React      | Ready to Deploy | https://Abhishek6827.github.io/Amazon/           |
 | Kanban_WorkBoard | React      | Ready to Deploy | https://Abhishek6827.github.io/Kanban_WorkBoard/ |
 | Bharat-Clock     | Vanilla JS | Ready to Deploy | https://Abhishek6827.github.io/Bharat-Clock/     |
 | Calculator       | Vanilla JS | Ready to Deploy | https://Abhishek6827.github.io/Calculator/       |
@@ -91,13 +91,13 @@ npm install --save-dev gh-pages
 npm run deploy
 \`\`\`
 
-### Amazon-Clone
+### Amazon
 
 \`\`\`bash
-cd Amazon-Clone
+cd Amazon
 npm install --save-dev gh-pages
 
-# Update package.json with homepage: "https://Abhishek6827.github.io/Amazon-Clone"
+# Update package.json with homepage: "https://Abhishek6827.github.io/Amazon"
 
 npm run deploy
 \`\`\`
