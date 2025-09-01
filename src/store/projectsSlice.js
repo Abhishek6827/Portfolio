@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// store/projectsSlice.js
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
 
 // Fetch projects from GitHub
 export const fetchProjects = createAsyncThunk(
@@ -20,8 +25,6 @@ export const fetchProjects = createAsyncThunk(
         demo: "https://Abhishek6827.github.io/Myntra/",
         category: "E-commerce",
         featured: true,
-        image:
-          "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&h=300&fit=crop&crop=center",
       },
       Amazon: {
         description:
@@ -29,19 +32,15 @@ export const fetchProjects = createAsyncThunk(
         technologies: ["React", "JavaScript", "CSS", "HTML"],
         demo: "https://Abhishek6827.github.io/Amazon/",
         category: "E-commerce",
-        featured: true,
-        image:
-          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop&crop=center",
+        featured: false,
       },
-      Kanban_WorkBoard: {
+      Skill_Up: {
         description:
-          "A project management dashboard with task tracking, team collaboration features, and intuitive drag-and-drop interface.",
-        technologies: ["React", "Redux", "Tailwind CSS", "JavaScript"],
-        demo: "https://Abhishek6827.github.io/Kanban_WorkBoard/",
-        category: "Productivity",
+          "An educational platform for skill development with course listings, progress tracking, and interactive learning modules.",
+        technologies: ["React", "Bootstrap", "JavaScript"],
+        demo: "https://Abhishek6827.github.io/Skill_Up/",
+        category: "Education",
         featured: true,
-        image:
-          "https://images.unsplash.com/photo-1611224923853-0139583c060f?w=500&h=300&fit=crop&crop=center",
       },
       "Bharat-Clock": {
         description:
@@ -50,8 +49,6 @@ export const fetchProjects = createAsyncThunk(
         demo: "https://Abhishek6827.github.io/Bharat-Clock/",
         category: "Utility",
         featured: false,
-        image:
-          "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=500&h=300&fit=crop&crop=center",
       },
       Calculator: {
         description:
@@ -60,8 +57,6 @@ export const fetchProjects = createAsyncThunk(
         demo: "https://Abhishek6827.github.io/Calculator/",
         category: "Utility",
         featured: false,
-        image:
-          "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=500&h=300&fit=crop&crop=center",
       },
       Elante_Mall: {
         description:
@@ -69,86 +64,72 @@ export const fetchProjects = createAsyncThunk(
         technologies: ["React", "CSS", "JavaScript"],
         demo: "https://Abhishek6827.github.io/Elante_Mall/",
         category: "Business",
-        featured: false,
-        image:
-          "https://images.unsplash.com/photo-1555529902-5261145633bf?w=500&h=300&fit=crop&crop=center",
+        featured: true,
       },
-      Skill_Up: {
+      Kanban_WorkBoard: {
         description:
-          "An educational platform for skill development with course listings, progress tracking, and interactive learning modules.",
-        technologies: ["React", "Bootstrap", "JavaScript"],
-        demo: "https://Abhishek6827.github.io/Skill_Up/",
-        category: "Education",
-        featured: false,
-        image:
-          "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop&crop=center",
+          "A full-stack project management dashboard with Django backend and React frontend. Features task tracking, team collaboration, and intuitive drag-and-drop interface.",
+        technologies: ["Django", "React", "Redux", "Tailwind CSS"],
+        demo: "https://Abhishek6827.github.io/Kanban_WorkBoard/",
+        backend: "https://abhishektiwari6827.pythonanywhere.com/",
+        category: "Productivity",
+        featured: true,
       },
-      Portfolio: {
+      "Market-Seasonality-Explorer": {
         description:
-          "My personal portfolio website showcasing projects, skills, and professional information built with modern React technologies.",
-        technologies: ["React", "Redux", "Tailwind CSS", "Framer Motion"],
-        demo: "https://Abhishek6827.github.io/Portfolio/",
-        category: "Portfolio",
-        featured: false,
-        image:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop&crop=center",
+          "A calendar application highlighting seasonal market trends and patterns for traders and investors.",
+        technologies: ["React", "Tailwind CSS", "Recharts", "Binance API"],
+        demo: "https://abhishek6827.github.io/Market-Seasonality-Explorer/",
+        category: "Productivity",
+        featured: true,
       },
     };
 
+    // Make sure these names match exactly with your GitHub repo names
     const orderedProjects = [
       "Myntra",
-      "Amazon",
+      "Amazon-Clone",
       "Kanban_WorkBoard",
       "Skill_Up",
       "Elante_Mall",
       "Bharat-Clock",
       "Calculator",
-      "Portfolio",
+      "Market-Seasonality-Explorer",
     ];
 
     const sortedProjects = orderedProjects
-      .map((name) => data.find((project) => project.name === name))
+      .map((name) => {
+        const repo = data.find((project) => project.name === name);
+        if (!repo) {
+          console.warn(`Project not found: ${name}`);
+          return null;
+        }
+        return repo;
+      })
       .filter(Boolean);
 
     const otherProjects = data.filter(
       (project) => !orderedProjects.includes(project.name)
     );
 
-    return [...sortedProjects, ...otherProjects].map((project, index) => ({
-      ...project,
-      id: project.id || index + 1,
-      description:
-        projectDetails[project.name]?.description || project.description,
-      technologies: projectDetails[project.name]?.technologies || [],
-      demo: projectDetails[project.name]?.demo || null,
-      category: projectDetails[project.name]?.category || "Other",
-      featured: projectDetails[project.name]?.featured || false,
-      image:
-        projectDetails[project.name]?.image ||
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=300&fit=crop&crop=center",
-      stars: project.stargazers_count || 0,
-      lastUpdated: project.updated_at || new Date().toISOString(),
-      deployStatus: "idle",
-      deployedUrl: projectDetails[project.name]?.demo || null,
-    }));
-  }
-);
+    return [...sortedProjects, ...otherProjects].map((project) => {
+      const details = projectDetails[project.name] || {};
 
-// Deploy project
-export const deployProject = createAsyncThunk(
-  "projects/deployProject",
-  async (projectId, { getState }) => {
-    const { projects } = getState().projects;
-    const project = projects.find((p) => p.id === projectId);
-    if (!project) throw new Error("Project not found");
-
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
-    return {
-      id: projectId,
-      deployedUrl: `https://Abhishek6827.github.io/${project.name}`,
-      status: "deployed",
-    };
+      return {
+        ...project,
+        id: project.id,
+        description: details.description || project.description,
+        technologies: details.technologies || [],
+        demo: details.demo || null,
+        backend: details.backend || null,
+        category: details.category || "Other",
+        featured: details.featured || false,
+        stargazers_count: project.stargazers_count || 0,
+        updated_at: project.updated_at || new Date().toISOString(),
+        deployStatus: "idle",
+        deployedUrl: details.demo || null,
+      };
+    });
   }
 );
 
@@ -180,26 +161,6 @@ const projectsSlice = createSlice({
       .addCase(fetchProjects.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-      })
-      .addCase(deployProject.pending, (state, action) => {
-        const project = state.projects.find((p) => p.id === action.meta.arg);
-        if (project) {
-          project.deployStatus = "deploying";
-        }
-      })
-      .addCase(deployProject.fulfilled, (state, action) => {
-        const project = state.projects.find((p) => p.id === action.payload.id);
-        if (project) {
-          project.deployStatus = "deployed";
-          project.deployedUrl = action.payload.deployedUrl;
-        }
-      })
-      .addCase(deployProject.rejected, (state, action) => {
-        const project = state.projects.find((p) => p.id === action.meta.arg);
-        if (project) {
-          project.deployStatus = "failed";
-          project.deployError = action.error.message;
-        }
       });
   },
 });
@@ -210,7 +171,19 @@ export const { updateProject } = projectsSlice.actions;
 export const selectAllProjects = (state) => state.projects.projects;
 export const selectProjectById = (state, projectId) =>
   state.projects.projects.find((project) => project.id === projectId);
-export const selectFeaturedProjects = (state) =>
-  state.projects.projects.filter((project) => project.featured);
+
+// Memoized selectors using createSelector
+export const selectFeaturedProjects = createSelector(
+  [selectAllProjects],
+  (projects) => projects.filter((project) => project.featured)
+);
+
+export const selectProjectsByCategory = createSelector(
+  [selectAllProjects, (_, category) => category],
+  (projects, category) => {
+    if (category === "all") return projects;
+    return projects.filter((project) => project.category === category);
+  }
+);
 
 export default projectsSlice.reducer;

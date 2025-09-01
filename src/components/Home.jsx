@@ -1,3 +1,4 @@
+// components/Home.jsx
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,232 +7,63 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect, useCallback } from "react";
 import SkillsComponent from "./Skills";
 import ExperienceComponent from "./Experience";
+import { getProjectImages } from "../utils/projectImages";
 
-// Import local images with correct paths
-import MyntraImage1 from "../images/Myntra/image1.png";
-import MyntraImage2 from "../images/Myntra/image2.png";
-import MyntraImage3 from "../images/Myntra/image3.png";
-import MyntraImage4 from "../images/Myntra/image4.png";
-import MyntraImage5 from "../images/Myntra/image5.png";
-import MyntraImage6 from "../images/Myntra/image6.png";
+// Featured projects data
+// components/Home.jsx (Hero section)
+// Update the featuredProjects array to use your local images:
 
-import SkillUpImage1 from "../images/Skill_Up/image1.png";
-import SkillUpImage2 from "../images/Skill_Up/image2.png";
-import SkillUpImage3 from "../images/Skill_Up/image3.png";
-import SkillUpImage4 from "../images/Skill_Up/image4.png";
-import SkillUpImage5 from "../images/Skill_Up/image5.png";
-import SkillUpImage6 from "../images/Skill_Up/image6.png";
-import SkillUpImage7 from "../images/Skill_Up/image7.png";
-import SkillUpImage8 from "../images/Skill_Up/image8.png";
-import SkillUpImage9 from "../images/Skill_Up/image9.png";
-import SkillUpImage10 from "../images/Skill_Up/image10.png";
-import SkillUpImage11 from "../images/Skill_Up/image11.png";
-import SkillUpImage12 from "../images/Skill_Up/image12.png";
-import SkillUpImage13 from "../images/Skill_Up/image13.png";
-import SkillUpImage14 from "../images/Skill_Up/image14.png";
-import SkillUpImage15 from "../images/Skill_Up/image15.png";
-
-import WorkboardImage1 from "../images/Workboard/image1.png";
-import WorkboardImage2 from "../images/Workboard/image2.png";
-import WorkboardImage3 from "../images/Workboard/image3.png";
-import WorkboardImage4 from "../images/Workboard/image4.png";
-import WorkboardImage5 from "../images/Workboard/image5.png";
-import WorkboardImage6 from "../images/Workboard/image6.png";
-import WorkboardImage7 from "../images/Workboard/image7.png";
-import WorkboardImage8 from "../images/Workboard/image8.png";
-import WorkboardImage9 from "../images/Workboard/image9.png";
-import WorkboardImage10 from "../images/Workboard/image10.png";
-import WorkboardImage11 from "../images/Workboard/image11.png";
-import WorkboardImage12 from "../images/Workboard/image12.png";
-import WorkboardImage13 from "../images/Workboard/image13.png";
-import WorkboardImage14 from "../images/Workboard/image14.png";
-import WorkboardImage15 from "../images/Workboard/image15.png";
-
-import CalendarImage1 from "../images/Market-Seasonality-Explorer/image1.png";
-import CalendarImage2 from "../images/Market-Seasonality-Explorer/image2.png";
-import CalendarImage3 from "../images/Market-Seasonality-Explorer/image3.png";
-import CalendarImage4 from "../images/Market-Seasonality-Explorer/image4.png";
-import CalendarImage5 from "../images/Market-Seasonality-Explorer/image5.png";
-import CalendarImage6 from "../images/Market-Seasonality-Explorer/image6.png";
-import CalendarImage7 from "../images/Market-Seasonality-Explorer/image7.png";
-import CalendarImage8 from "../images/Market-Seasonality-Explorer/image8.png";
-import CalendarImage9 from "../images/Market-Seasonality-Explorer/image9.png";
-import CalendarImage10 from "../images/Market-Seasonality-Explorer/image10.png";
-import CalendarImage11 from "../images/Market-Seasonality-Explorer/image11.png";
-import CalendarImage12 from "../images/Market-Seasonality-Explorer/image12.png";
-import CalendarImage13 from "../images/Market-Seasonality-Explorer/image13.png";
-import CalendarImage14 from "../images/Market-Seasonality-Explorer/image14.png";
-import CalendarImage15 from "../images/Market-Seasonality-Explorer/image15.png";
-
-// Import Elante_Mall images
-import ElanteImage1 from "../images/Elante_Mall/image1.png";
-import ElanteImage2 from "../images/Elante_Mall/image2.png";
-import ElanteImage3 from "../images/Elante_Mall/image3.png";
-import ElanteImage4 from "../images/Elante_Mall/image4.png";
-import ElanteImage5 from "../images/Elante_Mall/image5.png";
-import ElanteImage6 from "../images/Elante_Mall/image6.png";
-import ElanteImage7 from "../images/Elante_Mall/image7.png";
-import ElanteImage8 from "../images/Elante_Mall/image8.png";
-import ElanteImage9 from "../images/Elante_Mall/image9.png";
-import ElanteImage10 from "../images/Elante_Mall/image10.png";
-import ElanteImage11 from "../images/Elante_Mall/image11.png";
-import ElanteImage12 from "../images/Elante_Mall/image12.png";
-import ElanteImage13 from "../images/Elante_Mall/image13.png";
-import ElanteImage14 from "../images/Elante_Mall/image14.png";
-import ElanteImage15 from "../images/Elante_Mall/image15.png";
-import ElanteImage16 from "../images/Elante_Mall/image16.png";
-import ElanteImage17 from "../images/Elante_Mall/image17.png";
-import ElanteImage18 from "../images/Elante_Mall/image18.png";
-import ElanteImage19 from "../images/Elante_Mall/image19.png";
-
-export default function Home() {
-  return (
-    <div className="space-y-20">
-      <Hero />
-      <SkillsComponent />
-      <ExperienceComponent />
-    </div>
-  );
-}
+const featuredProjects = [
+  {
+    name: "Myntra Clone",
+    images: getProjectImages("Myntra Clone"),
+    demo: "https://Abhishek6827.github.io/Myntra/",
+    github: "https://github.com/Abhishek6827/Myntra",
+    tech: ["React", "Redux", "CSS"],
+    description: "Fashion e-commerce platform with modern UI",
+    color: "from-pink-500 to-rose-500",
+  },
+  {
+    name: "Skill_Up",
+    images: getProjectImages("Skill_Up"),
+    demo: "https://Abhishek6827.github.io/Skill_Up/",
+    github: "https://github.com/Abhishek6827/Skill_Up",
+    tech: ["React", "Firebase"],
+    description:
+      "Created a learning platform enabling users to browse and access online courses.",
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    name: "Market-Seasonality-Explorer",
+    images: getProjectImages("Market-Seasonality-Explorer"),
+    demo: "https://abhishek6827.github.io/Market-Seasonality-Explorer/",
+    github: "https://github.com/Abhishek6827/Market-Seasonality-Explorer",
+    tech: ["React", "Tailwind CSS", "Recharts", "Binance API"],
+    description: "Calendar highlighting seasonal market trends",
+    color: "from-orange-500 to-amber-500",
+  },
+  {
+    name: "Kanban_WorkBoard",
+    images: getProjectImages("Kanban_WorkBoard"),
+    demo: "https://Abhishek6827.github.io/Kanban_WorkBoard/",
+    github: "https://github.com/Abhishek6827/Kanban_WorkBoard",
+    tech: ["React", "Redux", "Tailwind"],
+    description: "Project management dashboard with collaboration tools",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    name: "Elante Mall",
+    images: getProjectImages("Elante Mall"),
+    demo: "https://Abhishek6827.github.io/Elante_Mall/",
+    github: "https://github.com/Abhishek6827/Elante_Mall",
+    tech: ["React", "CSS", "JavaScript"],
+    description:
+      "Shopping mall website with store directory and interactive map",
+    color: "from-purple-500 to-violet-500",
+  },
+];
 
 function Hero() {
-  // Create arrays of images for each project
-  const myntraImages = [
-    MyntraImage1,
-    MyntraImage2,
-    MyntraImage3,
-    MyntraImage4,
-    MyntraImage5,
-    MyntraImage6,
-  ];
-
-  const skillUpImages = [
-    SkillUpImage1,
-    SkillUpImage2,
-    SkillUpImage3,
-    SkillUpImage4,
-    SkillUpImage5,
-    SkillUpImage6,
-    SkillUpImage7,
-    SkillUpImage8,
-    SkillUpImage9,
-    SkillUpImage10,
-    SkillUpImage11,
-    SkillUpImage12,
-    SkillUpImage13,
-    SkillUpImage14,
-    SkillUpImage15,
-  ];
-
-  const workboardImages = [
-    WorkboardImage1,
-    WorkboardImage2,
-    WorkboardImage3,
-    WorkboardImage4,
-    WorkboardImage5,
-    WorkboardImage6,
-    WorkboardImage7,
-    WorkboardImage8,
-    WorkboardImage9,
-    WorkboardImage10,
-    WorkboardImage11,
-    WorkboardImage12,
-    WorkboardImage13,
-    WorkboardImage14,
-    WorkboardImage15,
-  ];
-
-  const calendarImages = [
-    CalendarImage1,
-    CalendarImage2,
-    CalendarImage3,
-    CalendarImage4,
-    CalendarImage5,
-    CalendarImage6,
-    CalendarImage7,
-    CalendarImage8,
-    CalendarImage9,
-    CalendarImage10,
-    CalendarImage11,
-    CalendarImage12,
-    CalendarImage13,
-    CalendarImage14,
-    CalendarImage15,
-  ];
-
-  // Create array for Elante Mall images
-  const elanteImages = [
-    ElanteImage1,
-    ElanteImage2,
-    ElanteImage3,
-    ElanteImage4,
-    ElanteImage5,
-    ElanteImage6,
-    ElanteImage7,
-    ElanteImage8,
-    ElanteImage9,
-    ElanteImage10,
-    ElanteImage11,
-    ElanteImage12,
-    ElanteImage13,
-    ElanteImage14,
-    ElanteImage15,
-    ElanteImage16,
-    ElanteImage17,
-    ElanteImage18,
-    ElanteImage19,
-  ];
-
-  const featuredProjects = [
-    {
-      name: "Skill_Up",
-      images: skillUpImages,
-      demo: "https://Abhishek6827.github.io/Skill_Up/",
-      github: "https://github.com/Abhishek6827/Skill_Up",
-      tech: ["React", "Firebase"],
-      description:
-        "Created a learning platform enabling users to browse and access online courses.",
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      name: "Myntra Clone",
-      images: myntraImages,
-      demo: "https://Abhishek6827.github.io/Myntra/",
-      github: "https://github.com/Abhishek6827/Myntra",
-      tech: ["React", "Redux", "CSS"],
-      description: "Fashion e-commerce platform with modern UI",
-      color: "from-pink-500 to-rose-500",
-    },
-    {
-      name: "Market Seasonality Calendar",
-      images: calendarImages,
-      demo: "https://abhishek6827.github.io/Market-Seasonality-Explorer/",
-      github: "https://github.com/Abhishek6827/Market-Seasonality-Explorer",
-      tech: ["React", "Tailwind CSS", "Recharts", "Binance API"],
-      description: "Calendar highlighting seasonal market trends",
-      color: "from-orange-500 to-amber-500",
-    },
-    {
-      name: "Kanban_WorkBoard",
-      images: workboardImages,
-      demo: "https://Abhishek6827.github.io/Kanban_WorkBoard/",
-      github: "https://github.com/Abhishek6827/Kanban_WorkBoard",
-      tech: ["React", "Redux", "Tailwind"],
-      description: "Project management dashboard with collaboration tools",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      name: "Elante Mall",
-      images: elanteImages,
-      demo: "https://Abhishek6827.github.io/Elante_Mall/",
-      github: "https://github.com/Abhishek6827/Elante_Mall",
-      tech: ["React", "CSS", "JavaScript"],
-      description:
-        "Shopping mall website with store directory and interactive map",
-      color: "from-purple-500 to-violet-500",
-    },
-  ];
-
   const [currentProject, setCurrentProject] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -239,9 +71,9 @@ function Hero() {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [direction, setDirection] = useState(1);
 
-  const INTERVAL_TIME = 6000; // 6 seconds
+  const INTERVAL_TIME = 6000;
 
-  // Enhanced auto-switching with progress indicator
+  // Auto-switching with progress indicator
   useEffect(() => {
     if (!isAutoPlaying) return;
 
@@ -265,18 +97,16 @@ function Hero() {
   // Cycle through images for the current project
   useEffect(() => {
     const currentProjectData = featuredProjects[currentProject];
-    if (!currentProjectData.images) return;
+    const images = getProjectImages(currentProjectData.name);
+    if (!images) return;
 
     const imageInterval = setInterval(() => {
-      setCurrentImageIndex(
-        (prev) => (prev + 1) % currentProjectData.images.length
-      );
-    }, 2000); // Change image every 2 seconds
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 2000);
 
     return () => clearInterval(imageInterval);
   }, [currentProject]);
 
-  // Enhanced project selection with direction tracking
   const handleProjectSelect = useCallback(
     (index) => {
       setDirection(index > currentProject ? 1 : -1);
@@ -285,13 +115,11 @@ function Hero() {
       setProgress(0);
       setIsAutoPlaying(false);
       setImageLoaded(false);
-      // Resume auto-play after 15 seconds of manual selection
       setTimeout(() => setIsAutoPlaying(true), 15000);
     },
     [currentProject]
   );
 
-  // Navigation functions for previous/next
   const goToPrevious = useCallback(() => {
     const prevIndex =
       currentProject === 0 ? featuredProjects.length - 1 : currentProject - 1;
@@ -340,6 +168,7 @@ function Hero() {
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden">
+      {/* Background animations */}
       <div className="absolute inset-0">
         <motion.div
           className="absolute top-1/4 left-1/2 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen opacity-30 blur-3xl"
@@ -476,7 +305,7 @@ function Hero() {
             className="relative"
           >
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 relative overflow-hidden">
-              {/* Enhanced header with progress bar */}
+              {/* Carousel header */}
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold text-white">
                   Featured Projects
@@ -516,7 +345,7 @@ function Hero() {
                 </div>
               </div>
 
-              {/* Enhanced project carousel with navigation */}
+              {/* Project carousel */}
               <div className="relative group">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
@@ -534,31 +363,28 @@ function Hero() {
                     className="relative"
                   >
                     <div className="relative overflow-hidden rounded-lg">
-                      {featuredProjects[currentProject].images ? (
-                        <img
-                          src={
-                            featuredProjects[currentProject].images[
-                              currentImageIndex
-                            ]
-                          }
-                          alt={featuredProjects[currentProject].name}
-                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
-                          onLoad={() => setImageLoaded(true)}
-                          onError={() => setImageLoaded(false)}
-                        />
-                      ) : (
-                        <img
-                          src={featuredProjects[currentProject].image}
-                          alt={featuredProjects[currentProject].name}
-                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
-                          onLoad={() => setImageLoaded(true)}
-                          onError={() => setImageLoaded(false)}
-                        />
-                      )}
+                      {(() => {
+                        const images = getProjectImages(
+                          featuredProjects[currentProject].name
+                        );
+                        return images ? (
+                          <img
+                            src={images[currentImageIndex]}
+                            alt={featuredProjects[currentProject].name}
+                            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                            onLoad={() => setImageLoaded(true)}
+                            onError={() => setImageLoaded(false)}
+                          />
+                        ) : (
+                          <div className="w-full h-48 bg-gray-700 flex items-center justify-center">
+                            <span className="text-gray-400">
+                              No image available
+                            </span>
+                          </div>
+                        );
+                      })()}
 
-                      {/* Loading state */}
                       {!imageLoaded && (
                         <div className="absolute inset-0 bg-gray-700 animate-pulse flex items-center justify-center">
                           <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
@@ -567,7 +393,6 @@ function Hero() {
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                      {/* Navigation arrows */}
                       <button
                         onClick={goToPrevious}
                         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"
@@ -635,7 +460,6 @@ function Hero() {
                 </AnimatePresence>
               </div>
 
-              {/* Keyboard navigation hint */}
               <div className="mt-4 text-center">
                 <p className="text-xs text-gray-500">
                   Use ← → keys to navigate • Space to pause/play
@@ -646,5 +470,15 @@ function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function Home() {
+  return (
+    <div className="space-y-20">
+      <Hero />
+      <SkillsComponent />
+      <ExperienceComponent />
+    </div>
   );
 }
