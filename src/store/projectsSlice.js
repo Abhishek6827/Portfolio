@@ -26,14 +26,14 @@ export const fetchProjects = createAsyncThunk(
         category: "E-commerce",
         featured: true,
       },
-      Amazon: {
-        description:
-          "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
-        technologies: ["React", "JavaScript", "CSS", "HTML"],
-        demo: "https://Abhishek6827.github.io/Amazon/",
-        category: "E-commerce",
-        featured: false,
-      },
+      // Amazon: {
+      //   description:
+      //     "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
+      //   technologies: ["React", "JavaScript", "CSS", "HTML"],
+      //   demo: "https://Abhishek6827.github.io/Amazon/",
+      //   category: "E-commerce",
+      //   featured: false,
+      // },
       Skill_Up: {
         description:
           "An educational platform for skill development with course listings, progress tracking, and interactive learning modules.",
