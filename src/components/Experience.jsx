@@ -5,6 +5,18 @@ import { Briefcase } from "lucide-react";
 export default function Experience() {
   const experiences = [
     {
+      title: "Software Developer",
+      company: "Vasnaani Education",
+      period: "07/2024 - 08/2025",
+      responsibilities: [
+        "Developed and maintained the official Vasnaani Education website with a focus on performance and scalability.",
+        "Collaborated with cross-functional teams to design and implement user-centric, responsive web interfaces.",
+        "Integrated Django REST APIs with React frontend modules, ensuring seamless data flow and consistency.",
+        "Optimized website performance, improved database structure, and resolved critical UI/UX bugs.",
+      ],
+      technologies: ["React", "JavaScript", "Tailwind CSS", "HTML", "CSS"],
+    },
+    {
       title: "Full-Stack Developer Intern",
       company: "Hoping Minds",
       period: "01/2024 - 06/2024",
