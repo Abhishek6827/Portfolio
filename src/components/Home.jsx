@@ -1,10 +1,11 @@
 // components/Home.jsx
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Eye, ChevronLeft, ChevronRight } from "lucide-react";
-import { FaLinkedin } from "react-icons/fa";
-import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { Mail, Eye, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import { FaLinkedin, FaReact, FaNodeJs } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiFirebase, SiTailwindcss } from "react-icons/si";
+import { useState, useEffect, useCallback, useRef } from "react";
 import SkillsComponent from "./Skills";
 import ExperienceComponent from "./Experience";
 import { getProjectImages } from "../utils/projectImages";
@@ -74,8 +75,27 @@ function Hero() {
   const [progress, setProgress] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [direction, setDirection] = useState(1);
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  // Parallax transforms
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const opacityParallax = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const INTERVAL_TIME = 6000;
+  
+  // Floating tech icons data
+  const techIcons = [
+    { Icon: FaReact, color: "text-cyan-400", size: 40, delay: 0 },
+    { Icon: SiNextdotjs, color: "text-white", size: 35, delay: 0.5 },
+    { Icon: SiTypescript, color: "text-blue-500", size: 38, delay: 1 },
+    { Icon: FaNodeJs, color: "text-green-500", size: 42, delay: 1.5 },
+    { Icon: SiFirebase, color: "text-yellow-500", size: 36, delay: 2 },
+    { Icon: SiTailwindcss, color: "text-cyan-400", size: 40, delay: 2.5 }
+  ];
 
   // Auto-switching with progress indicator
   useEffect(() => {
@@ -171,9 +191,12 @@ function Hero() {
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden">
-      {/* Animated Geometric Background */}
-      <div className="absolute inset-0 overflow-hidden">
+    <section ref={heroRef} className="relative min-h-screen py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden">
+      {/* Animated Geometric Background with Floating Tech Icons */}
+      <motion.div 
+        className="absolute inset-0 overflow-hidden"
+        style={{ y: yParallax }}
+      >
         {/* Floating geometric shapes */}
         <motion.div
           className="absolute w-24 h-24 bg-blue-500/10 backdrop-blur-sm"
@@ -314,7 +337,34 @@ function Hero() {
             ease: "easeInOut",
           }}
         />
-      </div>
+        
+        {/* Floating Tech Icons */}
+        {techIcons.map(({ Icon, color, size, delay }, index) => (
+          <motion.div
+            key={index}
+            className={`absolute ${color}`}
+            style={{
+              top: `${15 + index * 12}%`,
+              left: `${10 + (index % 3) * 30}%`,
+            }}
+            initial={{ opacity: 0, scale: 0, rotate: 0 }}
+            animate={{
+              opacity: [0.3, 0.7, 0.3],
+              scale: [1, 1.2, 1],
+              rotate: [0, 360],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 8 + index * 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: delay,
+            }}
+          >
+            <Icon size={size} />
+          </motion.div>
+        ))}
+      </motion.div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -329,22 +379,31 @@ function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h1 className="text-5xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
+              <motion.h1 
+                className="text-5xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.6, -0.05, 0.01, 0.99],
+                  delay: 0.2
+                }}
+              >
                 Abhishek Tiwari
-              </h1>
+              </motion.h1>
               <div className="text-xl lg:text-2xl text-gray-300 mb-6 h-16">
                 <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 >
                   Full-Stack Developer | Next.js & TypeScript | SaaS Builder
                 </motion.p>
               </div>
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
                 className="text-lg text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0"
               >
                 Crafting digital experiences with modern web technologies.
@@ -549,6 +608,27 @@ function Hero() {
           </motion.div>
         </div>
       </div>
+      
+      {/* Scroll Indicator with Pulse Animation */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        style={{ opacity: opacityParallax }}
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{
+            duration: 1.5,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut"
+          }}
+        >
+          <ChevronDown className="text-blue-400" size={32} />
+        </motion.div>
+        <span className="text-gray-400 text-sm mt-2">Scroll to explore</span>
+      </motion.div>
     </section>
   );
 }

@@ -1,8 +1,12 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Briefcase } from "lucide-react";
+import { useRef } from "react";
 
 export default function Experience() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  
   const experiences = [
     {
       title: "Software Developer",
@@ -42,53 +46,180 @@ export default function Experience() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, x: -100, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
+
   return (
-    <section className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold mb-8 text-center flex justify-center items-center">
-        <Briefcase className="mr-2" /> Professional Experience
-      </h2>
-      <div className="space-y-8">
+    <section ref={sectionRef} className="container mx-auto px-4 py-20 relative">
+      {/* Animated Timeline Line */}
+      <motion.div
+        className="absolute left-1/2 top-32 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 hidden md:block"
+        initial={{ scaleY: 0 }}
+        animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        style={{ transformOrigin: "top" }}
+      />
+      
+      <motion.h2 
+        className="text-4xl font-bold mb-16 text-center flex justify-center items-center"
+        initial={{ opacity: 0, y: -30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.div
+          animate={isInView ? { rotate: [0, 10, -10, 0] } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Briefcase className="mr-3 text-blue-400" size={36} />
+        </motion.div>
+        <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+          Professional Experience
+        </span>
+      </motion.h2>
+      
+      <motion.div 
+        className="space-y-12 relative"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.title}
-            className="bg-gray-800 p-8 rounded-lg shadow-lg"
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
+            variants={cardVariants}
+            className="relative"
           >
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-              <div>
-                <h3 className="text-2xl font-semibold mb-2 text-blue-400">
-                  {exp.title}
-                </h3>
-                <p className="text-xl text-gray-300 mb-2">{exp.company}</p>
-              </div>
-              <span className="bg-blue-500 bg-opacity-20 text-blue-400 px-4 py-2 rounded-full text-sm font-medium">
-                {exp.period}
-              </span>
-            </div>
+            {/* Timeline Dot */}
+            <motion.div
+              className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-gray-900 z-10 hidden md:block"
+              initial={{ scale: 0 }}
+              animate={isInView ? { scale: 1 } : { scale: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.3 + 0.5 }}
+            />
+            
+            <motion.div
+              className="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
+              whileHover={{ 
+                scale: 1.02, 
+                y: -5,
+                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
+              }}
+            >
+              {/* Glow Effect on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-cyan-500/10 transition-all duration-500" />
+              
+              <div className="relative z-10">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                  <div>
+                    <motion.h3 
+                      className="text-2xl font-bold mb-2 text-blue-400"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      transition={{ duration: 0.5, delay: index * 0.3 + 0.6 }}
+                    >
+                      {exp.title}
+                    </motion.h3>
+                    <motion.p 
+                      className="text-xl text-gray-300 mb-2 font-medium"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      transition={{ duration: 0.5, delay: index * 0.3 + 0.7 }}
+                    >
+                      {exp.company}
+                    </motion.p>
+                  </div>
+                  <motion.span 
+                    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.3 + 0.8 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    {exp.period}
+                  </motion.span>
+                </div>
 
-            <ul className="list-disc list-inside space-y-2 mb-6">
-              {exp.responsibilities.map((resp, i) => (
-                <li key={i} className="text-gray-300">
-                  {resp}
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap gap-2">
-              {exp.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm"
+                <motion.ul 
+                  className="space-y-3 mb-6"
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  variants={{
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.1,
+                        delayChildren: index * 0.3 + 0.9
+                      }
+                    }
+                  }}
                 >
-                  {tech}
-                </span>
-              ))}
-            </div>
+                  {exp.responsibilities.map((resp, i) => (
+                    <motion.li 
+                      key={i} 
+                      className="text-gray-300 flex items-start"
+                      variants={{
+                        hidden: { opacity: 0, x: -20 },
+                        visible: { opacity: 1, x: 0 }
+                      }}
+                    >
+                      <span className="text-blue-400 mr-2">▹</span>
+                      <span>{resp}</span>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+
+                <motion.div 
+                  className="flex flex-wrap gap-2"
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                  variants={{
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.05,
+                        delayChildren: index * 0.3 + 1.2
+                      }
+                    }
+                  }}
+                >
+                  {exp.technologies.map((tech) => (
+                    <motion.span
+                      key={tech}
+                      className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 cursor-default"
+                      variants={{
+                        hidden: { opacity: 0, scale: 0 },
+                        visible: { opacity: 1, scale: 1 }
+                      }}
+                      whileHover={{ scale: 1.1, y: -2 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
