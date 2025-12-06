@@ -11,6 +11,7 @@ import {
   FaPython,
   FaGitAlt,
   FaBootstrap,
+  FaStripe,
 } from "react-icons/fa";
 import {
   SiRedux,
@@ -20,6 +21,12 @@ import {
   SiExpress,
   SiDjango,
   SiTypescript,
+  SiNextdotjs,
+  SiFirebase,
+  SiPostman,
+  SiTelegram,
+  SiStripe,
+  SiZoho,
 } from "react-icons/si";
 
 export default function Skills() {
@@ -28,35 +35,51 @@ export default function Skills() {
       title: "Frontend Development",
       icon: <Globe className="w-6 h-6" />,
       skills: [
-        { name: "React", icon: <FaReact />, level: 90 },
-        { name: "JavaScript", icon: <FaJsSquare />, level: 85 },
-        { name: "TypeScript", icon: <SiTypescript />, level: 75 },
+        { name: "Next.js", icon: <SiNextdotjs />, level: 90 },
+        { name: "React", icon: <FaReact />, level: 92 },
+        { name: "TypeScript", icon: <SiTypescript />, level: 88 },
+        { name: "JavaScript", icon: <FaJsSquare />, level: 90 },
+        { name: "Tailwind CSS", icon: <SiTailwindcss />, level: 90 },
+        { name: "Redux", icon: <SiRedux />, level: 85 },
         { name: "HTML5", icon: <FaHtml5 />, level: 95 },
-        { name: "CSS3", icon: <FaCss3Alt />, level: 90 },
-        { name: "Redux", icon: <SiRedux />, level: 80 },
-        { name: "Tailwind CSS", icon: <SiTailwindcss />, level: 85 },
-        { name: "Bootstrap", icon: <FaBootstrap />, level: 80 },
+        { name: "CSS3", icon: <FaCss3Alt />, level: 92 },
       ],
     },
     {
-      title: "Backend Development",
+      title: "Backend & Database",
       icon: <Database className="w-6 h-6" />,
       skills: [
-        { name: "Node.js", icon: <FaNodeJs />, level: 80 },
-        { name: "Express.js", icon: <SiExpress />, level: 75 },
-        { name: "Python", icon: <FaPython />, level: 70 },
-        { name: "Django", icon: <SiDjango />, level: 65 },
-        { name: "MongoDB", icon: <SiMongodb />, level: 75 },
-        { name: "MySQL", icon: <SiMysql />, level: 70 },
+        { name: "Node.js", icon: <FaNodeJs />, level: 85 },
+        { name: "Express.js", icon: <SiExpress />, level: 82 },
+        { name: "Firebase", icon: <SiFirebase />, level: 88 },
+        { name: "MongoDB", icon: <SiMongodb />, level: 80 },
+        { name: "Python", icon: <FaPython />, level: 75 },
+        { name: "Django", icon: <SiDjango />, level: 70 },
+        { name: "MySQL", icon: <SiMysql />, level: 75 },
       ],
     },
     {
-      title: "Tools & Technologies",
+      title: "Payment & Integration",
       icon: <Code2 className="w-6 h-6" />,
       skills: [
-        { name: "Git", icon: <FaGitAlt />, level: 85 },
-        { name: "VS Code", icon: <Code2 />, level: 90 },
-        { name: "Responsive Design", icon: <Smartphone />, level: 90 },
+        { name: "Stripe", icon: <SiStripe />, level: 85 },
+        { name: "Zoho Payments", icon: <SiZoho />, level: 80 },
+        { name: "Postman API", icon: <SiPostman />, level: 90 },
+        { name: "Webhook Config", icon: <Code2 />, level: 85 },
+        { name: "Telegram API", icon: <SiTelegram />, level: 82 },
+        { name: "Resend API", icon: <Database />, level: 80 },
+      ],
+    },
+    {
+      title: "DevOps & Tools",
+      icon: <Code2 className="w-6 h-6" />,
+      skills: [
+        { name: "Git & GitHub", icon: <FaGitAlt />, level: 90 },
+        { name: "Firebase CLI", icon: <SiFirebase />, level: 85 },
+        { name: "Firebase Hosting", icon: <SiFirebase />, level: 88 },
+        { name: "Ngrok", icon: <Globe />, level: 80 },
+        { name: "VS Code", icon: <Code2 />, level: 92 },
+        { name: "Firebase Emulators", icon: <SiFirebase />, level: 82 },
       ],
     },
   ];
@@ -74,8 +97,8 @@ export default function Skills() {
             Skills & Technologies
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A comprehensive overview of my technical skills and the technologies
-            I work with to bring ideas to life.
+            From building production-ready SaaS applications to integrating payment gateways 
+            and real-time notifications - here's my comprehensive tech stack.
           </p>
         </motion.div>
 
@@ -150,14 +173,16 @@ export default function Skills() {
               Always Learning, Always Growing
             </h3>
             <p className="text-gray-300 text-lg mb-6">
-              Technology evolves rapidly, and so do I. I'm constantly exploring
-              new frameworks, tools, and best practices to stay at the forefront
-              of web development.
+              Currently specializing in building scalable SaaS solutions with Next.js, 
+              implementing secure payment systems, API integrations, and automated workflows. 
+              I focus on production-ready code with proper testing and monitoring.
             </p>
-            <div className="flex justify-center space-x-6 text-sm text-gray-400">
-              <span>📚 Continuous Learning</span>
-              <span>🔧 Hands-on Practice</span>
-              <span>🌟 Best Practices</span>
+            <div className="flex justify-center flex-wrap gap-4 text-sm text-gray-400">
+              <span>💳 Payment Gateway Integration</span>
+              <span>🔐 Sandbox & Production Environments</span>
+              <span>🔔 Real-time Notifications</span>
+              <span>🧪 API Testing & Development</span>
+              <span>🚀 CI/CD & Deployment</span>
             </div>
           </div>
         </motion.div>

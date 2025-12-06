@@ -37,21 +37,22 @@ export default function About() {
           <p className="text-lg leading-relaxed mb-6">
             👋 Hi there! I'm{" "}
             <span className="text-blue-400 font-semibold">Abhishek Tiwari</span>
-            , a passionate full-stack developer from Lucknow, India. With a
-            strong foundation in modern web technologies, I love crafting
-            digital experiences that make a difference.
+            , a passionate full-stack developer from Lucknow, India. Currently working on
+            <span className="text-purple-400 font-semibold"> Tempinbox Premium</span>, 
+            where I'm building scalable SaaS solutions with modern web technologies.
           </p>
           <p className="text-lg leading-relaxed mb-6">
-            🚀 My journey in software development has been driven by curiosity
-            and a desire to solve real-world problems. From building responsive
-            e-commerce platforms to creating interactive web applications, I
-            enjoy every aspect of the development process.
+            🚀 My expertise spans across the entire development stack - from crafting intuitive 
+            user interfaces with <span className="text-blue-400">Next.js</span> and <span className="text-blue-400">TypeScript</span>, 
+            to implementing secure payment integrations with <span className="text-green-400">Stripe</span> and 
+            <span className="text-orange-400"> Zoho Payments</span>. I specialize in building production-ready 
+            applications with robust testing environments and automated workflows.
           </p>
           <p className="text-lg leading-relaxed">
-            💡 When I'm not coding, you'll find me exploring new technologies,
-            contributing to open-source projects, or sharing knowledge with the
-            developer community. I believe in writing clean, maintainable code
-            and creating user-centric applications.
+            💡 I'm experienced in API development and testing with <span className="text-yellow-400">Postman</span>, 
+            webhook implementations, Firebase hosting, real-time notifications via Telegram, 
+            and seamless email integrations using Resend API. I believe in writing clean, 
+            maintainable code and creating user-centric applications that solve real-world problems.
           </p>
         </motion.div>
 
