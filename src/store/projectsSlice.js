@@ -124,6 +124,15 @@ export const fetchProjects = createAsyncThunk(
         category: "Utility",
         featured: false,
       },
+      Tempusmail: {
+        description:
+          "A temporary email service with real-time email receiving, Firebase backend integration, and modern UI. Features include disposable email addresses, automatic email cleanup, and instant email notifications.",
+        technologies: ["React", "Firebase", "Tailwind CSS", "Node.js"],
+        demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
+        backend: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
+        category: "Utility",
+        featured: true,
+      },
     };
 
     const availableRepos = data.map((repo) => repo.name);
@@ -144,6 +153,7 @@ export const fetchProjects = createAsyncThunk(
       "Password_Generator",
       "RPS",
       "Tic-Tac-Toe",
+      "Tempusmail",
     ].filter((name) => availableRepos.includes(name));
 
     console.log("Projects to keep:", projectsToKeep);
@@ -164,7 +174,7 @@ export const fetchProjects = createAsyncThunk(
       })
       .filter(Boolean);
 
-    return orderedProjects.map((project) => {
+    const mappedProjects = orderedProjects.map((project) => {
       const details = projectDetails[project.name] || {};
 
       return {
@@ -182,6 +192,28 @@ export const fetchProjects = createAsyncThunk(
         deployedUrl: details.demo || null,
       };
     });
+
+    // Add Tempusmail if not in GitHub repos
+    if (!availableRepos.includes("Tempusmail")) {
+      const tempusmailDetails = projectDetails["Tempusmail"];
+      mappedProjects.unshift({
+        id: "tempusmail-custom",
+        name: "Tempusmail",
+        description: tempusmailDetails.description,
+        technologies: tempusmailDetails.technologies,
+        demo: tempusmailDetails.demo,
+        backend: tempusmailDetails.backend,
+        category: tempusmailDetails.category,
+        featured: tempusmailDetails.featured,
+        stargazers_count: 0,
+        updated_at: new Date().toISOString(),
+        deployStatus: "idle",
+        deployedUrl: tempusmailDetails.demo,
+        html_url: null, // No GitHub repo
+      });
+    }
+
+    return mappedProjects;
   }
 );
 

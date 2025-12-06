@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Calendar, GitBranch, Eye, Code } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
 import { getTechIcon } from "../utils/techIcons";
 
 const ProjectCard = React.forwardRef(
@@ -97,16 +96,6 @@ const ProjectCard = React.forwardRef(
                   <span>Backend</span>
                 </motion.a>
               )}
-              <motion.a
-                href={project.html_url} // Use the GitHub URL from the API
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaGithub size={16} />
-              </motion.a>
             </div>
           </div>
         </div>
@@ -175,48 +164,34 @@ const ProjectCard = React.forwardRef(
             </span>
           </div>
 
-          {/* Bottom GitHub link */}
-          <div className="mt-4 flex justify-between items-center">
-            <div className="flex space-x-2">
-              {(project.demo || project.deployedUrl) && (
-                <motion.a
-                  href={project.demo || project.deployedUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Eye size={16} />
-                  <span>Live Demo</span>
-                </motion.a>
-              )}
-              {backend && (
-                <motion.a
-                  href={backend}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Code size={16} />
-                  <span>Backend</span>
-                </motion.a>
-              )}
-            </div>
-
-            <motion.a
-              href={project.html_url} // GitHub URL from API
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-1 text-gray-400 hover:text-white transition-colors text-sm"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaGithub size={16} />
-              <span>Code</span>
-            </motion.a>
+          {/* Bottom links */}
+          <div className="mt-4 flex space-x-2">
+            {(project.demo || project.deployedUrl) && (
+              <motion.a
+                href={project.demo || project.deployedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Eye size={16} />
+                <span>Live Demo</span>
+              </motion.a>
+            )}
+            {backend && (
+              <motion.a
+                href={backend}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Code size={16} />
+                <span>Backend</span>
+              </motion.a>
+            )}
           </div>
         </div>
       </motion.div>

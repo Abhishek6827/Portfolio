@@ -90,6 +90,13 @@ import AmazonImage2 from "../images/Amazon/image2.png";
 import Commerce1 from "../images/E-commerce/image1.png";
 import Commerce2 from "../images/E-commerce/image2.png";
 
+// Tempusmail Images
+import TempusmailImage1 from "../images/Tempusmail/1.png";
+import TempusmailImage2 from "../images/Tempusmail/2.png";
+import TempusmailImage3 from "../images/Tempusmail/3.png";
+import TempusmailImage4 from "../images/Tempusmail/4.png";
+import TempusmailImage5 from "../images/Tempusmail/5.png";
+
 export const amazonImages = [AmazonImage1, AmazonImage2];
 export const CommerceImages = [Commerce1, Commerce2];
 export const currencyConverterImages = [CurrencyConverterImage1];
@@ -98,6 +105,14 @@ export const rpsImages = [RPSImage1];
 export const ticTacToeImages = [TicTacToeImage1];
 export const calculatorImages = [CalculatorImage1];
 export const bharatClockImages = [BharatClockImage1];
+
+export const tempusmailImages = [
+  TempusmailImage1,
+  TempusmailImage2,
+  TempusmailImage3,
+  TempusmailImage4,
+  TempusmailImage5,
+];
 
 export const myntraImages = [
   MyntraImage1,
@@ -201,6 +216,7 @@ export const getProjectImages = (projectName) => {
     "Tic-Tac-Toe": ticTacToeImages,
     Calculator: calculatorImages,
     "Bharat-Clock": bharatClockImages,
+    Tempusmail: tempusmailImages,
   };
   return imageMap[projectName] || null;
 };
@@ -208,6 +224,7 @@ export const getProjectImages = (projectName) => {
 export const getProjectBackend = (projectName) => {
   const backendMap = {
     Kanban_WorkBoard: "https://abhishektiwari6827.pythonanywhere.com/",
+    Tempusmail: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
   };
   return backendMap[projectName] || null;
 };
