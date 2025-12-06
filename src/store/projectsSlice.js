@@ -127,7 +127,12 @@ export const fetchProjects = createAsyncThunk(
       Tempusmail: {
         description:
           "A temporary email service with real-time email receiving, Firebase backend integration, and modern UI. Features include disposable email addresses, automatic email cleanup, and instant email notifications.",
-        technologies: ["Next.js", "Notion Database", "Tailwind CSS", "Firebase"],
+        technologies: [
+          "Next.js",
+          "Notion Database",
+          "Tailwind CSS",
+          "Firebase",
+        ],
         demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
         category: "Utility",
         featured: true,

@@ -18,7 +18,7 @@ const featuredProjects = [
     name: "Tempusmail",
     images: getProjectImages("Tempusmail"),
     demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
-    tech: ["Next.js", "Notion Database", "Tailwind CSS", "Firebase"],
+    tech: ["Next.js", "Firebase", "Notion Database", "Tailwind CSS"],
     description:
       "Temporary email service with real-time email receiving and modern UI",
     color: "from-red-500 to-orange-500",
@@ -359,13 +359,13 @@ function Hero() {
                           <img
                             src={images[currentImageIndex]}
                             alt={featuredProjects[currentProject].name}
-                            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-82 object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                             onLoad={() => setImageLoaded(true)}
                             onError={() => setImageLoaded(false)}
                           />
                         ) : (
-                          <div className="w-full h-48 bg-gray-700 flex items-center justify-center">
+                          <div className="w-full h-80 bg-gray-700 flex items-center justify-center">
                             <span className="text-gray-400">
                               No image available
                             </span>
