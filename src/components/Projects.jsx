@@ -9,7 +9,7 @@ import {
   selectFeaturedProjects,
   selectProjectsByCategory,
 } from "../store/projectsSlice";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Code, Laptop, Rocket, Zap, Star, Globe } from "lucide-react";
 import ProjectCard from "./ProjectCard";
 import DemoModal from "./DemoModal";
 import { getProjectImages, getProjectBackend } from "../utils/projectImages";
@@ -88,7 +88,36 @@ export default function Projects() {
   }
 
   return (
-    <div ref={sectionRef} className="container mx-auto px-4 py-20">
+    <div ref={sectionRef} className="container mx-auto px-4 py-20 relative overflow-hidden">
+      {/* Animated Background Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-15">
+        {[Code, Laptop, Rocket, Zap, Star, Globe].map((Icon, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-purple-400"
+            style={{
+              top: `${15 + i * 15}%`,
+              left: `${10 + (i % 2) * 40}%`,
+            }}
+            animate={{
+              y: [0, -40, 0],
+              x: i % 2 === 0 ? [0, 30, 0] : [0, -30, 0],
+              rotate: [0, 180, 360],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 10 + i * 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: i * 0.8,
+            }}
+          >
+            <Icon size={35 + i * 5} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative z-10">
       <motion.div
         initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
         animate={
@@ -97,16 +126,40 @@ export default function Projects() {
             : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }
         }
         transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
-        className="text-center mb-12"
+        className="text-center mb-12 relative"
       >
-        <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
+        <motion.h2
+          className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+          animate={
+            isInView
+              ? {
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }
+              : {}
+          }
+          transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
+          style={{ backgroundSize: "200% auto" }}
+        >
           My Projects
-        </h2>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p
+          className="text-gray-400 text-lg max-w-2xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           Explore my portfolio of web applications, from e-commerce platforms to
           productivity tools, each built with modern technologies and best
           practices.
-        </p>
+        </motion.p>
+        
+        {/* Decorative wave underline */}
+        <motion.div
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 rounded-full"
+          initial={{ width: 0, opacity: 0 }}
+          animate={isInView ? { width: 128, opacity: 1 } : { width: 0, opacity: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        />
       </motion.div>
 
       <motion.section
@@ -122,12 +175,41 @@ export default function Projects() {
           type: "spring",
           stiffness: 80,
         }}
-        className="mb-16"
+        className="mb-16 relative"
       >
-        <h3 className="text-2xl font-semibold mb-8 text-center">
-          Featured Projects
-        </h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.h3
+          className="text-2xl font-semibold mb-8 text-center relative inline-block"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: 0.3 }}
+          style={{ display: 'block' }}
+        >
+          <span className="relative z-10">Featured Projects</span>
+          <motion.span
+            className="absolute inset-0 bg-blue-500 blur-xl opacity-30"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
+          />
+        </motion.h3>
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+        >
           {featuredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -140,7 +222,7 @@ export default function Projects() {
               isFeatured={true}
             />
           ))}
-        </div>
+        </motion.div>
       </motion.section>
 
       <motion.div
@@ -153,7 +235,7 @@ export default function Projects() {
           <motion.button
             key={category}
             onClick={() => setFilter(category)}
-            className={`px-6 py-2 rounded-full transition-all duration-300 ${
+            className={`px-6 py-2 rounded-full transition-all duration-300 relative overflow-hidden ${
               filter === category
                 ? "bg-blue-500 text-white shadow-lg shadow-blue-500/25"
                 : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
@@ -164,7 +246,15 @@ export default function Projects() {
             whileHover={{ scale: 1.1, y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
+            {filter === category && (
+              <motion.span
+                className="absolute inset-0 bg-blue-400 rounded-full"
+                initial={{ scale: 0, opacity: 0.5 }}
+                animate={{ scale: 2, opacity: 0 }}
+                transition={{ duration: 0.6, repeat: Number.POSITIVE_INFINITY, repeatDelay: 0.5 }}
+              />
+            )}
+            <span className="relative z-10">{category.charAt(0).toUpperCase() + category.slice(1)}</span>
           </motion.button>
         ))}
       </motion.div>
@@ -190,6 +280,7 @@ export default function Projects() {
           ))}
         </AnimatePresence>
       </motion.div>
+      </div>
 
       <AnimatePresence>
         {selectedProject && (

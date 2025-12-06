@@ -62,7 +62,44 @@ const Contact = () => {
   ];
 
   return (
-    <div ref={sectionRef} className="container mx-auto px-4 py-20">
+    <div ref={sectionRef} className="container mx-auto px-4 py-20 relative overflow-hidden">
+      {/* Animated Background Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-blue-400"
+            style={{
+              top: `${10 + i * 12}%`,
+              left: `${5 + (i % 3) * 30}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 20, 0],
+              rotate: [0, 360],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 8 + i * 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+          >
+            {i % 4 === 0 ? (
+              <Mail size={30 + i * 3} />
+            ) : i % 4 === 1 ? (
+              <Phone size={28 + i * 3} />
+            ) : i % 4 === 2 ? (
+              <MapPin size={32 + i * 3} />
+            ) : (
+              <Send size={26 + i * 3} />
+            )}
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative z-10">
       <motion.h1
         className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
         initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
@@ -222,6 +259,7 @@ const Contact = () => {
             </motion.p>
           )}
         </motion.form>
+      </div>
       </div>
     </div>
   );

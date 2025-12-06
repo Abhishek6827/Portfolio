@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Award, ExternalLink, CheckCircle, X } from "lucide-react";
+import { Award, ExternalLink, CheckCircle, X, Trophy, Medal, Star, Target } from "lucide-react";
 import { useState, useRef } from "react";
 
 export default function Certifications() {
@@ -74,7 +74,35 @@ export default function Certifications() {
   };
 
   return (
-    <div ref={sectionRef} className="container mx-auto px-4 py-20">
+    <div ref={sectionRef} className="container mx-auto px-4 py-20 relative overflow-hidden">
+      {/* Animated Background Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-12">
+        {[Award, Trophy, Medal, Star, Target, CheckCircle].map((Icon, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-yellow-400"
+            style={{
+              top: `${10 + i * 14}%`,
+              left: i % 2 === 0 ? `${5 + i * 8}%` : `${85 - i * 8}%`,
+            }}
+            animate={{
+              y: [0, -35, 0],
+              rotate: [0, 360],
+              scale: [1, 1.25, 1],
+            }}
+            transition={{
+              duration: 9 + i * 1.8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: i * 0.7,
+            }}
+          >
+            <Icon size={38 + i * 4} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative z-10">
       <motion.div
         initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
         animate={
@@ -336,6 +364,7 @@ export default function Certifications() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </div>
   );
 }

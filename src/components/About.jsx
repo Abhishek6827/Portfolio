@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { User, Code, Coffee, Lightbulb } from "lucide-react";
+import { User, Code, Coffee, Lightbulb, Cpu, Database, Terminal } from "lucide-react";
 import { useRef } from "react";
 
 export default function About() {
@@ -25,7 +25,36 @@ export default function About() {
   ];
 
   return (
-    <section ref={sectionRef} className="container mx-auto px-4 py-12">
+    <section ref={sectionRef} className="container mx-auto px-4 py-12 relative overflow-hidden">
+      {/* Animated Background Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+        {[Code, Coffee, Lightbulb, Cpu, Database, Terminal].map((Icon, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-blue-400"
+            style={{
+              top: `${20 + i * 12}%`,
+              right: `${5 + (i % 3) * 25}%`,
+            }}
+            animate={{
+              y: [0, -25, 0],
+              x: [0, 15, 0],
+              rotate: [0, -180, -360],
+              scale: [1, 1.15, 1],
+            }}
+            transition={{
+              duration: 12 + i * 1.5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: i * 0.6,
+            }}
+          >
+            <Icon size={40 + i * 4} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative z-10">
       <motion.h2
         className="text-5xl font-bold mb-12 text-center flex justify-center items-center"
         initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
@@ -259,6 +288,7 @@ export default function About() {
           </div>
         </motion.div>
       </motion.div>
+      </div>
     </section>
   );
 }

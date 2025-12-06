@@ -317,6 +317,44 @@ export default function Skills() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Always Learning Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60, scale: 0.9 }}
+          animate={
+            isInView
+              ? { opacity: 1, y: 0, scale: 1 }
+              : { opacity: 0, y: 60, scale: 0.9 }
+          }
+          transition={{ duration: 0.8, delay: 1.2, type: "spring", stiffness: 80 }}
+          className="mt-16 text-center"
+        >
+          <div className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-600 relative overflow-hidden">
+            <div className="relative z-10">
+              <motion.h3
+                className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+                initial={{ opacity: 0, y: 20 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
+                transition={{ duration: 0.6, delay: 1.4 }}
+              >
+                Always Learning, Always Growing
+              </motion.h3>
+              <motion.p
+                className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.8, delay: 1.6 }}
+              >
+                Currently specializing in building scalable SaaS solutions with
+                Next.js, implementing secure payment systems, API integrations,
+                and automated workflows. I focus on production-ready code with
+                proper testing and monitoring.
+              </motion.p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

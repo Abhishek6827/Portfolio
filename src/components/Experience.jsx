@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, Calendar, TrendingUp, Users, Award, Zap } from "lucide-react";
 import { useRef } from "react";
 
 export default function Experience() {
@@ -78,7 +78,36 @@ export default function Experience() {
   });
 
   return (
-    <section ref={sectionRef} className="container mx-auto px-4 py-20 relative">
+    <section ref={sectionRef} className="container mx-auto px-4 py-20 relative overflow-hidden">
+      {/* Animated Background Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+        {[Briefcase, Calendar, TrendingUp, Users, Award, Zap].map((Icon, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-green-400"
+            style={{
+              top: `${15 + i * 13}%`,
+              left: i % 2 === 0 ? `${10 + i * 6}%` : `${80 - i * 6}%`,
+            }}
+            animate={{
+              y: [0, -28, 0],
+              x: i % 2 === 0 ? [0, 25, 0] : [0, -25, 0],
+              rotate: [0, 270],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 11 + i * 1.7,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: i * 0.65,
+            }}
+          >
+            <Icon size={36 + i * 4} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative z-10">
       {/* Animated Timeline Line */}
       <motion.div
         className="absolute left-1/2 top-32 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 hidden md:block"
@@ -239,6 +268,7 @@ export default function Experience() {
           </motion.div>
         ))}
       </motion.div>
+      </div>
     </section>
   );
 }
