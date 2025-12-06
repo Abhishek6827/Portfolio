@@ -18,8 +18,9 @@ const featuredProjects = [
     name: "Tempusmail",
     images: getProjectImages("Tempusmail"),
     demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
-    tech: ["React", "Firebase", "Tailwind CSS", "Node.js"],
-    description: "Temporary email service with real-time email receiving and modern UI",
+    tech: ["Next.js", "Notion Database", "Tailwind CSS", "Firebase"],
+    description:
+      "Temporary email service with real-time email receiving and modern UI",
     color: "from-red-500 to-orange-500",
   },
   {
