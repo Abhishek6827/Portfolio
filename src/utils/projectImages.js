@@ -224,7 +224,6 @@ export const getProjectImages = (projectName) => {
 export const getProjectBackend = (projectName) => {
   const backendMap = {
     Kanban_WorkBoard: "https://abhishektiwari6827.pythonanywhere.com/",
-    Tempusmail: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
   };
   return backendMap[projectName] || null;
 };

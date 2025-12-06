@@ -3,7 +3,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Eye, ChevronLeft, ChevronRight } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import { useState, useEffect, useCallback } from "react";
 import SkillsComponent from "./Skills";
 import ExperienceComponent from "./Experience";
@@ -15,10 +15,17 @@ import { getProjectImages } from "../utils/projectImages";
 
 const featuredProjects = [
   {
+    name: "Tempusmail",
+    images: getProjectImages("Tempusmail"),
+    demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
+    tech: ["React", "Firebase", "Tailwind CSS", "Node.js"],
+    description: "Temporary email service with real-time email receiving and modern UI",
+    color: "from-red-500 to-orange-500",
+  },
+  {
     name: "Myntra Clone",
     images: getProjectImages("Myntra Clone"),
     demo: "https://Abhishek6827.github.io/Myntra/",
-    github: "https://github.com/Abhishek6827/Myntra",
     tech: ["React", "Redux", "CSS"],
     description: "Fashion e-commerce platform with modern UI",
     color: "from-pink-500 to-rose-500",
@@ -27,7 +34,6 @@ const featuredProjects = [
     name: "Skill_Up",
     images: getProjectImages("Skill_Up"),
     demo: "https://Abhishek6827.github.io/Skill_Up/",
-    github: "https://github.com/Abhishek6827/Skill_Up",
     tech: ["React", "Firebase"],
     description:
       "Created a learning platform enabling users to browse and access online courses.",
@@ -37,7 +43,6 @@ const featuredProjects = [
     name: "Market-Seasonality-Explorer",
     images: getProjectImages("Market-Seasonality-Explorer"),
     demo: "https://abhishek6827.github.io/Market-Seasonality-Explorer/",
-    github: "https://github.com/Abhishek6827/Market-Seasonality-Explorer",
     tech: ["React", "Tailwind CSS", "Recharts", "Binance API"],
     description: "Calendar highlighting seasonal market trends",
     color: "from-orange-500 to-amber-500",
@@ -46,7 +51,6 @@ const featuredProjects = [
     name: "Kanban_WorkBoard",
     images: getProjectImages("Kanban_WorkBoard"),
     demo: "https://Abhishek6827.github.io/Kanban_WorkBoard/",
-    github: "https://github.com/Abhishek6827/Kanban_WorkBoard",
     tech: ["React", "Redux", "Tailwind"],
     description: "Project management dashboard with collaboration tools",
     color: "from-blue-500 to-cyan-500",
@@ -55,7 +59,6 @@ const featuredProjects = [
     name: "Elante Mall",
     images: getProjectImages("Elante Mall"),
     demo: "https://Abhishek6827.github.io/Elante_Mall/",
-    github: "https://github.com/Abhishek6827/Elante_Mall",
     tech: ["React", "CSS", "JavaScript"],
     description:
       "Shopping mall website with store directory and interactive map",
@@ -250,22 +253,6 @@ function Hero() {
               className="flex justify-center lg:justify-start space-x-6"
             >
               <motion.a
-                href="https://github.com/Abhishek6827"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaGithub
-                  size={24}
-                  className="text-white group-hover:text-blue-400 transition-colors"
-                />
-                <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  GitHub
-                </span>
-              </motion.a>
-              <motion.a
                 href="https://www.linkedin.com/in/abhishek-tiwariiii"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -409,32 +396,18 @@ function Hero() {
                       </button>
 
                       <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-                        <div className="flex space-x-2">
-                          <motion.a
-                            href={featuredProjects[currentProject].demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition-colors"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            title="View live demo"
-                          >
-                            <Eye size={14} />
-                            <span>Live Demo</span>
-                          </motion.a>
-                          <motion.a
-                            href={featuredProjects[currentProject].github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded-full text-sm transition-colors"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            title="View source code"
-                          >
-                            <FaGithub size={14} />
-                            <span>Code</span>
-                          </motion.a>
-                        </div>
+                        <motion.a
+                          href={featuredProjects[currentProject].demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm transition-colors w-full"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          title="View live demo"
+                        >
+                          <Eye size={14} />
+                          <span>Live Demo</span>
+                        </motion.a>
                       </div>
                     </div>
 
