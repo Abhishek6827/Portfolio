@@ -4,15 +4,15 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/",
+  base: "/Portfolio/",
   build: {
     outDir: "dist",
     assetsDir: "assets",
     rollupOptions: {
       output: {
-        entryFileNames: "assets/[name].js",
-        chunkFileNames: "assets/[name].js",
-        assetFileNames: "assets/[name].[ext]",
+        entryFileNames: "assets/index-[hash].js",
+        chunkFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]",
       },
     },
   },
