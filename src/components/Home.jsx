@@ -172,38 +172,144 @@ function Hero() {
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden">
-      {/* Background animations */}
-      <div className="absolute inset-0">
+      {/* Animated Geometric Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Floating geometric shapes */}
         <motion.div
-          className="absolute top-1/4 left-1/2 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen opacity-30 blur-3xl"
+          className="absolute w-24 h-24 bg-blue-500/10 backdrop-blur-sm"
+          style={{ top: "15%", left: "-10%", filter: "blur(2px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 28,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute w-16 h-16 bg-purple-500/15 backdrop-blur-sm rotate-45"
+          style={{ top: "35%", left: "-8%", filter: "blur(1px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 32,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 3,
+          }}
+        />
+        <motion.div
+          className="absolute w-20 h-20 bg-cyan-400/12 backdrop-blur-sm rotate-12"
+          style={{ top: "55%", left: "-12%", filter: "blur(2px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 6,
+          }}
+        />
+        <motion.div
+          className="absolute w-28 h-28 bg-indigo-500/8 backdrop-blur-sm"
+          style={{ top: "70%", left: "-15%", filter: "blur(3px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 35,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 9,
+          }}
+        />
+        <motion.div
+          className="absolute w-14 h-14 bg-blue-400/20 backdrop-blur-sm rotate-45"
+          style={{ top: "25%", left: "-6%", filter: "blur(1px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 26,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 12,
+          }}
+        />
+        <motion.div
+          className="absolute w-18 h-18 bg-purple-400/10 backdrop-blur-sm rotate-12"
+          style={{ top: "45%", left: "-10%", filter: "blur(2px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 29,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 15,
+          }}
+        />
+        <motion.div
+          className="absolute w-22 h-22 bg-cyan-500/15 backdrop-blur-sm"
+          style={{ top: "65%", left: "-8%", filter: "blur(2px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 33,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 18,
+          }}
+        />
+        <motion.div
+          className="absolute w-20 h-20 bg-indigo-400/12 backdrop-blur-sm rotate-45"
+          style={{ top: "80%", left: "-12%", filter: "blur(3px)" }}
+          animate={{
+            x: ["0vw", "110vw"],
+          }}
+          transition={{
+            duration: 31,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+            delay: 21,
+          }}
+        />
+
+        {/* Subtle gradient orbs for depth */}
+        <motion.div
+          className="absolute top-1/4 left-1/2 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen opacity-20 blur-3xl"
           initial={{ scale: 0 }}
           animate={{
-            scale: [1, 1.3, 1.1],
-            x: [-20, 20, -10],
-            y: [-10, 10, -5],
+            scale: [1, 1.2, 1],
+            x: [-20, 20, -20],
+            y: [-10, 10, -10],
           }}
           transition={{
-            duration: 10,
+            duration: 15,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/3 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen opacity-20 blur-3xl"
+          className="absolute top-1/2 left-1/3 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen opacity-15 blur-3xl"
           initial={{ scale: 0 }}
-          animate={{ scale: [1.2, 0.8, 1], x: [10, -15, 5], y: [5, -10, 0] }}
+          animate={{ scale: [1.1, 0.9, 1.1], x: [10, -10, 10], y: [5, -5, 5] }}
+          transition={{
+            duration: 18,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-cyan-400 rounded-full mix-blend-screen opacity-18 blur-3xl"
+          initial={{ scale: 0 }}
+          animate={{ scale: [0.9, 1.1, 0.9], x: [-5, 15, -5], y: [8, -8, 8] }}
           transition={{
             duration: 12,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-cyan-400 rounded-full mix-blend-screen opacity-25 blur-3xl"
-          initial={{ scale: 0 }}
-          animate={{ scale: [0.8, 1.2, 0.9], x: [-5, 15, -8], y: [8, -12, 3] }}
-          transition={{
-            duration: 8,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
