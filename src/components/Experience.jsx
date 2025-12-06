@@ -6,7 +6,7 @@ import { useRef } from "react";
 export default function Experience() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  
+
   const experiences = [
     {
       title: "Software Developer",
@@ -51,24 +51,31 @@ export default function Experience() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3
-      }
-    }
+        staggerChildren: 0.3,
+      },
+    },
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, x: -100, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
+  const getCardVariants = (index) => ({
+    hidden: { 
+      opacity: 0, 
+      x: index % 2 === 0 ? -120 : 120,
+      rotateY: index % 2 === 0 ? -25 : 25,
+      scale: 0.7
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      rotateY: 0,
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  };
+        stiffness: 80,
+        damping: 15,
+        delay: index * 0.25,
+      },
+    },
+  });
 
   return (
     <section ref={sectionRef} className="container mx-auto px-4 py-20 relative">
@@ -80,12 +87,12 @@ export default function Experience() {
         transition={{ duration: 2, ease: "easeOut" }}
         style={{ transformOrigin: "top" }}
       />
-      
-      <motion.h2 
+
+      <motion.h2
         className="text-4xl font-bold mb-16 text-center flex justify-center items-center"
-        initial={{ opacity: 0, y: -30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
+        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
+        transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
       >
         <motion.div
           animate={isInView ? { rotate: [0, 10, -10, 0] } : {}}
@@ -97,8 +104,8 @@ export default function Experience() {
           Professional Experience
         </span>
       </motion.h2>
-      
-      <motion.div 
+
+      <motion.div
         className="space-y-12 relative"
         variants={containerVariants}
         initial="hidden"
@@ -107,7 +114,7 @@ export default function Experience() {
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.title}
-            variants={cardVariants}
+            variants={getCardVariants(index)}
             className="relative"
           >
             {/* Timeline Dot */}
@@ -117,42 +124,50 @@ export default function Experience() {
               animate={isInView ? { scale: 1 } : { scale: 0 }}
               transition={{ duration: 0.3, delay: index * 0.3 + 0.5 }}
             />
-            
+
             <motion.div
               className="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
-              whileHover={{ 
-                scale: 1.02, 
+              whileHover={{
+                scale: 1.02,
                 y: -5,
-                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
+                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
               }}
             >
               {/* Glow Effect on Hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-cyan-500/10 transition-all duration-500" />
-              
+
               <div className="relative z-10">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                   <div>
-                    <motion.h3 
+                    <motion.h3
                       className="text-2xl font-bold mb-2 text-blue-400"
                       initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      animate={
+                        isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                      }
                       transition={{ duration: 0.5, delay: index * 0.3 + 0.6 }}
                     >
                       {exp.title}
                     </motion.h3>
-                    <motion.p 
+                    <motion.p
                       className="text-xl text-gray-300 mb-2 font-medium"
                       initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      animate={
+                        isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                      }
                       transition={{ duration: 0.5, delay: index * 0.3 + 0.7 }}
                     >
                       {exp.company}
                     </motion.p>
                   </div>
-                  <motion.span 
+                  <motion.span
                     className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
                     initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                    animate={
+                      isInView
+                        ? { opacity: 1, scale: 1 }
+                        : { opacity: 0, scale: 0 }
+                    }
                     transition={{ duration: 0.5, delay: index * 0.3 + 0.8 }}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
@@ -160,7 +175,7 @@ export default function Experience() {
                   </motion.span>
                 </div>
 
-                <motion.ul 
+                <motion.ul
                   className="space-y-3 mb-6"
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
@@ -168,18 +183,18 @@ export default function Experience() {
                     visible: {
                       transition: {
                         staggerChildren: 0.1,
-                        delayChildren: index * 0.3 + 0.9
-                      }
-                    }
+                        delayChildren: index * 0.3 + 0.9,
+                      },
+                    },
                   }}
                 >
                   {exp.responsibilities.map((resp, i) => (
-                    <motion.li 
-                      key={i} 
+                    <motion.li
+                      key={i}
                       className="text-gray-300 flex items-start"
                       variants={{
                         hidden: { opacity: 0, x: -20 },
-                        visible: { opacity: 1, x: 0 }
+                        visible: { opacity: 1, x: 0 },
                       }}
                     >
                       <span className="text-blue-400 mr-2">▹</span>
@@ -188,7 +203,7 @@ export default function Experience() {
                   ))}
                 </motion.ul>
 
-                <motion.div 
+                <motion.div
                   className="flex flex-wrap gap-2"
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
@@ -196,9 +211,9 @@ export default function Experience() {
                     visible: {
                       transition: {
                         staggerChildren: 0.05,
-                        delayChildren: index * 0.3 + 1.2
-                      }
-                    }
+                        delayChildren: index * 0.3 + 1.2,
+                      },
+                    },
                   }}
                 >
                   {exp.technologies.map((tech) => (
@@ -207,7 +222,7 @@ export default function Experience() {
                       className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 cursor-default"
                       variants={{
                         hidden: { opacity: 0, scale: 0 },
-                        visible: { opacity: 1, scale: 1 }
+                        visible: { opacity: 1, scale: 1 },
                       }}
                       whileHover={{ scale: 1.1, y: -2 }}
                     >

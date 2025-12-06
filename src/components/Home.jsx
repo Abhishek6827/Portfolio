@@ -1,10 +1,26 @@
 // components/Home.jsx
 "use client";
 
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { Mail, Eye, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import {
+  Mail,
+  Eye,
+  ChevronLeft,
+  ChevronRight,
+  ChevronDown,
+} from "lucide-react";
 import { FaLinkedin, FaReact, FaNodeJs } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiFirebase, SiTailwindcss } from "react-icons/si";
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiFirebase,
+  SiTailwindcss,
+} from "react-icons/si";
 import { useState, useEffect, useCallback, useRef } from "react";
 import SkillsComponent from "./Skills";
 import ExperienceComponent from "./Experience";
@@ -78,15 +94,15 @@ function Hero() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
-  
+
   // Parallax transforms
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const opacityParallax = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const INTERVAL_TIME = 6000;
-  
+
   // Floating tech icons data
   const techIcons = [
     { Icon: FaReact, color: "text-cyan-400", size: 40, delay: 0 },
@@ -94,7 +110,7 @@ function Hero() {
     { Icon: SiTypescript, color: "text-blue-500", size: 38, delay: 1 },
     { Icon: FaNodeJs, color: "text-green-500", size: 42, delay: 1.5 },
     { Icon: SiFirebase, color: "text-yellow-500", size: 36, delay: 2 },
-    { Icon: SiTailwindcss, color: "text-cyan-400", size: 40, delay: 2.5 }
+    { Icon: SiTailwindcss, color: "text-cyan-400", size: 40, delay: 2.5 },
   ];
 
   // Auto-switching with progress indicator
@@ -191,117 +207,15 @@ function Hero() {
   };
 
   return (
-    <section ref={heroRef} className="relative min-h-screen py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden">
-      {/* Animated Geometric Background with Floating Tech Icons */}
-      <motion.div 
+    <section
+      ref={heroRef}
+      className="relative min-h-screen py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden"
+    >
+      {/* Floating Tech Icons Background - Moving Left to Right */}
+      <motion.div
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ y: yParallax }}
       >
-        {/* Floating geometric shapes */}
-        <motion.div
-          className="absolute w-24 h-24 bg-blue-500/10 backdrop-blur-sm"
-          style={{ top: "15%", left: "-10%", filter: "blur(2px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 28,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-        <motion.div
-          className="absolute w-16 h-16 bg-purple-500/15 backdrop-blur-sm rotate-45"
-          style={{ top: "35%", left: "-8%", filter: "blur(1px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 32,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 3,
-          }}
-        />
-        <motion.div
-          className="absolute w-20 h-20 bg-cyan-400/12 backdrop-blur-sm rotate-12"
-          style={{ top: "55%", left: "-12%", filter: "blur(2px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 6,
-          }}
-        />
-        <motion.div
-          className="absolute w-28 h-28 bg-indigo-500/8 backdrop-blur-sm"
-          style={{ top: "70%", left: "-15%", filter: "blur(3px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 35,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 9,
-          }}
-        />
-        <motion.div
-          className="absolute w-14 h-14 bg-blue-400/20 backdrop-blur-sm rotate-45"
-          style={{ top: "25%", left: "-6%", filter: "blur(1px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 26,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 12,
-          }}
-        />
-        <motion.div
-          className="absolute w-18 h-18 bg-purple-400/10 backdrop-blur-sm rotate-12"
-          style={{ top: "45%", left: "-10%", filter: "blur(2px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 29,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 15,
-          }}
-        />
-        <motion.div
-          className="absolute w-22 h-22 bg-cyan-500/15 backdrop-blur-sm"
-          style={{ top: "65%", left: "-8%", filter: "blur(2px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 33,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 18,
-          }}
-        />
-        <motion.div
-          className="absolute w-20 h-20 bg-indigo-400/12 backdrop-blur-sm rotate-45"
-          style={{ top: "80%", left: "-12%", filter: "blur(3px)" }}
-          animate={{
-            x: ["0vw", "110vw"],
-          }}
-          transition={{
-            duration: 31,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-            delay: 21,
-          }}
-        />
-
         {/* Subtle gradient orbs for depth */}
         <motion.div
           className="absolute top-1/4 left-1/2 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen opacity-20 blur-3xl"
@@ -337,28 +251,44 @@ function Hero() {
             ease: "easeInOut",
           }}
         />
-        
-        {/* Floating Tech Icons */}
+
+        {/* Tech Icons Moving Left to Right */}
         {techIcons.map(({ Icon, color, size, delay }, index) => (
           <motion.div
             key={index}
-            className={`absolute ${color} z-20`}
+            className={`absolute ${color}`}
             style={{
-              top: `${15 + index * 12}%`,
-              left: `${10 + (index % 3) * 30}%`,
+              top: `${10 + index * 15}%`,
+              left: "-10%",
             }}
-            initial={{ opacity: 0, scale: 0, rotate: 0 }}
             animate={{
-              opacity: [0.3, 0.7, 0.3],
-              scale: [1, 1.2, 1],
+              x: ["0vw", "110vw"],
+              opacity: [0.4, 0.8, 0.4],
+              scale: [0.9, 1.1, 0.9],
               rotate: [0, 360],
-              y: [0, -30, 0],
             }}
             transition={{
-              duration: 8 + index * 2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: delay,
+              x: {
+                duration: 25 + index * 3,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+                delay: delay,
+              },
+              opacity: {
+                duration: 4,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              },
+              scale: {
+                duration: 3,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              },
+              rotate: {
+                duration: 20 + index * 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+              },
             }}
           >
             <Icon size={size} />
@@ -369,9 +299,14 @@ function Hero() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -100, rotateY: -15 }}
+            animate={{ opacity: 1, x: 0, rotateY: 0 }}
+            transition={{ 
+              duration: 1, 
+              ease: [0.6, -0.05, 0.01, 0.99],
+              type: "spring",
+              stiffness: 80
+            }}
             className="text-center lg:text-left"
           >
             <motion.div
@@ -379,14 +314,14 @@ function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <motion.h1 
+              <motion.h1
                 className="text-5xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 0.8, 
+                transition={{
+                  duration: 0.8,
                   ease: [0.6, -0.05, 0.01, 0.99],
-                  delay: 0.2
+                  delay: 0.2,
                 }}
               >
                 Abhishek Tiwari
@@ -452,9 +387,15 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, x: 100, rotateY: 15, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+            transition={{ 
+              duration: 1.2, 
+              delay: 0.3,
+              ease: [0.6, -0.05, 0.01, 0.99],
+              type: "spring",
+              stiffness: 80
+            }}
             className="relative"
           >
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 relative overflow-hidden">
@@ -608,7 +549,7 @@ function Hero() {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Scroll Indicator with Pulse Animation */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
@@ -622,7 +563,7 @@ function Hero() {
           transition={{
             duration: 1.5,
             repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         >
           <ChevronDown className="text-blue-400" size={32} />

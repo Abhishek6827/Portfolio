@@ -32,9 +32,9 @@ const ProjectCard = React.forwardRef(
         className={`group relative bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ${
           isFeatured ? "" : "rounded-lg"
         }`}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: index * 0.1 }}
+        initial={{ opacity: 0, y: 60, rotateX: 20, scale: 0.85 }}
+        animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+        transition={{ duration: 0.7, delay: index * 0.15, type: "spring", stiffness: 80, damping: 15 }}
         onHoverStart={() => onHover(project.id)}
         onHoverEnd={() => onHover(null)}
         whileHover={{ y: isFeatured ? -8 : -5, scale: isFeatured ? 1.02 : 1 }}

@@ -76,9 +76,9 @@ export default function Certifications() {
   return (
     <div ref={sectionRef} className="container mx-auto px-4 py-20">
       <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
+        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
+        transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
         className="text-center mb-16"
       >
         <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
@@ -103,11 +103,35 @@ export default function Certifications() {
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
-              transition={{ duration: 0.6, delay: index * 0.15, type: "spring", stiffness: 100 }}
+              initial={{ 
+                opacity: 0, 
+                x: index % 2 === 0 ? -100 : 100,
+                rotateY: index % 2 === 0 ? -25 : 25,
+                scale: 0.75 
+              }}
+              animate={
+                isInView
+                  ? { opacity: 1, x: 0, rotateY: 0, scale: 1 }
+                  : { 
+                      opacity: 0, 
+                      x: index % 2 === 0 ? -100 : 100,
+                      rotateY: index % 2 === 0 ? -25 : 25,
+                      scale: 0.75 
+                    }
+              }
+              transition={{
+                duration: 0.7,
+                delay: index * 0.2,
+                type: "spring",
+                stiffness: 80,
+                damping: 15,
+              }}
               className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
-              whileHover={{ scale: 1.05, y: -10, boxShadow: "0 25px 50px rgba(59, 130, 246, 0.4)" }}
+              whileHover={{
+                scale: 1.05,
+                y: -10,
+                boxShadow: "0 25px 50px rgba(59, 130, 246, 0.4)",
+              }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative z-10">
@@ -143,8 +167,15 @@ export default function Certifications() {
                       key={skill}
                       className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-semibold hover:bg-blue-500 hover:text-white transition-all cursor-default"
                       initial={{ opacity: 0, scale: 0 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.15 + skillIndex * 0.1 + 0.5 }}
+                      animate={
+                        isInView
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0, scale: 0 }
+                      }
+                      transition={{
+                        duration: 0.3,
+                        delay: index * 0.15 + skillIndex * 0.1 + 0.5,
+                      }}
                       whileHover={{ scale: 1.1, y: -2 }}
                     >
                       {skill}
@@ -170,9 +201,9 @@ export default function Certifications() {
       {/* Achievements Section */}
       <div>
         <motion.h3
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          initial={{ opacity: 0, x: -80, rotateY: -20, scale: 0.85 }}
+          animate={isInView ? { opacity: 1, x: 0, rotateY: 0, scale: 1 } : { opacity: 0, x: -80, rotateY: -20, scale: 0.85 }}
+          transition={{ duration: 0.7, delay: 0.8, type: "spring", stiffness: 85 }}
           className="text-3xl font-bold mb-8 flex items-center text-white"
         >
           <motion.div
@@ -188,16 +219,34 @@ export default function Certifications() {
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.8 }}
-              transition={{ duration: 0.6, delay: 1 + index * 0.15, type: "spring", stiffness: 100 }}
+              initial={{ opacity: 0, y: 80, rotateX: 25, scale: 0.7 }}
+              animate={
+                isInView
+                  ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
+                  : { opacity: 0, y: 80, rotateX: 25, scale: 0.7 }
+              }
+              transition={{
+                duration: 0.7,
+                delay: 1 + index * 0.2,
+                type: "spring",
+                stiffness: 80,
+                damping: 15,
+              }}
               className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 text-center shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
-              whileHover={{ scale: 1.1, y: -10, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)" }}
+              whileHover={{
+                scale: 1.1,
+                y: -10,
+                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)",
+              }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <motion.div 
+              <motion.div
                 className="text-5xl mb-4 relative z-10"
-                animate={isInView ? { rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] } : {}}
+                animate={
+                  isInView
+                    ? { rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }
+                    : {}
+                }
                 transition={{ duration: 0.5, delay: 1.2 + index * 0.15 }}
               >
                 {achievement.icon}
@@ -205,7 +254,9 @@ export default function Certifications() {
               <h4 className="text-lg font-bold text-white mb-2 relative z-10 group-hover:text-blue-300 transition-colors">
                 {achievement.title}
               </h4>
-              <p className="text-gray-400 text-sm relative z-10 group-hover:text-gray-300 transition-colors">{achievement.description}</p>
+              <p className="text-gray-400 text-sm relative z-10 group-hover:text-gray-300 transition-colors">
+                {achievement.description}
+              </p>
             </motion.div>
           ))}
         </div>

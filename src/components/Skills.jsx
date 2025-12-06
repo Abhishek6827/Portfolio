@@ -31,7 +31,7 @@ import {
 export default function Skills() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  
+
   // Floating background icons
   const floatingIcons = [
     { Icon: FaReact, color: "text-cyan-400/20", size: 60 },
@@ -39,7 +39,7 @@ export default function Skills() {
     { Icon: SiTypescript, color: "text-blue-500/20", size: 55 },
     { Icon: FaNodeJs, color: "text-green-500/20", size: 65 },
     { Icon: SiFirebase, color: "text-yellow-500/20", size: 50 },
-    { Icon: SiTailwindcss, color: "text-cyan-400/20", size: 58 }
+    { Icon: SiTailwindcss, color: "text-cyan-400/20", size: 58 },
   ];
   const skillCategories = [
     {
@@ -100,24 +100,33 @@ export default function Skills() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, rotateX: -15 },
+  const getCardVariants = (index) => ({
+    hidden: { 
+      opacity: 0, 
+      x: index === 0 ? -100 : index === 1 ? 0 : index === 2 ? 100 : -100,
+      y: index === 1 ? 100 : 50,
+      rotateY: index === 0 ? -20 : index === 2 ? 20 : 0,
+      scale: 0.8
+    },
     visible: { 
       opacity: 1, 
+      x: 0,
       y: 0, 
-      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 15
+        stiffness: 80,
+        damping: 15,
+        delay: index * 0.2
       }
     }
-  };
+  });
 
   return (
     <section ref={sectionRef} className="py-20 relative overflow-hidden">
@@ -135,37 +144,41 @@ export default function Skills() {
               y: [0, -30, 0],
               x: [0, 20, 0],
               rotate: [0, 10, -10, 0],
-              scale: [1, 1.1, 1]
+              scale: [1, 1.1, 1],
             }}
             transition={{
               duration: 10 + index * 2,
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut",
-              delay: index * 0.5
+              delay: index * 0.5,
             }}
           >
             <Icon size={size} />
           </motion.div>
         ))}
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: -50, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -50, scale: 0.9 }}
+          transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
-            animate={isInView ? {
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-            } : {}}
+            animate={
+              isInView
+                ? {
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }
+                : {}
+            }
             transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
           >
             Skills & Technologies
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-400 text-lg max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -186,25 +199,30 @@ export default function Skills() {
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              variants={cardVariants}
+              variants={getCardVariants(categoryIndex)}
               className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 group relative overflow-hidden"
-              whileHover={{ 
-                scale: 1.05, 
+              whileHover={{
+                scale: 1.05,
                 y: -10,
-                boxShadow: "0 25px 50px rgba(59, 130, 246, 0.4)"
+                boxShadow: "0 25px 50px rgba(59, 130, 246, 0.4)",
               }}
             >
               {/* Glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-cyan-500/10 transition-all duration-500" />
-              
+
               <div className="relative z-10">
-                <motion.div 
+                <motion.div
                   className="flex items-center mb-6"
                   initial={{ opacity: 0, x: -30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-                  transition={{ duration: 0.5, delay: categoryIndex * 0.2 + 0.3 }}
+                  animate={
+                    isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
+                  }
+                  transition={{
+                    duration: 0.5,
+                    delay: categoryIndex * 0.2 + 0.3,
+                  }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="text-blue-400 mr-3"
                     whileHover={{ rotate: 360, scale: 1.2 }}
                     transition={{ duration: 0.5 }}
@@ -221,7 +239,9 @@ export default function Skills() {
                     <motion.div
                       key={skill.name}
                       initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      animate={
+                        isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                      }
                       transition={{
                         duration: 0.5,
                         delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.4,
@@ -230,7 +250,7 @@ export default function Skills() {
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-2">
-                          <motion.div 
+                          <motion.div
                             className="text-blue-400 text-lg"
                             whileHover={{ scale: 1.3, rotate: 15 }}
                             transition={{ type: "spring", stiffness: 300 }}
@@ -241,10 +261,14 @@ export default function Skills() {
                             {skill.name}
                           </span>
                         </div>
-                        <motion.span 
+                        <motion.span
                           className="text-blue-400 text-sm font-bold"
                           initial={{ opacity: 0, scale: 0 }}
-                          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                          animate={
+                            isInView
+                              ? { opacity: 1, scale: 1 }
+                              : { opacity: 0, scale: 0 }
+                          }
                           transition={{
                             duration: 0.3,
                             delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.6,
@@ -257,7 +281,11 @@ export default function Skills() {
                         <motion.div
                           className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 h-2.5 rounded-full relative"
                           initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+                          animate={
+                            isInView
+                              ? { width: `${skill.level}%` }
+                              : { width: 0 }
+                          }
                           transition={{
                             duration: 1.5,
                             delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.5,
@@ -267,13 +295,13 @@ export default function Skills() {
                           <motion.div
                             className="absolute inset-0 bg-white/30"
                             animate={{
-                              x: ['-100%', '200%']
+                              x: ["-100%", "200%"],
                             }}
                             transition={{
                               duration: 2,
                               repeat: Number.POSITIVE_INFINITY,
                               ease: "linear",
-                              delay: categoryIndex * 0.2 + skillIndex * 0.1 + 2
+                              delay: categoryIndex * 0.2 + skillIndex * 0.1 + 2,
                             }}
                           />
                         </motion.div>
@@ -288,37 +316,46 @@ export default function Skills() {
 
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+          animate={
+            isInView
+              ? { opacity: 1, y: 0, scale: 1 }
+              : { opacity: 0, y: 50, scale: 0.9 }
+          }
           transition={{ duration: 0.8, delay: 1.2 }}
           className="mt-16 text-center"
         >
-          <motion.div 
+          <motion.div
             className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-600 relative overflow-hidden group"
-            whileHover={{ scale: 1.02, boxShadow: "0 30px 60px rgba(59, 130, 246, 0.3)" }}
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0 30px 60px rgba(59, 130, 246, 0.3)",
+            }}
           >
             {/* Animated background gradient */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10"
               animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
               transition={{
                 duration: 5,
                 repeat: Number.POSITIVE_INFINITY,
-                ease: "linear"
+                ease: "linear",
               }}
             />
-            
+
             <div className="relative z-10">
-              <motion.h3 
+              <motion.h3
                 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
                 transition={{ duration: 0.6, delay: 1.4 }}
               >
                 Always Learning, Always Growing
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -329,7 +366,7 @@ export default function Skills() {
                 and automated workflows. I focus on production-ready code with
                 proper testing and monitoring.
               </motion.p>
-              <motion.div 
+              <motion.div
                 className="flex justify-center flex-wrap gap-4 text-sm"
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
@@ -337,9 +374,9 @@ export default function Skills() {
                   visible: {
                     transition: {
                       staggerChildren: 0.1,
-                      delayChildren: 1.8
-                    }
-                  }
+                      delayChildren: 1.8,
+                    },
+                  },
                 }}
               >
                 {[
@@ -347,14 +384,14 @@ export default function Skills() {
                   "🔐 Sandbox & Production Environments",
                   "🔔 Real-time Notifications",
                   "🧪 API Testing & Development",
-                  "🚀 CI/CD & Deployment"
+                  "🚀 CI/CD & Deployment",
                 ].map((item, index) => (
                   <motion.span
                     key={index}
                     className="bg-gray-700/80 text-gray-300 px-4 py-2 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 cursor-default"
                     variants={{
                       hidden: { opacity: 0, y: 20, scale: 0 },
-                      visible: { opacity: 1, y: 0, scale: 1 }
+                      visible: { opacity: 1, y: 0, scale: 1 },
                     }}
                     whileHover={{ scale: 1.1, y: -5 }}
                   >

@@ -90,9 +90,9 @@ export default function Projects() {
   return (
     <div ref={sectionRef} className="container mx-auto px-4 py-20">
       <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
+        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
+        transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
         className="text-center mb-12"
       >
         <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
@@ -106,9 +106,9 @@ export default function Projects() {
       </motion.div>
 
       <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        initial={{ opacity: 0, x: -80, rotateY: -15 }}
+        animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -80, rotateY: -15 }}
+        transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 80 }}
         className="mb-16"
       >
         <h3 className="text-2xl font-semibold mb-8 text-center">
