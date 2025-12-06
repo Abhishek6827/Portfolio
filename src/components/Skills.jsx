@@ -326,31 +326,109 @@ export default function Skills() {
               ? { opacity: 1, y: 0, scale: 1 }
               : { opacity: 0, y: 60, scale: 0.9 }
           }
-          transition={{ duration: 0.8, delay: 1.2, type: "spring", stiffness: 80 }}
+          transition={{
+            duration: 0.8,
+            delay: 1.2,
+            type: "spring",
+            stiffness: 80,
+          }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-600 relative overflow-hidden">
+          <div className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 p-10 rounded-2xl shadow-2xl border border-purple-500/40 relative overflow-hidden group">
+            {/* Animated background gradient */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20"
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+              }}
+              style={{ backgroundSize: "200% 200%" }}
+            />
+
+            {/* Floating particles */}
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(15)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${100}%`,
+                  }}
+                  animate={{
+                    y: [-20, -120],
+                    x: [0, (Math.random() - 0.5) * 100],
+                    opacity: [0, 1, 0],
+                    scale: [0, 1.5, 0],
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Number.POSITIVE_INFINITY,
+                    delay: i * 0.2,
+                    ease: "easeOut",
+                  }}
+                />
+              ))}
+            </div>
+
             <div className="relative z-10">
               <motion.h3
-                className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+                className="text-4xl font-bold mb-6 relative inline-block"
                 initial={{ opacity: 0, y: 20 }}
                 animate={
                   isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                 }
                 transition={{ duration: 0.6, delay: 1.4 }}
               >
-                Always Learning, Always Growing
+                <motion.span
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Number.POSITIVE_INFINITY,
+                  }}
+                  style={{ backgroundSize: "200% auto" }}
+                  className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+                >
+                  Always Learning, Always Growing
+                </motion.span>
+                <motion.span
+                  className="absolute -inset-3 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 blur-2xl -z-10"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [0.98, 1.05, 0.98],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Number.POSITIVE_INFINITY,
+                  }}
+                />
               </motion.h3>
               <motion.p
-                className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto"
+                className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.8, delay: 1.6 }}
               >
-                Currently specializing in building scalable SaaS solutions with
-                Next.js, implementing secure payment systems, API integrations,
-                and automated workflows. I focus on production-ready code with
-                proper testing and monitoring.
+                Currently specializing in building{" "}
+                <span className="text-blue-400 font-semibold">
+                  scalable SaaS solutions
+                </span>{" "}
+                with Next.js, implementing{" "}
+                <span className="text-purple-400 font-semibold">
+                  secure payment systems
+                </span>
+                , API integrations, and{" "}
+                <span className="text-cyan-400 font-semibold">
+                  automated workflows
+                </span>
+                . I focus on production-ready code with proper testing and
+                monitoring.
               </motion.p>
             </div>
           </div>

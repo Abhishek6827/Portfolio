@@ -313,9 +313,33 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
             >
+              {/* Floating particles around title */}
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 rounded-full"
+                  style={{
+                    left: `${20 + i * 10}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [-10, -40, -10],
+                    x: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50],
+                    opacity: [0, 1, 0],
+                    scale: [0, 1.5, 0],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 2,
+                    repeat: Number.POSITIVE_INFINITY,
+                    delay: i * 0.3,
+                  }}
+                />
+              ))}
+
               <motion.h1
-                className="text-5xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+                className="relative text-5xl lg:text-6xl font-extrabold mb-4"
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
@@ -324,26 +348,85 @@ function Hero() {
                   delay: 0.2,
                 }}
               >
-                Abhishek Tiwari
+                {/* Glow effect behind text */}
+                <motion.span
+                  className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 blur-3xl -z-10"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [0.95, 1.08, 0.95],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.span
+                  className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+                  style={{ backgroundSize: "200% 200%" }}
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "linear",
+                  }}
+                >
+                  Abhishek Tiwari
+                </motion.span>
               </motion.h1>
-              <div className="text-xl lg:text-2xl text-gray-300 mb-6 h-16">
+
+              <div className="text-xl lg:text-2xl mb-6 h-16 relative">
                 <motion.p
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                  className="relative"
                 >
-                  Full-Stack Developer | Next.js & TypeScript | SaaS Builder
+                  {/* Subtle glow behind subtitle */}
+                  <motion.span
+                    className="absolute -inset-2 bg-gradient-to-r from-blue-400/20 to-purple-500/20 blur-xl -z-10"
+                    animate={{
+                      opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Number.POSITIVE_INFINITY,
+                    }}
+                  />
+                  <span className="text-blue-300 font-semibold">
+                    Full-Stack Developer
+                  </span>{" "}
+                  |{" "}
+                  <span className="text-purple-400 font-semibold">
+                    Next.js & TypeScript
+                  </span>{" "}
+                  |{" "}
+                  <span className="text-cyan-400 font-semibold">
+                    SaaS Builder
+                  </span>
                 </motion.p>
               </div>
+
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-                className="text-lg text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0"
+                className="text-lg text-gray-300 mb-8 max-w-lg mx-auto lg:mx-0 relative"
               >
-                Crafting digital experiences with modern web technologies.
-                Passionate about creating scalable solutions that make a
-                difference.
+                <span className="text-blue-400 font-medium">
+                  Crafting digital experiences
+                </span>{" "}
+                with{" "}
+                <span className="text-purple-400 font-medium">
+                  modern web technologies
+                </span>
+                . Passionate about creating{" "}
+                <span className="text-cyan-400 font-medium">
+                  scalable solutions
+                </span>{" "}
+                that make a difference.
               </motion.p>
             </motion.div>
 

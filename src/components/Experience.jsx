@@ -1,6 +1,13 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { Briefcase, Calendar, TrendingUp, Users, Award, Zap } from "lucide-react";
+import {
+  Briefcase,
+  Calendar,
+  TrendingUp,
+  Users,
+  Award,
+  Zap,
+} from "lucide-react";
 import { useRef } from "react";
 
 export default function Experience() {
@@ -78,196 +85,245 @@ export default function Experience() {
   });
 
   return (
-    <section ref={sectionRef} className="container mx-auto px-4 py-20 relative overflow-hidden">
-      {/* Animated Background Icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-        {[Briefcase, Calendar, TrendingUp, Users, Award, Zap].map((Icon, i) => (
+    <section
+      ref={sectionRef}
+      className="container mx-auto px-4 py-20 relative overflow-hidden"
+    >
+      {/* Animated Background Icons - Repositioned to avoid cards */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-20">
+        {[TrendingUp, Users, Award, Zap].map((Icon, i) => (
           <motion.div
             key={i}
-            className="absolute text-green-400"
+            className="absolute"
             style={{
-              top: `${15 + i * 13}%`,
-              left: i % 2 === 0 ? `${10 + i * 6}%` : `${80 - i * 6}%`,
+              top: `${10 + i * 20}%`,
+              left: i % 2 === 0 ? `${5 + i * 3}%` : `${88 - i * 3}%`,
             }}
             animate={{
-              y: [0, -28, 0],
-              x: i % 2 === 0 ? [0, 25, 0] : [0, -25, 0],
-              rotate: [0, 270],
-              scale: [1, 1.2, 1],
+              y: [0, -35, 0],
+              x: i % 2 === 0 ? [0, 30, 0] : [0, -30, 0],
+              rotate: [0, 360],
+              scale: [1, 1.3, 1],
             }}
             transition={{
-              duration: 11 + i * 1.7,
+              duration: 10 + i * 1.5,
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut",
-              delay: i * 0.65,
+              delay: i * 0.5,
             }}
           >
-            <Icon size={36 + i * 4} />
+            {/* Glow effect behind icon */}
+            <motion.div
+              className="absolute inset-0 blur-2xl"
+              animate={{
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            >
+              <Icon className="text-blue-500" size={42 + i * 4} />
+            </motion.div>
+            {/* Main icon */}
+            <Icon
+              className="relative text-cyan-300 opacity-70"
+              size={42 + i * 4}
+            />
           </motion.div>
         ))}
       </div>
 
       <div className="relative z-10">
-      {/* Animated Timeline Line */}
-      <motion.div
-        className="absolute left-1/2 top-32 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 hidden md:block"
-        initial={{ scaleY: 0 }}
-        animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-        style={{ transformOrigin: "top" }}
-      />
-
-      <motion.h2
-        className="text-4xl font-bold mb-16 text-center flex justify-center items-center"
-        initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
-        animate={
-          isInView
-            ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
-            : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }
-        }
-        transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
-      >
+        {/* Animated Timeline Line */}
         <motion.div
-          animate={isInView ? { rotate: [0, 10, -10, 0] } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          className="absolute left-1/2 top-32 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 hidden md:block"
+          initial={{ scaleY: 0 }}
+          animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          style={{ transformOrigin: "top" }}
+        />
+
+        <motion.h2
+          className="text-4xl font-bold mb-16 text-center flex justify-center items-center relative"
+          initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
+          animate={
+            isInView
+              ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
+              : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }
+          }
+          transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
         >
-          <Briefcase className="mr-3 text-blue-400" size={36} />
-        </motion.div>
-        <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-          Professional Experience
-        </span>
-      </motion.h2>
-
-      <motion.div
-        className="space-y-12 relative"
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {experiences.map((exp, index) => (
+          {/* Glow effect behind title */}
+          <motion.span
+            className="absolute -inset-8 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-cyan-500/30 blur-2xl -z-10"
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              scale: [0.95, 1.05, 0.95],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
+          />
           <motion.div
-            key={exp.title}
-            variants={getCardVariants(index)}
-            className="relative"
+            animate={isInView ? { rotate: [0, 10, -10, 0] } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            {/* Timeline Dot */}
-            <motion.div
-              className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-gray-900 z-10 hidden md:block"
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : { scale: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.3 + 0.5 }}
-            />
-
-            <motion.div
-              className="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
-              whileHover={{
-                scale: 1.02,
-                y: -5,
-                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
-              }}
-            >
-              {/* Glow Effect on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-cyan-500/10 transition-all duration-500" />
-
-              <div className="relative z-10">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
-                  <div>
-                    <motion.h3
-                      className="text-2xl font-bold mb-2 text-blue-400"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={
-                        isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-                      }
-                      transition={{ duration: 0.5, delay: index * 0.3 + 0.6 }}
-                    >
-                      {exp.title}
-                    </motion.h3>
-                    <motion.p
-                      className="text-xl text-gray-300 mb-2 font-medium"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={
-                        isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-                      }
-                      transition={{ duration: 0.5, delay: index * 0.3 + 0.7 }}
-                    >
-                      {exp.company}
-                    </motion.p>
-                  </div>
-                  <motion.span
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={
-                      isInView
-                        ? { opacity: 1, scale: 1 }
-                        : { opacity: 0, scale: 0 }
-                    }
-                    transition={{ duration: 0.5, delay: index * 0.3 + 0.8 }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    {exp.period}
-                  </motion.span>
-                </div>
-
-                <motion.ul
-                  className="space-y-3 mb-6"
-                  initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
-                  variants={{
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.1,
-                        delayChildren: index * 0.3 + 0.9,
-                      },
-                    },
-                  }}
-                >
-                  {exp.responsibilities.map((resp, i) => (
-                    <motion.li
-                      key={i}
-                      className="text-gray-300 flex items-start"
-                      variants={{
-                        hidden: { opacity: 0, x: -20 },
-                        visible: { opacity: 1, x: 0 },
-                      }}
-                    >
-                      <span className="text-blue-400 mr-2">▹</span>
-                      <span>{resp}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-
-                <motion.div
-                  className="flex flex-wrap gap-2"
-                  initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
-                  variants={{
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: index * 0.3 + 1.2,
-                      },
-                    },
-                  }}
-                >
-                  {exp.technologies.map((tech) => (
-                    <motion.span
-                      key={tech}
-                      className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 cursor-default"
-                      variants={{
-                        hidden: { opacity: 0, scale: 0 },
-                        visible: { opacity: 1, scale: 1 },
-                      }}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </motion.div>
-              </div>
-            </motion.div>
+            <Briefcase className="mr-3 text-blue-400" size={36} />
           </motion.div>
-        ))}
-      </motion.div>
+          <motion.span
+            className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
+            style={{ backgroundSize: "200% 200%" }}
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+            }}
+          >
+            Professional Experience
+          </motion.span>
+        </motion.h2>
+
+        <motion.div
+          className="space-y-12 relative"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.title}
+              variants={getCardVariants(index)}
+              className="relative"
+            >
+              {/* Timeline Dot */}
+              <motion.div
+                className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-gray-900 z-10 hidden md:block"
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.3 + 0.5 }}
+              />
+
+              <motion.div
+                className="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
+                whileHover={{
+                  scale: 1.02,
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
+                }}
+              >
+                {/* Glow Effect on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-cyan-500/10 transition-all duration-500" />
+
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                    <div>
+                      <motion.h3
+                        className="text-2xl font-bold mb-2 text-blue-400"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, x: 0 }
+                            : { opacity: 0, x: -20 }
+                        }
+                        transition={{ duration: 0.5, delay: index * 0.3 + 0.6 }}
+                      >
+                        {exp.title}
+                      </motion.h3>
+                      <motion.p
+                        className="text-xl text-gray-300 mb-2 font-medium"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, x: 0 }
+                            : { opacity: 0, x: -20 }
+                        }
+                        transition={{ duration: 0.5, delay: index * 0.3 + 0.7 }}
+                      >
+                        {exp.company}
+                      </motion.p>
+                    </div>
+                    <motion.span
+                      className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={
+                        isInView
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0, scale: 0 }
+                      }
+                      transition={{ duration: 0.5, delay: index * 0.3 + 0.8 }}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      {exp.period}
+                    </motion.span>
+                  </div>
+
+                  <motion.ul
+                    className="space-y-3 mb-6"
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={{
+                      visible: {
+                        transition: {
+                          staggerChildren: 0.1,
+                          delayChildren: index * 0.3 + 0.9,
+                        },
+                      },
+                    }}
+                  >
+                    {exp.responsibilities.map((resp, i) => (
+                      <motion.li
+                        key={i}
+                        className="text-gray-300 flex items-start"
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          visible: { opacity: 1, x: 0 },
+                        }}
+                      >
+                        <span className="text-blue-400 mr-2">▹</span>
+                        <span>{resp}</span>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+
+                  <motion.div
+                    className="flex flex-wrap gap-2"
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={{
+                      visible: {
+                        transition: {
+                          staggerChildren: 0.05,
+                          delayChildren: index * 0.3 + 1.2,
+                        },
+                      },
+                    }}
+                  >
+                    {exp.technologies.map((tech) => (
+                      <motion.span
+                        key={tech}
+                        className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 cursor-default"
+                        variants={{
+                          hidden: { opacity: 0, scale: 0 },
+                          visible: { opacity: 1, scale: 1 },
+                        }}
+                        whileHover={{ scale: 1.1, y: -2 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
