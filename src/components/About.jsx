@@ -37,9 +37,9 @@ export default function About() {
           <p className="text-lg leading-relaxed mb-6">
             👋 Hi there! I'm{" "}
             <span className="text-blue-400 font-semibold">Abhishek Tiwari</span>
-            , a passionate full-stack developer from Lucknow, India. Currently working on
-            <span className="text-purple-400 font-semibold"> Tempinbox Premium</span>, 
-            where I'm building scalable SaaS solutions with modern web technologies.
+            , a passionate full-stack developer from Lucknow, India. I specialize in 
+            building scalable SaaS solutions and production-ready applications with 
+            modern web technologies.
           </p>
           <p className="text-lg leading-relaxed mb-6">
             🚀 My expertise spans across the entire development stack - from crafting intuitive 
