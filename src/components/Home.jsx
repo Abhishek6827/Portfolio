@@ -21,7 +21,7 @@ import {
   SiFirebase,
   SiTailwindcss,
 } from "react-icons/si";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import SkillsComponent from "./Skills";
 import ExperienceComponent from "./Experience";
 import { getProjectImages } from "../utils/projectImages";
@@ -112,6 +112,17 @@ function Hero() {
     { Icon: SiFirebase, color: "text-yellow-500", size: 36, delay: 2 },
     { Icon: SiTailwindcss, color: "text-cyan-400", size: 40, delay: 2.5 },
   ];
+
+  // Generate stable random values for particles (memoized to prevent re-renders)
+  const particlePositions = useMemo(
+    () =>
+      Array.from({ length: 8 }, (_, i) => ({
+        top: Math.random() * 100,
+        xMovement: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50],
+        duration: 2 + Math.random() * 2,
+      })),
+    []
+  );
 
   // Auto-switching with progress indicator
   useEffect(() => {
@@ -316,22 +327,22 @@ function Hero() {
               className="relative"
             >
               {/* Floating particles around title */}
-              {[...Array(8)].map((_, i) => (
+              {particlePositions.map((particle, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 rounded-full"
                   style={{
                     left: `${20 + i * 10}%`,
-                    top: `${Math.random() * 100}%`,
+                    top: `${particle.top}%`,
                   }}
                   animate={{
                     y: [-10, -40, -10],
-                    x: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50],
+                    x: particle.xMovement,
                     opacity: [0, 1, 0],
                     scale: [0, 1.5, 0],
                   }}
                   transition={{
-                    duration: 2 + Math.random() * 2,
+                    duration: particle.duration,
                     repeat: Number.POSITIVE_INFINITY,
                     delay: i * 0.3,
                   }}
