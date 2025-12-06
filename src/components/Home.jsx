@@ -232,7 +232,7 @@ function Hero() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1, delay: 0.5 }}
                 >
-                  Full-Stack Developer | React Enthusiast | Problem Solver
+                  Full-Stack Developer | Next.js & TypeScript | SaaS Builder
                 </motion.p>
               </div>
               <motion.p

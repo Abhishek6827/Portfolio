@@ -97,8 +97,9 @@ export default function Skills() {
             Skills & Technologies
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            From building production-ready SaaS applications to integrating payment gateways 
-            and real-time notifications - here's my comprehensive tech stack.
+            From building production-ready SaaS applications to integrating
+            payment gateways and real-time notifications - here's my
+            comprehensive tech stack.
           </p>
         </motion.div>
 
@@ -173,9 +174,10 @@ export default function Skills() {
               Always Learning, Always Growing
             </h3>
             <p className="text-gray-300 text-lg mb-6">
-              Currently specializing in building scalable SaaS solutions with Next.js, 
-              implementing secure payment systems, API integrations, and automated workflows. 
-              I focus on production-ready code with proper testing and monitoring.
+              Currently specializing in building scalable SaaS solutions with
+              Next.js, implementing secure payment systems, API integrations,
+              and automated workflows. I focus on production-ready code with
+              proper testing and monitoring.
             </p>
             <div className="flex justify-center flex-wrap gap-4 text-sm text-gray-400">
               <span>💳 Payment Gateway Integration</span>
