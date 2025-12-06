@@ -301,11 +301,11 @@ function Hero() {
           <motion.div
             initial={{ opacity: 0, x: -100, rotateY: -15 }}
             animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            transition={{ 
-              duration: 1, 
+            transition={{
+              duration: 1,
               ease: [0.6, -0.05, 0.01, 0.99],
               type: "spring",
-              stiffness: 80
+              stiffness: 80,
             }}
             className="text-center lg:text-left"
           >
@@ -389,12 +389,12 @@ function Hero() {
           <motion.div
             initial={{ opacity: 0, x: 100, rotateY: 15, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
-            transition={{ 
-              duration: 1.2, 
+            transition={{
+              duration: 1.2,
               delay: 0.3,
               ease: [0.6, -0.05, 0.01, 0.99],
               type: "spring",
-              stiffness: 80
+              stiffness: 80,
             }}
             className="relative"
           >

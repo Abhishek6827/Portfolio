@@ -66,7 +66,11 @@ const Contact = () => {
       <motion.h1
         className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
         initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
-        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
+        animate={
+          isInView
+            ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
+            : { opacity: 0, y: -60, rotateX: -25, scale: 0.85 }
+        }
         transition={{ duration: 0.8, type: "spring", stiffness: 85 }}
       >
         Get in Touch
@@ -80,8 +84,17 @@ const Contact = () => {
               key={index}
               className="flex items-center space-x-4 bg-gray-800/50 backdrop-blur-sm p-4 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300"
               initial={{ opacity: 0, x: -80, rotateY: -20, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, x: 0, rotateY: 0, scale: 1 } : { opacity: 0, x: -80, rotateY: -20, scale: 0.8 }}
-              transition={{ duration: 0.6, delay: index * 0.15, type: "spring", stiffness: 80 }}
+              animate={
+                isInView
+                  ? { opacity: 1, x: 0, rotateY: 0, scale: 1 }
+                  : { opacity: 0, x: -80, rotateY: -20, scale: 0.8 }
+              }
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+                type: "spring",
+                stiffness: 80,
+              }}
               whileHover={{ scale: 1.05, x: 10 }}
             >
               <motion.div
@@ -117,7 +130,12 @@ const Contact = () => {
               ? { opacity: 1, x: 0, rotateY: 0, scale: 1 }
               : { opacity: 0, x: 80, rotateY: 20, scale: 0.8 }
           }
-          transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 80 }}
+          transition={{
+            duration: 0.7,
+            delay: 0.3,
+            type: "spring",
+            stiffness: 80,
+          }}
           whileHover={{ boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
         >
           <div>

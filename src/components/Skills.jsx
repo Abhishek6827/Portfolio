@@ -106,26 +106,26 @@ export default function Skills() {
   };
 
   const getCardVariants = (index) => ({
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       x: index === 0 ? -100 : index === 1 ? 0 : index === 2 ? 100 : -100,
       y: index === 1 ? 100 : 50,
       rotateY: index === 0 ? -20 : index === 2 ? 20 : 0,
-      scale: 0.8
+      scale: 0.8,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
-      y: 0, 
+      y: 0,
       rotateY: 0,
       scale: 1,
       transition: {
         type: "spring",
         stiffness: 80,
         damping: 15,
-        delay: index * 0.2
-      }
-    }
+        delay: index * 0.2,
+      },
+    },
   });
 
   return (
@@ -161,7 +161,11 @@ export default function Skills() {
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -50, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -50, scale: 0.9 }}
+          animate={
+            isInView
+              ? { opacity: 1, y: 0, scale: 1 }
+              : { opacity: 0, y: -50, scale: 0.9 }
+          }
           transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
           className="text-center mb-16"
         >
@@ -190,7 +194,7 @@ export default function Skills() {
           </motion.p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
@@ -312,95 +316,6 @@ export default function Skills() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          animate={
-            isInView
-              ? { opacity: 1, y: 0, scale: 1 }
-              : { opacity: 0, y: 50, scale: 0.9 }
-          }
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-16 text-center"
-        >
-          <motion.div
-            className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-600 relative overflow-hidden group"
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0 30px 60px rgba(59, 130, 246, 0.3)",
-            }}
-          >
-            {/* Animated background gradient */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            />
-
-            <div className="relative z-10">
-              <motion.h3
-                className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
-                initial={{ opacity: 0, y: 20 }}
-                animate={
-                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                }
-                transition={{ duration: 0.6, delay: 1.4 }}
-              >
-                Always Learning, Always Growing
-              </motion.h3>
-              <motion.p
-                className="text-gray-300 text-lg mb-6 max-w-3xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
-              >
-                Currently specializing in building scalable SaaS solutions with
-                Next.js, implementing secure payment systems, API integrations,
-                and automated workflows. I focus on production-ready code with
-                proper testing and monitoring.
-              </motion.p>
-              <motion.div
-                className="flex justify-center flex-wrap gap-4 text-sm"
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                variants={{
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.1,
-                      delayChildren: 1.8,
-                    },
-                  },
-                }}
-              >
-                {[
-                  "💳 Payment Gateway Integration",
-                  "🔐 Sandbox & Production Environments",
-                  "🔔 Real-time Notifications",
-                  "🧪 API Testing & Development",
-                  "🚀 CI/CD & Deployment",
-                ].map((item, index) => (
-                  <motion.span
-                    key={index}
-                    className="bg-gray-700/80 text-gray-300 px-4 py-2 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 cursor-default"
-                    variants={{
-                      hidden: { opacity: 0, y: 20, scale: 0 },
-                      visible: { opacity: 1, y: 0, scale: 1 },
-                    }}
-                    whileHover={{ scale: 1.1, y: -5 }}
-                  >
-                    {item}
-                  </motion.span>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

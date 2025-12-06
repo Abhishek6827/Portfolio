@@ -57,11 +57,11 @@ export default function Experience() {
   };
 
   const getCardVariants = (index) => ({
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       x: index % 2 === 0 ? -120 : 120,
       rotateY: index % 2 === 0 ? -25 : 25,
-      scale: 0.7
+      scale: 0.7,
     },
     visible: {
       opacity: 1,
@@ -91,7 +91,11 @@ export default function Experience() {
       <motion.h2
         className="text-4xl font-bold mb-16 text-center flex justify-center items-center"
         initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
-        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
+        animate={
+          isInView
+            ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
+            : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }
+        }
         transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
       >
         <motion.div

@@ -77,7 +77,11 @@ export default function Certifications() {
     <div ref={sectionRef} className="container mx-auto px-4 py-20">
       <motion.div
         initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
-        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
+        animate={
+          isInView
+            ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
+            : { opacity: 0, y: -60, rotateX: -25, scale: 0.85 }
+        }
         transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
         className="text-center mb-16"
       >
@@ -103,20 +107,20 @@ export default function Certifications() {
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
-              initial={{ 
-                opacity: 0, 
+              initial={{
+                opacity: 0,
                 x: index % 2 === 0 ? -100 : 100,
                 rotateY: index % 2 === 0 ? -25 : 25,
-                scale: 0.75 
+                scale: 0.75,
               }}
               animate={
                 isInView
                   ? { opacity: 1, x: 0, rotateY: 0, scale: 1 }
-                  : { 
-                      opacity: 0, 
+                  : {
+                      opacity: 0,
                       x: index % 2 === 0 ? -100 : 100,
                       rotateY: index % 2 === 0 ? -25 : 25,
-                      scale: 0.75 
+                      scale: 0.75,
                     }
               }
               transition={{
@@ -202,8 +206,17 @@ export default function Certifications() {
       <div>
         <motion.h3
           initial={{ opacity: 0, x: -80, rotateY: -20, scale: 0.85 }}
-          animate={isInView ? { opacity: 1, x: 0, rotateY: 0, scale: 1 } : { opacity: 0, x: -80, rotateY: -20, scale: 0.85 }}
-          transition={{ duration: 0.7, delay: 0.8, type: "spring", stiffness: 85 }}
+          animate={
+            isInView
+              ? { opacity: 1, x: 0, rotateY: 0, scale: 1 }
+              : { opacity: 0, x: -80, rotateY: -20, scale: 0.85 }
+          }
+          transition={{
+            duration: 0.7,
+            delay: 0.8,
+            type: "spring",
+            stiffness: 85,
+          }}
           className="text-3xl font-bold mb-8 flex items-center text-white"
         >
           <motion.div

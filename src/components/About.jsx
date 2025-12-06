@@ -29,7 +29,11 @@ export default function About() {
       <motion.h2
         className="text-5xl font-bold mb-12 text-center flex justify-center items-center"
         initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
-        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
+        animate={
+          isInView
+            ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
+            : { opacity: 0, y: -60, rotateX: -25, scale: 0.85 }
+        }
         transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
       >
         <motion.div
@@ -51,7 +55,12 @@ export default function About() {
               ? { opacity: 1, x: 0, rotateY: 0, scale: 1 }
               : { opacity: 0, x: -100, rotateY: -20, scale: 0.8 }
           }
-          transition={{ duration: 0.9, type: "spring", stiffness: 80, damping: 15 }}
+          transition={{
+            duration: 0.9,
+            type: "spring",
+            stiffness: 80,
+            damping: 15,
+          }}
           className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
           whileHover={{
             scale: 1.02,
@@ -108,8 +117,17 @@ export default function About() {
 
         <motion.div
           initial={{ opacity: 0, x: 100, rotateY: 20 }}
-          animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: 100, rotateY: 20 }}
-          transition={{ duration: 0.9, delay: 0.4, type: "spring", stiffness: 80 }}
+          animate={
+            isInView
+              ? { opacity: 1, x: 0, rotateY: 0 }
+              : { opacity: 0, x: 100, rotateY: 20 }
+          }
+          transition={{
+            duration: 0.9,
+            delay: 0.4,
+            type: "spring",
+            stiffness: 80,
+          }}
           className="space-y-6"
         >
           {highlights.map((highlight, index) => (
@@ -122,7 +140,13 @@ export default function About() {
                   ? { opacity: 1, x: 0, rotateY: 0, scale: 1 }
                   : { opacity: 0, x: 100, rotateY: 25, scale: 0.7 }
               }
-              transition={{ duration: 0.7, delay: 0.6 + index * 0.25, type: "spring", stiffness: 80, damping: 15 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.6 + index * 0.25,
+                type: "spring",
+                stiffness: 80,
+                damping: 15,
+              }}
               whileHover={{
                 scale: 1.05,
                 x: 10,
@@ -157,7 +181,13 @@ export default function About() {
             ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
             : { opacity: 0, y: 80, rotateX: 20, scale: 0.8 }
         }
-        transition={{ duration: 0.9, delay: 1, type: "spring", stiffness: 80, damping: 15 }}
+        transition={{
+          duration: 0.9,
+          delay: 1,
+          type: "spring",
+          stiffness: 80,
+          damping: 15,
+        }}
         className="mt-16 text-center"
       >
         <motion.div

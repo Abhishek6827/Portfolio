@@ -34,7 +34,13 @@ const ProjectCard = React.forwardRef(
         }`}
         initial={{ opacity: 0, y: 60, rotateX: 20, scale: 0.85 }}
         animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-        transition={{ duration: 0.7, delay: index * 0.15, type: "spring", stiffness: 80, damping: 15 }}
+        transition={{
+          duration: 0.7,
+          delay: index * 0.15,
+          type: "spring",
+          stiffness: 80,
+          damping: 15,
+        }}
         onHoverStart={() => onHover(project.id)}
         onHoverEnd={() => onHover(null)}
         whileHover={{ y: isFeatured ? -8 : -5, scale: isFeatured ? 1.02 : 1 }}

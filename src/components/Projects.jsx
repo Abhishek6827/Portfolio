@@ -91,7 +91,11 @@ export default function Projects() {
     <div ref={sectionRef} className="container mx-auto px-4 py-20">
       <motion.div
         initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
-        animate={isInView ? { opacity: 1, y: 0, rotateX: 0, scale: 1 } : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
+        animate={
+          isInView
+            ? { opacity: 1, y: 0, rotateX: 0, scale: 1 }
+            : { opacity: 0, y: -50, rotateX: -20, scale: 0.9 }
+        }
         transition={{ duration: 0.8, type: "spring", stiffness: 90 }}
         className="text-center mb-12"
       >
@@ -107,8 +111,17 @@ export default function Projects() {
 
       <motion.section
         initial={{ opacity: 0, x: -80, rotateY: -15 }}
-        animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -80, rotateY: -15 }}
-        transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 80 }}
+        animate={
+          isInView
+            ? { opacity: 1, x: 0, rotateY: 0 }
+            : { opacity: 0, x: -80, rotateY: -15 }
+        }
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+          type: "spring",
+          stiffness: 80,
+        }}
         className="mb-16"
       >
         <h3 className="text-2xl font-semibold mb-8 text-center">
@@ -131,13 +144,13 @@ export default function Projects() {
       </motion.section>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
+        initial={{ opacity: 0, y: 40, scale: 0.9 }}
+        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.9 }}
+        transition={{ duration: 0.7, delay: 0.4, type: "spring", stiffness: 80 }}
         className="flex flex-wrap justify-center gap-4 mb-12"
       >
-        {categories.map((category) => (
-          <button
+        {categories.map((category, index) => (
+          <motion.button
             key={category}
             onClick={() => setFilter(category)}
             className={`px-6 py-2 rounded-full transition-all duration-300 ${
@@ -145,16 +158,21 @@ export default function Projects() {
                 ? "bg-blue-500 text-white shadow-lg shadow-blue-500/25"
                 : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
             }`}
+            initial={{ opacity: 0, scale: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.5 + index * 0.1, type: "spring", stiffness: 100 }}
+            whileHover={{ scale: 1.1, y: -3 }}
+            whileTap={{ scale: 0.95 }}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
+          </motion.button>
         ))}
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, delay: 0.7, type: "spring", stiffness: 80 }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         <AnimatePresence mode="popLayout">
