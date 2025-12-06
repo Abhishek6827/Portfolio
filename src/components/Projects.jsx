@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   fetchProjects,
   selectAllProjects,
@@ -15,6 +15,8 @@ import DemoModal from "./DemoModal";
 import { getProjectImages, getProjectBackend } from "../utils/projectImages";
 
 export default function Projects() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const dispatch = useDispatch();
   const projects = useSelector(selectAllProjects);
   const featuredProjects = useSelector(selectFeaturedProjects);
@@ -86,14 +88,14 @@ export default function Projects() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-20">
+    <div ref={sectionRef} className="container mx-auto px-4 py-20">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+        <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
           My Projects
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">

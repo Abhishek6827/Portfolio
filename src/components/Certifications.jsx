@@ -1,11 +1,13 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Award, ExternalLink, CheckCircle, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Certifications() {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const certifications = [
     {
@@ -72,15 +74,21 @@ export default function Certifications() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-20">
+    <div ref={sectionRef} className="container mx-auto px-4 py-20">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-          <Award className="inline-block mr-3 mb-1" />
+        <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
+          <motion.div
+            className="inline-block mr-3 mb-1"
+            animate={isInView ? { rotate: [0, -10, 10, 0] } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Award size={42} className="text-blue-400" />
+          </motion.div>
           Certifications
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
@@ -95,50 +103,65 @@ export default function Certifications() {
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-700 hover:border-blue-500/50"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+              transition={{ duration: 0.6, delay: index * 0.15, type: "spring", stiffness: 100 }}
+              className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
+              whileHover={{ scale: 1.05, y: -10, boxShadow: "0 25px 50px rgba(59, 130, 246, 0.4)" }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex-1">
-                  <div className="flex items-center mb-2">
-                    <Award className="text-blue-400 mr-2" size={20} />
-                    <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded">
-                      {cert.date}
-                    </span>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative z-10">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center mb-2">
+                      <motion.div
+                        whileHover={{ rotate: 360, scale: 1.2 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Award className="text-blue-400 mr-2" size={20} />
+                      </motion.div>
+                      <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded">
+                        {cert.date}
+                      </span>
+                    </div>
+                    <h4 className="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                      {cert.title}
+                    </h4>
+                    <p className="text-blue-400 font-semibold mb-3">
+                      {cert.issuer}
+                    </p>
                   </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">
-                    {cert.title}
-                  </h4>
-                  <p className="text-blue-400 font-medium mb-3">
-                    {cert.issuer}
-                  </p>
                 </div>
+
+                <p className="text-gray-300 mb-4 text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                  {cert.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {cert.skills.map((skill, skillIndex) => (
+                    <motion.span
+                      key={skill}
+                      className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-semibold hover:bg-blue-500 hover:text-white transition-all cursor-default"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.15 + skillIndex * 0.1 + 0.5 }}
+                      whileHover={{ scale: 1.1, y: -2 }}
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
+
+                <motion.button
+                  onClick={() => openCertificate(cert)}
+                  className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-3 rounded-lg font-bold shadow-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ExternalLink size={16} />
+                  <span>View Certificate</span>
+                </motion.button>
               </div>
-
-              <p className="text-gray-300 mb-4 text-sm leading-relaxed">
-                {cert.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {cert.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="bg-blue-500/20 text-blue-400 px-2 py-1 rounded text-xs font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-
-              <button
-                onClick={() => openCertificate(cert)}
-                className="w-full flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-medium"
-              >
-                <ExternalLink size={16} />
-                <span>View Certificate</span>
-              </button>
             </motion.div>
           ))}
         </div>
@@ -148,11 +171,16 @@ export default function Certifications() {
       <div>
         <motion.h3
           initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-2xl font-semibold mb-8 flex items-center text-white"
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-3xl font-bold mb-8 flex items-center text-white"
         >
-          <CheckCircle className="mr-3 text-blue-400" />
+          <motion.div
+            animate={isInView ? { scale: [1, 1.2, 1] } : {}}
+            transition={{ duration: 0.5, delay: 1 }}
+          >
+            <CheckCircle className="mr-3 text-blue-400" size={32} />
+          </motion.div>
           Key Achievements
         </motion.h3>
 
@@ -160,16 +188,24 @@ export default function Certifications() {
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-700"
+              initial={{ opacity: 0, y: 30, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.8 }}
+              transition={{ duration: 0.6, delay: 1 + index * 0.15, type: "spring", stiffness: 100 }}
+              className="bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 text-center shadow-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 relative overflow-hidden group"
+              whileHover={{ scale: 1.1, y: -10, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)" }}
             >
-              <div className="text-4xl mb-4">{achievement.icon}</div>
-              <h4 className="text-lg font-semibold text-white mb-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <motion.div 
+                className="text-5xl mb-4 relative z-10"
+                animate={isInView ? { rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] } : {}}
+                transition={{ duration: 0.5, delay: 1.2 + index * 0.15 }}
+              >
+                {achievement.icon}
+              </motion.div>
+              <h4 className="text-lg font-bold text-white mb-2 relative z-10 group-hover:text-blue-300 transition-colors">
                 {achievement.title}
               </h4>
-              <p className="text-gray-400 text-sm">{achievement.description}</p>
+              <p className="text-gray-400 text-sm relative z-10 group-hover:text-gray-300 transition-colors">{achievement.description}</p>
             </motion.div>
           ))}
         </div>

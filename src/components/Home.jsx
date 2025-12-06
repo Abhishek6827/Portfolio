@@ -194,7 +194,7 @@ function Hero() {
     <section ref={heroRef} className="relative min-h-screen py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden">
       {/* Animated Geometric Background with Floating Tech Icons */}
       <motion.div 
-        className="absolute inset-0 overflow-hidden"
+        className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ y: yParallax }}
       >
         {/* Floating geometric shapes */}
@@ -342,7 +342,7 @@ function Hero() {
         {techIcons.map(({ Icon, color, size, delay }, index) => (
           <motion.div
             key={index}
-            className={`absolute ${color}`}
+            className={`absolute ${color} z-20`}
             style={{
               top: `${15 + index * 12}%`,
               left: `${10 + (index % 3) * 30}%`,

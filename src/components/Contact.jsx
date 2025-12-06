@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { MapPin, Phone, Mail, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
@@ -60,12 +62,12 @@ const Contact = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-20">
+    <div ref={sectionRef} className="container mx-auto px-4 py-20">
       <motion.h1
-        className="text-4xl font-bold mb-12 text-center"
+        className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
         initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+        transition={{ duration: 0.6 }}
       >
         Get in Touch
       </motion.h1>
@@ -76,12 +78,17 @@ const Contact = () => {
           {contactDetails.map((detail, index) => (
             <motion.div
               key={index}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-4 bg-gray-800/50 backdrop-blur-sm p-4 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300"
               initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05, x: 10 }}
             >
-              <div className="bg-blue-500 p-3 rounded-full">{detail.icon}</div>
+              <motion.div 
+                className="bg-gradient-to-br from-blue-500 to-purple-600 p-3 rounded-full"
+                whileHover={{ rotate: 360, scale: 1.2 }}
+                transition={{ duration: 0.5 }}
+              >{detail.icon}</motion.div>
               <div>
                 {detail.href ? (
                   <a
@@ -101,10 +108,11 @@ const Contact = () => {
         {/* Contact Form */}
         <motion.form
           onSubmit={sendEmail}
-          className="space-y-6"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          className="space-y-6 bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300"
+          initial={{ opacity: 0, x: 50, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 50, scale: 0.9 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          whileHover={{ boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
         >
           <div>
             <label
