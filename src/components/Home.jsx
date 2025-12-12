@@ -326,19 +326,19 @@ function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              {/* Floating particles around title */}
+              {/* Floating particles around title - positioned to not obstruct text */}
               {particlePositions.map((particle, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 rounded-full"
+                  className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 rounded-full pointer-events-none -z-10"
                   style={{
-                    left: `${20 + i * 10}%`,
-                    top: `${particle.top}%`,
+                    left: `${-5 + i * 15}%`,
+                    top: `${-20 + particle.top * 0.3}%`,
                   }}
                   animate={{
                     y: [-10, -40, -10],
                     x: particle.xMovement,
-                    opacity: [0, 1, 0],
+                    opacity: [0, 0.6, 0],
                     scale: [0, 1.5, 0],
                   }}
                   transition={{
