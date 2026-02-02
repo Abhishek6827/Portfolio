@@ -12,7 +12,7 @@ export default function App() {
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
-          className="pt-20 pb-12 px-4"
+          className="pt-20 pb-12 px-4 relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
