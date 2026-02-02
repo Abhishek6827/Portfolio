@@ -482,16 +482,12 @@ function Hero() {
                 href="/Portfolio/Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
+                className="group relative px-6 py-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-all duration-300 flex items-center space-x-2"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FileText
-                  size={24}
-                  className="text-white group-hover:text-blue-400 transition-colors"
-                />
-                <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  View Resume
+                <span className="text-white font-semibold group-hover:text-blue-400 transition-colors">
+                  Resume
                 </span>
               </motion.a>
             </motion.div>
