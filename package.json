@@ -6,7 +6,7 @@
   "homepage": "https://abhishek6827.github.io/Portfolio/",
   "scripts": {
     "dev": "vite",
-    "build": "npx vite build",
+    "build": "vite build && copy dist\\index.html dist\\404.html",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
