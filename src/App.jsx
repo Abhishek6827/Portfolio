@@ -7,7 +7,7 @@ export default function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white relative">
       <Header />
       <AnimatePresence mode="wait">
         <motion.main
