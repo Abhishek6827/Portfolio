@@ -559,8 +559,8 @@ function Hero() {
                           <img
                             src={images[currentImageIndex]}
                             alt={featuredProjects[currentProject].name}
-                            className="w-full h-82 object-cover transition-transform duration-500 group-hover:scale-105"
-                            loading="eager"
+                            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
                             onLoad={() => setImageLoaded(true)}
                             onError={() => setImageLoaded(false)}
                           />
