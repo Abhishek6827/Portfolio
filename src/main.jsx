@@ -48,7 +48,7 @@ function SmoothScrollWrapper({ children }) {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <Router>
 
         <SmoothScrollWrapper>
           <Routes>
