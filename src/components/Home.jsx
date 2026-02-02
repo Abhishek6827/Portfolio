@@ -535,7 +535,7 @@ function Hero() {
 
               {/* Project carousel */}
               <div className="relative group">
-                <AnimatePresence initial={false} custom={direction} mode="wait">
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
                   <motion.div
                     key={currentProject}
                     custom={direction}
@@ -560,7 +560,7 @@ function Hero() {
                             src={images[currentImageIndex]}
                             alt={featuredProjects[currentProject].name}
                             className="w-full h-82 object-cover transition-transform duration-500 group-hover:scale-105"
-                            loading="lazy"
+                            loading="eager"
                             onLoad={() => setImageLoaded(true)}
                             onError={() => setImageLoaded(false)}
                           />
