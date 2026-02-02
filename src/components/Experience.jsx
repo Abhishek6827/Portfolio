@@ -16,9 +16,21 @@ export default function Experience() {
 
   const experiences = [
     {
+      title: "Full Stack Developer",
+      company: "Indian Capital and Investment (Coimbatore) Limited",
+      period: "11/2025 - 01/2026",
+      responsibilities: [
+        "Developed secure payment gateway integration using Stripe and Zoho Payments.",
+        "Built scalable backend services with Next.js and Firebase for real-time data handling.",
+        "Implemented automated webhooks for transaction status updates and Resend API notifications.",
+        "Integrated Notion API for automated record-keeping and workflow management.",
+      ],
+      technologies: ["Next.js", "Firebase", "Stripe", "Zoho Payments", "Resend API"],
+    },
+    {
       title: "Software Developer",
       company: "Vasnaani Education",
-      period: "07/2024 - 08/2025",
+      period: "08/2024 - 10/2025",
       responsibilities: [
         "Developed and maintained the official Vasnaani Education website with a focus on performance and scalability.",
         "Collaborated with cross-functional teams to design and implement user-centric, responsive web interfaces.",
