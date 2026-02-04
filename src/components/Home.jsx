@@ -221,7 +221,7 @@ function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden"
+      className="relative min-h-screen py-12 md:py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden"
     >
       {/* Floating Tech Icons Background - Moving Left to Right */}
       <motion.div
@@ -351,7 +351,7 @@ function Hero() {
               ))}
 
               <motion.h1
-                className="relative text-5xl lg:text-6xl font-extrabold mb-4"
+                className="relative text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4"
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
@@ -572,13 +572,13 @@ function Hero() {
                           <img
                             src={images[currentImageIndex]}
                             alt={featuredProjects[currentProject].name}
-                            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                             onLoad={() => setImageLoaded(true)}
                             onError={() => setImageLoaded(false)}
                           />
                         ) : (
-                          <div className="w-full h-80 bg-gray-700 flex items-center justify-center">
+                          <div className="w-full h-64 md:h-80 bg-gray-700 flex items-center justify-center">
                             <span className="text-gray-400">
                               No image available
                             </span>

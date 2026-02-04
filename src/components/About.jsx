@@ -35,7 +35,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="container mx-auto px-4 py-12 relative overflow-hidden"
+      className="container mx-auto px-4 py-8 md:py-12 relative overflow-hidden"
     >
       {/* Animated Background Icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
@@ -67,7 +67,7 @@ export default function About() {
 
       <div className="relative z-10">
         <motion.h2
-          className="text-5xl font-bold mb-12 text-center flex justify-center items-center"
+          className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center flex justify-center items-center"
           initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
           animate={
             isInView
@@ -87,7 +87,7 @@ export default function About() {
           </span>
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -100, rotateY: -20, scale: 0.8 }}
             animate={

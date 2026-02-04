@@ -98,7 +98,7 @@ export default function Projects() {
   return (
     <div
       ref={sectionRef}
-      className="container mx-auto px-4 py-20 relative overflow-hidden"
+      className="container mx-auto px-4 py-12 md:py-20 relative overflow-hidden"
     >
       {/* Animated Background Icons - Positioned to avoid cards */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -201,7 +201,7 @@ export default function Projects() {
           className="text-center mb-12 relative"
         >
           <motion.h2
-            className="text-5xl font-bold mb-4 relative inline-block"
+            className="text-3xl md:text-5xl font-bold mb-4 relative inline-block"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }

@@ -64,7 +64,7 @@ const Contact = () => {
   return (
     <div
       ref={sectionRef}
-      className="container mx-auto px-4 py-20 relative overflow-hidden"
+      className="container mx-auto px-4 py-12 md:py-20 relative overflow-hidden"
     >
       {/* Animated Background Icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
@@ -104,7 +104,7 @@ const Contact = () => {
 
       <div className="relative z-10">
         <motion.h1
-          className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
+          className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
           initial={{ opacity: 0, y: -60, rotateX: -25, scale: 0.85 }}
           animate={
             isInView
@@ -194,7 +194,7 @@ const Contact = () => {
                   setFormData({ ...formData, name: e.target.value })
                 }
                 required
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -214,7 +214,7 @@ const Contact = () => {
                   setFormData({ ...formData, email: e.target.value })
                 }
                 required
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -234,7 +234,7 @@ const Contact = () => {
                 }
                 required
                 rows="4"
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 

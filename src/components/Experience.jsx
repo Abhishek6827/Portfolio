@@ -99,7 +99,7 @@ export default function Experience() {
   return (
     <section
       ref={sectionRef}
-      className="container mx-auto px-4 py-20 relative overflow-hidden"
+      className="container mx-auto px-4 py-12 md:py-20 relative overflow-hidden"
     >
       {/* Animated Background Icons - Repositioned to avoid cards */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-20">
@@ -158,7 +158,7 @@ export default function Experience() {
         />
 
         <motion.h2
-          className="text-4xl font-bold mb-16 text-center flex justify-center items-center relative"
+          className="text-3xl md:text-4xl font-bold mb-12 md:mb-16 text-center flex justify-center items-center relative"
           initial={{ opacity: 0, y: -50, rotateX: -20, scale: 0.9 }}
           animate={
             isInView
