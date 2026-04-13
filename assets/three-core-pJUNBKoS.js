@@ -1,4 +1,4 @@
-import"./react-vendor-DVW3-Fx7.js";/**
+import"./react-vendor-CSPNk6kX.js";/**
  * @license
  * Copyright 2010-2024 Three.js Authors
  * SPDX-License-Identifier: MIT
