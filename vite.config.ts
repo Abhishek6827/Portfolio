@@ -7,7 +7,12 @@ export default defineConfig({
   base: "/Portfolio/",
   build: {
     rollupOptions: {
-    rollupOptions: {},
+      output: {
+        manualChunks: {
+          'vendor-core': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-3d': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/rapier'],
+        },
+      },
     },
     chunkSizeWarningLimit: 5000,
   },
