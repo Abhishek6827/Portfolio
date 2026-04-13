@@ -91,22 +91,22 @@ const Work = () => {
                       <div className="carousel-number">
                         <h3>0{index + 1}</h3>
                       </div>
-                      <div className="carousel-details">
-                        <h4>{project.name.replace(/-/g, ' ')}</h4>
+                    <div className="carousel-details">
+                        <h4>{project.name}</h4>
                         <p className="carousel-category">
-                          {project.description || "Personal Project"}
+                          {project.description}
                         </p>
                         <div className="carousel-tools">
-                          <span className="tools-label">Topics</span>
-                          <p>{project.topics.join(", ") || "Web Development"}</p>
+                          <span className="tools-label">Technologies</span>
+                          <p>{project.technologies.join(", ")}</p>
                         </div>
                       </div>
                     </div>
                     <div className="carousel-image-wrapper">
                       <WorkImage
-                        image={`https://opengraph.githubassets.com/1/Abhishek6827/${project.name}`}
+                        image={project.image}
                         alt={project.name}
-                        link={project.homepage || project.html_url}
+                        link={project.demo || project.html_url || "#"}
                       />
                     </div>
                   </div>

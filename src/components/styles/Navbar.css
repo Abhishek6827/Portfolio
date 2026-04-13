@@ -3,6 +3,7 @@
   max-width: var(--cMaxWidth);
   width: var(--cWidth);
   justify-content: space-between;
+  align-items: center; /* Ensure vertical alignment */
   padding: 20px 0px;
   margin-bottom: -100px;
   box-sizing: border-box;
@@ -31,19 +32,22 @@
   cursor: pointer;
 }
 .navbar-connect {
-  position: absolute;
-  display: none;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  display: none; /* Hidden on small screens */
   font-size: 15px;
   letter-spacing: 1px;
   font-weight: 500;
+  text-align: center;
+  flex: 1; /* Take up available space to stay centered if possible */
+  margin: 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .navbar-title {
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.2px;
+  flex-shrink: 0;
 }
 @media only screen and (min-width: 500px) {
   .header {
@@ -53,6 +57,7 @@
     flex-direction: row;
     align-items: center;
     font-size: 14px;
+    flex-shrink: 0;
   }
   .header ul li {
     color: #eae5ec;
