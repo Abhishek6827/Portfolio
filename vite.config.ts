@@ -7,24 +7,7 @@ export default defineConfig({
   base: "/Portfolio/",
   build: {
     rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            if (
-              id.includes("three") ||
-              id.includes("@react-three") ||
-              id.includes("@dimforge/rapier3d-compat") ||
-              id.includes("react") ||
-              id.includes("scheduler")
-            ) {
-              return "vendor";
-            }
-            if (id.includes("gsap")) {
-              return "gsap";
-            }
-          }
-        },
-      },
+    rollupOptions: {},
     },
     chunkSizeWarningLimit: 5000,
   },
