@@ -10,11 +10,8 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            if (id.includes("@react-three/rapier") || id.includes("@react-three/cannon") || id.includes("physics")) {
-              return "three-physics";
-            }
-            if (id.includes("postprocessing")) {
-              return "three-fx";
+            if (id.includes("@dimforge/rapier3d-compat") || id.includes("physics")) {
+              return "three-physics-engine";
             }
             if (id.includes("three-stdlib") || id.includes("@react-three/drei") || id.includes("@react-three/fiber")) {
               return "three-utils";
@@ -28,14 +25,11 @@ export default defineConfig({
             if (id.includes("react") || id.includes("scheduler")) {
               return "react-vendor";
             }
-            if (id.includes("@reduxjs") || id.includes("react-redux")) {
-              return "state-vendor";
-            }
             return "vendor";
           }
         },
       },
     },
-    chunkSizeWarningLimit: 2500,
+    chunkSizeWarningLimit: 3000,
   },
 });
