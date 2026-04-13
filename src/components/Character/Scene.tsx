@@ -53,34 +53,41 @@ const Scene = () => {
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 
+      let mouse = { x: 0, y: 0 },
+        interpolation = { x: 0.1, y: 0.2 };
+
+      const onMouseMove = (event: MouseEvent) => {
+        handleMouseMove(event, (x, y) => {
+          mouse = { x, y };
+        });
+      };
+
+      const onResize = () => {
+        if (character) {
+          handleResize(renderer, camera, canvasDiv, character);
+        }
+      };
+
       loadCharacter().then((gltf) => {
         if (gltf) {
           const animations = setAnimations(gltf);
           hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
           mixer = animations.mixer;
-          let character = gltf.scene;
-          setChar(character);
-          scene.add(character);
-          headBone = character.getObjectByName("spine006") || null;
-          screenLight = character.getObjectByName("screenlight") || null;
+          let characterObj = gltf.scene;
+          setChar(characterObj);
+          scene.add(characterObj);
+          headBone = characterObj.getObjectByName("spine006") || null;
+          screenLight = characterObj.getObjectByName("screenlight") || null;
           progress.loaded().then(() => {
             setTimeout(() => {
               light.turnOnLights();
               animations.startIntro();
             }, 2500);
           });
-          window.addEventListener("resize", () =>
-            handleResize(renderer, camera, canvasDiv, character)
-          );
+          window.addEventListener("resize", onResize);
         }
       });
 
-      let mouse = { x: 0, y: 0 },
-        interpolation = { x: 0.1, y: 0.2 };
-
-      const onMouseMove = (event: MouseEvent) => {
-        handleMouseMove(event, (x, y) => (mouse = { x, y }));
-      };
       let debounce: number | undefined;
       const onTouchStart = (event: TouchEvent) => {
         const element = event.target as HTMLElement;
@@ -98,16 +105,17 @@ const Scene = () => {
         });
       };
 
-      document.addEventListener("mousemove", (event) => {
-        onMouseMove(event);
-      });
+      document.addEventListener("mousemove", onMouseMove);
+
       const landingDiv = document.getElementById("landingDiv");
       if (landingDiv) {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+
+      let animationFrameId: number;
       const animate = () => {
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
         if (headBone) {
           handleHeadRotation(
             headBone,
@@ -126,24 +134,33 @@ const Scene = () => {
         renderer.render(scene, camera);
       };
       animate();
+
+      const onContextLost = (event: Event) => {
+        event.preventDefault();
+        console.warn("WebGL Context Lost. Displaying stability fallback...");
+      };
+      renderer.domElement.addEventListener("webglcontextlost", onContextLost, false);
+
       return () => {
+        cancelAnimationFrame(animationFrameId);
         clearTimeout(debounce);
-        scene.clear();
-        renderer.dispose();
-        window.removeEventListener("resize", () =>
-          handleResize(renderer, camera, canvasDiv, character!)
-        );
-        if (canvasDiv.current) {
-          canvasDiv.current.removeChild(renderer.domElement);
-        }
+        renderer.domElement.removeEventListener("webglcontextlost", onContextLost);
+        window.removeEventListener("resize", onResize);
+        document.removeEventListener("mousemove", onMouseMove);
+
         if (landingDiv) {
-          document.removeEventListener("mousemove", onMouseMove);
           landingDiv.removeEventListener("touchstart", onTouchStart);
           landingDiv.removeEventListener("touchend", onTouchEnd);
         }
+
+        scene.clear();
+        renderer.dispose();
+        if (canvasDiv.current) {
+          canvasDiv.current.removeChild(renderer.domElement);
+        }
       };
     }
-  }, []);
+  }, [character, setLoading]); // Added character and setLoading as dependencies for correctness
 
   return (
     <>

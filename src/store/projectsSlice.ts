@@ -36,7 +36,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://Abhishek6827.github.io/Myntra/",
     category: "E-commerce",
     featured: true,
-    image: "/images/projects/Myntra/image1.png"
+    image: "images/projects/Myntra/image1.png"
   },
   Amazon: {
     description: "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
@@ -44,7 +44,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://Abhishek6827.github.io/Amazon/",
     category: "E-commerce",
     featured: false,
-    image: "/images/projects/Amazon/image1.png"
+    image: "images/projects/Amazon/image1.png"
   },
   Skill_Up: {
     description: "An educational platform for skill development with course listings, progress tracking, and interactive learning modules.",
@@ -52,7 +52,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://Abhishek6827.github.io/Skill_Up/",
     category: "Education",
     featured: true,
-    image: "/images/projects/Skill_Up/image1.png"
+    image: "images/projects/Skill_Up/image1.png"
   },
   Calculator: {
     description: "A modern calculator application with scientific functions, memory operations, and responsive design.",
@@ -60,7 +60,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://Abhishek6827.github.io/Calculator/",
     category: "Utility",
     featured: false,
-    image: "/images/projects/Calculator/image1.png"
+    image: "images/projects/Calculator/image1.png"
   },
   Elante_Mall: {
     description: "A shopping mall website with store directory, event listings, and interactive mall map functionality.",
@@ -68,7 +68,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://Abhishek6827.github.io/Elante_Mall/",
     category: "Business",
     featured: true,
-    image: "/images/projects/Elante_Mall/Image1.png"
+    image: "images/projects/Elante_Mall/Image1.png"
   },
   Kanban_WorkBoard: {
     description: "A full-stack project management dashboard with Django backend and React frontend. Features task tracking, team collaboration, and intuitive drag-and-drop interface.",
@@ -77,7 +77,7 @@ const projectDetails: Record<string, any> = {
     backend: "https://abhishektiwari6827.pythonanywhere.com/",
     category: "Productivity",
     featured: true,
-    image: "/images/projects/Workboard/image1.png"
+    image: "images/projects/Workboard/image1.png"
   },
   "Market-Seasonality-Explorer": {
     description: "A calendar application highlighting seasonal market trends and patterns for traders and investors.",
@@ -85,7 +85,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://abhishek6827.github.io/Market-Seasonality-Explorer/",
     category: "Productivity",
     featured: true,
-    image: "/images/projects/Market-Seasonality-Explorer/image1.png"
+    image: "images/projects/Market-Seasonality-Explorer/image1.png"
   },
   "E-commerce": {
     description: "A modern e-commerce platform with product listings, shopping cart, and user authentication.",
@@ -93,7 +93,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://abhishek6827.github.io/E-commerce/",
     category: "E-commerce",
     featured: false,
-    image: "/images/projects/E-commerce/image1.png"
+    image: "images/projects/E-commerce/image1.png"
   },
   Currency_Converter: {
     description: "A currency converter application with real-time exchange rates and intuitive interface.",
@@ -101,7 +101,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://abhishek6827.github.io/Currency_Converter/",
     category: "Utility",
     featured: false,
-    image: "/images/projects/Currency_Converter/image1.png"
+    image: "images/projects/Currency_Converter/image1.png"
   },
   Password_Generator: {
     description: "A secure password generator with customizable options for length and character types.",
@@ -109,7 +109,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://abhishek6827.github.io/Password_Generator/",
     category: "Utility",
     featured: false,
-    image: "/images/projects/Password_Generator/image1.png"
+    image: "images/projects/Password_Generator/image1.png"
   },
   RPS: {
     description: "A Rock Paper Scissors game with interactive UI and score tracking.",
@@ -117,7 +117,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://abhishek6827.github.io/RPS/",
     category: "Game",
     featured: false,
-    image: "/images/projects/RPS/image1.png"
+    image: "images/projects/RPS/image1.png"
   },
   "Tic-Tac-Toe": {
     description: "A Tic Tac Toe game with multiplayer functionality and win detection.",
@@ -125,7 +125,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://abhishek6827.github.io/Tic-Tac-Toe/",
     category: "Game",
     featured: false,
-    image: "/images/projects/Tic-Tac-Toe/image1.png"
+    image: "images/projects/Tic-Tac-Toe/image1.png"
   },
   "Bharat-Clock": {
     description: "A beautiful digital clock application showing Indian time zones with elegant design and smooth animations.",
@@ -133,7 +133,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://Abhishek6827.github.io/Bharat-Clock/",
     category: "Utility",
     featured: false,
-    image: "/images/projects/Bharat-Clock/image1.png"
+    image: "images/projects/Bharat-Clock/image1.png"
   },
   Tempusmail: {
     description: "A temporary email service with real-time email receiving, Firebase backend integration, and modern UI.",
@@ -141,7 +141,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
     category: "Utility",
     featured: true,
-    image: "/images/projects/Tempusmail/1.png"
+    image: "images/projects/Tempusmail/1.png"
   },
   Social_Connect: {
     description: "A full-stack real-time social platform with Socket.io-powered chat, WebRTC video calls, and unified communication features.",
@@ -149,7 +149,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://social-media-lemon-six.vercel.app/login",
     category: "Social",
     featured: true,
-    image: "/images/projects/Social_Connect/Image1.png"
+    image: "images/projects/Social_Connect/Image1.png"
   },
   Youtube_Automation: {
     description: "An AI-powered automated YouTube upload pipeline with multi-tier metadata generation and cron automation.",
@@ -157,7 +157,7 @@ const projectDetails: Record<string, any> = {
     demo: "https://yt-automation-beta.vercel.app/",
     category: "Productivity",
     featured: true,
-    image: "/images/projects/Youtube_Automation/Image1.png"
+    image: "images/projects/Youtube_Automation/Image1.png"
   },
 };
 
@@ -208,7 +208,7 @@ export const fetchProjects = createAsyncThunk('projects/fetchProjects', async ()
         backend: details.backend || null,
         category: details.category || "Other",
         featured: details.featured || false,
-        image: details.image || "/images/placeholder.webp",
+        image: details.image || "images/placeholder.webp",
         stargazers_count: repo.stargazers_count || 0,
         updated_at: repo.updated_at,
       });
@@ -226,7 +226,7 @@ export const fetchProjects = createAsyncThunk('projects/fetchProjects', async ()
         backend: details.backend || null,
         category: details.category || "Other",
         featured: details.featured || false,
-        image: details.image || "/images/placeholder.webp",
+        image: details.image || "images/placeholder.webp",
         stargazers_count: 0,
         updated_at: new Date().toISOString(),
       });
