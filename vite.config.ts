@@ -13,21 +13,19 @@ export default defineConfig({
             if (
               id.includes("three") ||
               id.includes("@react-three") ||
-              id.includes("@dimforge/rapier3d-compat")
+              id.includes("@dimforge/rapier3d-compat") ||
+              id.includes("react") ||
+              id.includes("scheduler")
             ) {
-              return "three-vendor";
+              return "vendor";
             }
             if (id.includes("gsap")) {
               return "gsap";
             }
-            if (id.includes("react") || id.includes("scheduler")) {
-              return "react-vendor";
-            }
-            return "vendor";
           }
         },
       },
     },
-    chunkSizeWarningLimit: 3000,
+    chunkSizeWarningLimit: 5000,
   },
 });
