@@ -160,7 +160,7 @@ const Scene = () => {
         }
       };
     }
-  }, [character, setLoading]); // Added character and setLoading as dependencies for correctness
+  }, []); // Removed character and setLoading to prevent infinite loop
 
   return (
     <>
