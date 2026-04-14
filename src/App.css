@@ -1,6 +1,19 @@
 .section-container {
   width: 1300px;
 }
+
+/* The 3D character canvas is position:fixed at z-index:11.
+   Raising #smooth-content to z-index:12 ensures all section backgrounds
+   correctly render above the canvas, preventing the transparent/black
+   canvas overlay on the Work, Career, Certifications sections.
+   The landing section still shows the character because it has no
+   background-color covering the canvas — the canvas shines through. */
+#smooth-content {
+  position: relative;
+  z-index: 12;
+}
+
+
 .title,
 .para {
   font-kerning: none;

@@ -1,64 +1,70 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { getProjectImages } from "./utils/projectImages";
 
 interface Props {
-  image: string;
+  projectName: string;
   alt?: string;
-  video?: string;
   link?: string;
 }
 
-const BASE = import.meta.env.BASE_URL; // "/Portfolio/" on GH Pages, "/" locally
+const WorkImage = ({ projectName, alt, link }: Props) => {
+  const images = getProjectImages(projectName);
+  const [idx, setIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-const WorkImage = (props: Props) => {
-  const [isVideo, setIsVideo] = useState(false);
-  const [video, setVideo] = useState("");
-  const [imgError, setImgError] = useState(false);
+  /* Auto-cycle images every 2.5s with a brief CSS-driven fade-out/in */
+  useEffect(() => {
+    if (images.length <= 1) return;
+    timerRef.current = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setIdx((prev) => (prev + 1) % images.length);
+        setFading(false);
+      }, 300);
+    }, 2500);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [images.length]);
 
-  // Resolve the image path against the Vite base URL so it works both
-  // in dev (base = "/") and in the deployed GitHub Pages build (base = "/Portfolio/")
-  const src = props.image
-    ? `${BASE}${props.image}`.replace(/\/+/g, "/").replace(/^\/\//, "/")
-    : "";
-
-  const handleMouseEnter = async () => {
-    if (props.video) {
-      setIsVideo(true);
-      const response = await fetch(`${BASE}assets/${props.video}`);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      setVideo(blobUrl);
-    }
-  };
+  if (images.length === 0) {
+    return (
+      <div className="work-image">
+        <div className="work-image-in work-image-placeholder">
+          <span>{alt || projectName}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="work-image">
       <a
         className="work-image-in"
-        href={props.link}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={() => setIsVideo(false)}
+        href={link}
         target="_blank"
-        data-cursor={"disable"}
+        rel="noopener noreferrer"
+        data-cursor="disable"
       >
-        {props.link && (
+        {link && (
           <div className="work-link">
             <MdArrowOutward />
           </div>
         )}
-        {!imgError ? (
-          <img
-            src={src}
-            alt={props.alt}
-            onError={() => setImgError(true)}
-            loading="lazy"
-          />
-        ) : (
-          <div className="work-image-fallback">
-            <span>{props.alt || "Project"}</span>
+
+        <img
+          src={images[idx]}
+          alt={`${alt || projectName} screenshot ${idx + 1}`}
+          className={`work-slide-img${fading ? " work-slide-fading" : ""}`}
+        />
+
+        {images.length > 1 && (
+          <div className="work-image-counter">
+            {idx + 1} / {images.length}
           </div>
         )}
-        {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
       </a>
     </div>
   );
