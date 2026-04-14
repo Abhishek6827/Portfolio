@@ -22,17 +22,21 @@ const Scene = () => {
   const [character, setChar] = useState<THREE.Object3D | null>(null);
   useEffect(() => {
     if (canvasDiv.current) {
+      let disposed = false;
+
       let rect = canvasDiv.current.getBoundingClientRect();
       let container = { width: rect.width, height: rect.height };
       const aspect = container.width / container.height;
-      const scene = sceneRef.current;
+      const scene = new THREE.Scene();
+      sceneRef.current = scene;
 
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
-        antialias: true,
+        antialias: false,
+        powerPreference: "high-performance",
       });
       renderer.setSize(container.width, container.height);
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
       canvasDiv.current.appendChild(renderer.domElement);
@@ -69,23 +73,24 @@ const Scene = () => {
       };
 
       loadCharacter().then((gltf) => {
-        if (gltf) {
-          const animations = setAnimations(gltf);
-          hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
-          mixer = animations.mixer;
-          let characterObj = gltf.scene;
-          setChar(characterObj);
-          scene.add(characterObj);
-          headBone = characterObj.getObjectByName("spine006") || null;
-          screenLight = characterObj.getObjectByName("screenlight") || null;
-          progress.loaded().then(() => {
-            setTimeout(() => {
-              light.turnOnLights();
-              animations.startIntro();
-            }, 2500);
-          });
-          window.addEventListener("resize", onResize);
-        }
+        if (disposed || !gltf) return;
+        const animations = setAnimations(gltf);
+        hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
+        mixer = animations.mixer;
+        let characterObj = gltf.scene;
+        setChar(characterObj);
+        scene.add(characterObj);
+        headBone = characterObj.getObjectByName("spine006") || null;
+        screenLight = characterObj.getObjectByName("screenlight") || null;
+        progress.loaded().then(() => {
+          if (disposed) return;
+          setTimeout(() => {
+            if (disposed) return;
+            light.turnOnLights();
+            animations.startIntro();
+          }, 2500);
+        });
+        window.addEventListener("resize", onResize);
       });
 
       let debounce: number | undefined;
@@ -114,7 +119,10 @@ const Scene = () => {
       }
 
       let animationFrameId: number;
+      let contextLost = false;
+
       const animate = () => {
+        if (contextLost) return;
         animationFrameId = requestAnimationFrame(animate);
         if (headBone) {
           handleHeadRotation(
@@ -137,14 +145,27 @@ const Scene = () => {
 
       const onContextLost = (event: Event) => {
         event.preventDefault();
-        console.warn("WebGL Context Lost. Displaying stability fallback...");
+        contextLost = true;
+        cancelAnimationFrame(animationFrameId);
+        console.warn("WebGL Context Lost — animation paused.");
       };
+
+      const onContextRestored = () => {
+        console.log("WebGL Context Restored — resuming animation.");
+        contextLost = false;
+        clock.getDelta(); // flush accumulated time
+        animate();
+      };
+
       renderer.domElement.addEventListener("webglcontextlost", onContextLost, false);
+      renderer.domElement.addEventListener("webglcontextrestored", onContextRestored, false);
 
       return () => {
+        disposed = true;
         cancelAnimationFrame(animationFrameId);
         clearTimeout(debounce);
         renderer.domElement.removeEventListener("webglcontextlost", onContextLost);
+        renderer.domElement.removeEventListener("webglcontextrestored", onContextRestored);
         window.removeEventListener("resize", onResize);
         document.removeEventListener("mousemove", onMouseMove);
 

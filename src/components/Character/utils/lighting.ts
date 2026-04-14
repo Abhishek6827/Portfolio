@@ -3,7 +3,7 @@ import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
-  const directionalLight = new THREE.DirectionalLight(0x5eead4, 0);
+  const directionalLight = new THREE.DirectionalLight(0xfff5e6, 0);
   directionalLight.intensity = 0;
   directionalLight.position.set(-0.47, -0.32, -1);
   directionalLight.castShadow = true;
@@ -13,7 +13,17 @@ const setLighting = (scene: THREE.Scene) => {
   directionalLight.shadow.camera.far = 50;
   scene.add(directionalLight);
 
-  const pointLight = new THREE.PointLight(0x22d3ee, 0, 100, 3);
+  // Front-facing fill light to keep the character's face illuminated
+  // even when rotated to the desk pose (y: 0.92)
+  const frontFill = new THREE.DirectionalLight(0xffe8d6, 0);
+  frontFill.position.set(0, 12, 20);
+  scene.add(frontFill);
+
+  // Hemisphere light for natural sky/ground ambient fill
+  const hemiLight = new THREE.HemisphereLight(0xfff5e6, 0x444444, 0);
+  scene.add(hemiLight);
+
+  const pointLight = new THREE.PointLight(0x88dde8, 0, 100, 3);
   pointLight.position.set(3, 12, 4);
   pointLight.castShadow = true;
   scene.add(pointLight);
@@ -29,7 +39,8 @@ const setLighting = (scene: THREE.Scene) => {
 
   function setPointLight(screenLight: any) {
     if (screenLight.material.opacity > 0.9) {
-      pointLight.intensity = screenLight.material.emissiveIntensity * 20;
+      // Capped to prevent cyan glow from overwhelming skin tones
+      pointLight.intensity = Math.min(screenLight.material.emissiveIntensity * 20, 8);
     } else {
       pointLight.intensity = 0;
     }
@@ -44,6 +55,16 @@ const setLighting = (scene: THREE.Scene) => {
     });
     gsap.to(directionalLight, {
       intensity: 1,
+      duration: duration,
+      ease: ease,
+    });
+    gsap.to(frontFill, {
+      intensity: 0.6,
+      duration: duration,
+      ease: ease,
+    });
+    gsap.to(hemiLight, {
+      intensity: 0.5,
       duration: duration,
       ease: ease,
     });

@@ -109,6 +109,7 @@
 
 .carousel-image-wrapper {
   flex: 1;
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,7 +189,12 @@
 }
 
 .work-image-in {
+  display: block;
   position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .work-link {
@@ -228,10 +234,28 @@
 }
 
 .work-image img {
-  max-width: 100%;
-  max-height: 400px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 8px;
+  display: block;
 }
+
+.work-image-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
 
 /* ── Responsive ── */
 @media only screen and (max-width: 1600px) {
@@ -325,7 +349,7 @@
     padding: 30px 0;
   }
 
-  .work-image img {
-    max-height: 250px;
+  .work-image-in {
+    aspect-ratio: 16 / 9;
   }
 }

@@ -136,7 +136,7 @@ const projectDetails: Record<string, any> = {
     image: "images/projects/Bharat-Clock/image1.png"
   },
   Tempusmail: {
-    description: "A temporary email service with real-time email receiving, Firebase backend integration, and modern UI.",
+    description: "A temporary email service with real-time email receiving, Firebase backend integration, and modern UI. Features include disposable email addresses, automatic email cleanup, and instant email notifications.",
     technologies: ["Next.js", "Notion Database", "Tailwind CSS", "Firebase"],
     demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
     category: "Utility",
@@ -144,16 +144,16 @@ const projectDetails: Record<string, any> = {
     image: "images/projects/Tempusmail/1.png"
   },
   Social_Connect: {
-    description: "A full-stack real-time social platform with Socket.io-powered chat, WebRTC video calls, and unified communication features.",
-    technologies: ["Angular", "TypeScript", "Node.js", "Express", "MongoDB", "Socket.io", "WebRTC"],
+    description: "A full-stack real-time social platform with Socket.io-powered chat (text, image, audio, voice & file messages), WebRTC peer-to-peer video/audio calls, emoji reactions, message editing & deletion, read receipts, typing indicators, online/offline presence tracking, JWT + Google/Facebook OAuth via Passport.js, and user profiles with avatar & cover uploads.",
+    technologies: ["Angular", "TypeScript", "Node.js", "Express", "MongoDB", "Socket.io", "WebRTC", "Passport.js", "Material UI"],
     demo: "https://social-media-lemon-six.vercel.app/login",
     category: "Social",
     featured: true,
     image: "images/projects/Social_Connect/Image1.png"
   },
   Youtube_Automation: {
-    description: "An AI-powered automated YouTube upload pipeline with multi-tier metadata generation and cron automation.",
-    technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Generative AI", "AssemblyAI"],
+    description: "An AI-powered automated YouTube upload pipeline: scans Google Drive folders, generates metadata via 3-tier AI system (AssemblyAI transcription → Gemini Vision frame analysis → filename fallback), uploads to YouTube with configurable scheduling, and includes copyright claim detection with auto-revert protection. Features multi-job cron automation and draft/preview workflows.",
+    technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Generative AI", "AssemblyAI", "FFmpeg", "Tailwind CSS", "NextAuth"],
     demo: "https://yt-automation-beta.vercel.app/",
     category: "Productivity",
     featured: true,
