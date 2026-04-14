@@ -21,7 +21,7 @@ const Contact = () => {
             </p>
             <h4>Education</h4>
             <p>
-              Postgraduate in Computer Applications — 2013-15
+              Postgraduate in Computer Applications — 2022-24
             </p>
           </div>
           <div className="contact-box">
