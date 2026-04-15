@@ -4,14 +4,15 @@
   z-index: 12;
   isolation: isolate;
   background-color: var(--backgroundColor);
-  padding: 80px 0;
+  padding: 10px 0;
+  min-height: auto;
 }
 
 .work-section h2 {
-  font-size: 70px;
+  font-size: 48px;
   font-weight: 500;
   margin-top: 0;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .work-section h2 > span {
@@ -20,6 +21,7 @@
 
 .work-container {
   margin: auto;
+  position: relative;
 }
 
 /* ── Carousel ── */
@@ -31,104 +33,181 @@
 .carousel-track-container {
   overflow: hidden;
   width: 100%;
-  border-top: 1px solid #363636;
-  border-bottom: 1px solid #363636;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .carousel-slide {
   min-width: 100%;
   flex-shrink: 0;
   box-sizing: border-box;
-  padding: 50px 0;
+  padding: 40px 60px;
+  height: auto;
 }
 
-/*
-  CSS Grid — the most reliable way to lock column widths.
-  Flex can't guarantee a 40/60 split when one child has
-  position:absolute content (zero in-flow size).
-  Grid cells are ALWAYS exactly their specified fraction.
-*/
 .carousel-content {
-  display: grid;
-  grid-template-columns: 40fr 60fr;
+  display: flex;
   gap: 50px;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
+  justify-content: space-between;
 }
 
 /* ── Info column ── */
 .carousel-info {
+  flex: 0 1 42%;
   display: flex;
-  gap: 24px;
+  gap: 15px;
   align-items: flex-start;
   min-width: 0;
 }
 
 .carousel-number h3 {
-  font-size: 56px;
+  font-size: 42px;
   line-height: 1;
   margin: 0;
   font-weight: 600;
-  opacity: 0.25;
-  flex-shrink: 0;
+  opacity: 0.1;
+  color: var(--accentColor);
 }
 
 .carousel-details {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   min-width: 0;
 }
 
 .carousel-details h4 {
-  font-size: 26px;
-  font-weight: 500;
+  font-size: 30px;
+  font-weight: 600;
   margin: 0;
-  line-height: 1.2;
+  color: #fff;
 }
 
-.carousel-category {
-  font-weight: 200;
-  color: #adacac;
+.carousel-description {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.65);
   margin: 0;
   font-size: 15px;
   line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  max-width: 100%;
 }
 
-.carousel-tools {
-  margin-top: 12px;
+.carousel-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.carousel-tools .tools-label {
-  font-size: 12px;
+.project-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(251, 191, 36, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.project-sub-meta {
+  display: flex;
+  gap: 15px;
+  margin-top: -5px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+}
+
+.tech-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tech-badge {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-action-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 5px;
+  font-size: 13px;
   font-weight: 500;
-  opacity: 0.5;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: 0.2s;
 }
 
-.carousel-tools p {
-  font-weight: 200;
-  color: #adacac;
-  margin: 6px 0 0;
-  font-size: 14px;
-  line-height: 1.5;
+.demo-btn {
+  background: #2563eb;
+  color: #fff;
 }
+.demo-btn:hover { background: #1d4ed8; }
+
+.github-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.github-btn:hover { background: rgba(255, 255, 255, 0.15); }
 
 /* ── Image column ── */
 .carousel-image-wrapper {
+  flex: 0 1 55%;
+  min-width: 300px;
+  display: block;
+}
+
+.work-image {
   width: 100%;
-  min-width: 0;
+}
+
+.work-image-in {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  background: #0d0d0d;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.work-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1 !important; /* Force visibility */
+  visibility: visible !important;
 }
 
 /* ── Navigation Arrows ── */
@@ -136,242 +215,56 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.05);
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #eae5ec;
-  width: 46px;
-  height: 46px;
+  color: #fff;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(5px);
 }
 
-.carousel-arrow:hover {
-  background: rgba(94, 234, 212, 0.15);
-  border-color: var(--accentColor);
-  color: var(--accentColor);
-  box-shadow: 0 0 20px rgba(94, 234, 212, 0.15);
-}
-
-.carousel-arrow-left {
-  left: -65px;
-}
-
-.carousel-arrow-right {
-  right: -65px;
-}
+.carousel-arrow:hover { background: var(--accentColor); color: #000; }
+.carousel-arrow-left { left: 10px; }
+.carousel-arrow-right { right: 10px; }
 
 /* ── Dot Indicators ── */
 .carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 32px;
+  gap: 8px;
+  margin-top: 15px;
 }
 
 .carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: transparent;
+  background: rgba(255,255,255,0.2);
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.carousel-dot:hover {
-  border-color: var(--accentColor);
-  background: rgba(94, 234, 212, 0.2);
+  border: none;
 }
 
 .carousel-dot-active {
   background: var(--accentColor);
-  border-color: var(--accentColor);
-  box-shadow: 0 0 8px rgba(94, 234, 212, 0.4);
-  width: 22px;
-  border-radius: 4px;
-}
-
-/* ── Work Image ── */
-.work-image {
-  width: 100%;
-  display: block;
-}
-
-/*
-  position: relative is essential — it's the containing block
-  for the absolute-positioned <img> inside.
-  aspect-ratio creates the container height from its width.
-*/
-.work-image-in {
-  display: block;
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
+  width: 20px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.work-link {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background-color: var(--backgroundColor);
-  width: 44px;
-  border-radius: 50px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 22px;
-  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.4),
-    inset 0px 0px 10px 0px #393939;
-  transition: 0.3s;
-  opacity: 0;
-  z-index: 2;
-}
-
-.work-image a:hover {
-  color: inherit;
-}
-
-.work-image a:hover .work-link {
-  opacity: 1;
-}
-
-/* img fills the aspect-ratio container using absolute positioning */
-.work-slide-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.work-slide-fading {
-  opacity: 0 !important;
-}
-
-.work-image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 0.2);
-  font-size: 13px;
-  letter-spacing: 0.05em;
-}
-
-.work-image-counter {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 11px;
-  font-weight: 500;
-  padding: 3px 8px;
-  border-radius: 20px;
-  letter-spacing: 0.04em;
-  pointer-events: none;
-  z-index: 2;
 }
 
 /* ── Responsive ── */
-@media only screen and (max-width: 1600px) {
-  .carousel-arrow-left {
-    left: -55px;
-  }
-  .carousel-arrow-right {
-    right: -55px;
-  }
-}
-
-@media only screen and (max-width: 1400px) {
-  .work-section h2 {
-    font-size: 55px;
-  }
-  .carousel-content {
-    gap: 40px;
-    grid-template-columns: 42fr 58fr;
-  }
-  .carousel-details h4 {
-    font-size: 22px;
-  }
-  .carousel-number h3 {
-    font-size: 44px;
-  }
-  .carousel-arrow-left {
-    left: 10px;
-  }
-  .carousel-arrow-right {
-    right: 10px;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .work-section {
-    padding: 50px 0;
-  }
-  .work-section h2 {
-    font-size: 42px;
-    margin-bottom: 30px;
-  }
-  .carousel-content {
-    /* Stack vertically on narrow screens */
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  .carousel-slide {
-    padding: 35px 0;
-  }
-  .carousel-number h3 {
-    font-size: 36px;
-  }
-  .carousel-details h4 {
-    font-size: 20px;
-  }
-  .carousel-arrow {
-    width: 38px;
-    height: 38px;
-    font-size: 17px;
-  }
-  .carousel-arrow-left {
-    left: 8px;
-  }
-  .carousel-arrow-right {
-    right: 8px;
-  }
-  .work-image-in {
-    aspect-ratio: 16 / 9;
-  }
+@media only screen and (max-width: 1024px) {
+  .carousel-slide { padding: 30px 20px; }
+  .carousel-content { flex-direction: column; gap: 30px; }
+  .carousel-info { flex: 1; width: 100%; }
+  .carousel-image-wrapper { flex: 1; width: 100%; }
 }
 
 @media only screen and (max-width: 600px) {
-  .work-section h2 {
-    font-size: 34px;
-  }
-  .carousel-info {
-    gap: 14px;
-  }
-  .carousel-number h3 {
-    font-size: 28px;
-  }
+  .work-section h2 { font-size: 32px; }
+  .carousel-details h4 { font-size: 24px; }
 }

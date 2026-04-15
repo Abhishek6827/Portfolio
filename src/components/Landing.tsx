@@ -17,13 +17,22 @@ const Landing = ({ children }: PropsWithChildren) => {
           <div className="landing-info">
             <h3>Full Stack Developer &</h3>
             <h2 className="landing-info-h2">
-              <div className="landing-h2-1">Tech</div>
-              <div className="landing-h2-2">Business</div>
+              <div className="landing-h2-1">SaaS</div>
+              <div className="landing-h2-2">Builder</div>
             </h2>
             <h2>
-              <div className="landing-h2-info">Business</div>
-              <div className="landing-h2-info-1">Tech</div>
+              <div className="landing-h2-info">Builder</div>
+              <div className="landing-h2-info-1">SaaS</div>
             </h2>
+            <p className="landing-info-p" style={{ 
+              color: 'var(--paraColor)', 
+              fontSize: '16px', 
+              marginTop: '20px', 
+              maxWidth: '300px',
+              lineHeight: '1.5'
+            }}>
+              Crafting digital experiences with modern web technologies. Passionate about creating scalable solutions that make a difference.
+            </p>
           </div>
         </div>
         {children}

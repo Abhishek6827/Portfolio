@@ -44,7 +44,8 @@
   height: 33%;
   min-height: 50%;
   transition: 0.5s;
-  /* border: 0.5px dashed rgba(255, 255, 255, 0.3); */
+  background-color: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
   position: relative;
   padding: 50px;
   box-sizing: border-box;

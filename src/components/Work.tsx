@@ -1,7 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
-import { MdArrowBack, MdArrowForward } from "react-icons/md";
+import { MdArrowBack, MdArrowForward, MdStar, MdDateRange, MdCode, MdOpenInNew, MdLayers } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { fetchProjects } from "../store/projectsSlice";
@@ -92,13 +93,50 @@ const Work = () => {
                         <h3>0{index + 1}</h3>
                       </div>
                     <div className="carousel-details">
-                        <h4>{project.name}</h4>
-                        <p className="carousel-category">
+                        <div className="carousel-header-meta">
+                          <h4>{project.name}</h4>
+                          <span className="project-badge">
+                            <MdStar className="meta-icon" /> {project.stargazers_count || 0}
+                          </span>
+                        </div>
+
+                        <div className="project-sub-meta">
+                          <span className="meta-item"><MdLayers className="meta-icon" /> {project.category || "Other"}</span>
+                          <span className="meta-item"><MdDateRange className="meta-icon" /> {new Date(project.updated_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+                        </div>
+
+                        <p className="carousel-description">
                           {project.description}
                         </p>
+
                         <div className="carousel-tools">
                           <span className="tools-label">Technologies</span>
-                          <p>{project.technologies.join(", ")}</p>
+                          <div className="tech-tags-container">
+                            {project.technologies.slice(0, 5).map(tech => (
+                              <span key={tech} className="tech-badge">{tech}</span>
+                            ))}
+                            {project.technologies.length > 5 && (
+                              <span className="tech-badge">+{project.technologies.length - 5}</span>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="project-action-links">
+                          {(project.demo || project.homepage) && (
+                            <a href={project.demo || project.homepage || undefined} target="_blank" rel="noreferrer" className="action-btn demo-btn">
+                              <MdOpenInNew /> Live Demo
+                            </a>
+                          )}
+                          {project.backend && (
+                            <a href={project.backend} target="_blank" rel="noreferrer" className="action-btn backend-btn">
+                              <MdCode /> Backend
+                            </a>
+                          )}
+                          {project.html_url && (
+                            <a href={project.html_url} target="_blank" rel="noreferrer" className="action-btn github-btn">
+                              <FaGithub /> Source
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

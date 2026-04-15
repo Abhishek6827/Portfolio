@@ -6,12 +6,23 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          I am a passionate Full-Stack Developer and SaaS Builder with a strong
-          focus on creating scalable, production-ready solutions. With expertise
-          in Next.js, TypeScript, and payment integrations (Stripe & Zoho), I have
-          shipped over 15+ production applications. I specialize in building
-          efficient backend services, real-time data handling, and user-centric
-          web interfaces.
+          👋 Hi there! I'm Abhishek Tiwari, a passionate full-stack developer from
+          Lucknow, India. I specialize in building scalable SaaS solutions and
+          production-ready applications with modern web technologies.
+        </p>
+        <p className="para" style={{ marginTop: '1rem' }}>
+          🚀 My expertise spans across the entire development stack - from
+          crafting intuitive user interfaces with Next.js and TypeScript, to
+          implementing secure payment integrations with Stripe and Zoho Payments.
+          I specialize in building production-ready applications with robust
+          testing environments and automated workflows.
+        </p>
+        <p className="para" style={{ marginTop: '1rem' }}>
+          💡 I'm experienced in API development and testing with Postman, webhook
+          implementations, Firebase hosting, real-time notifications via
+          Telegram, and seamless email integrations using Resend API. I
+          believe in writing clean, maintainable code and creating
+          user-centric applications that solve real-world problems.
         </p>
       </div>
     </div>

@@ -85,6 +85,20 @@ body {
   position: relative;
 }
 
+#smooth-wrapper {
+  position: relative;
+  z-index: 15 !important;
+  pointer-events: none !important;
+}
+
+#smooth-content {
+  pointer-events: none;
+}
+
+.container-main > div {
+  pointer-events: auto;
+}
+
 .container1 {
   width: var(--cWidth);
   height: var(--vh);

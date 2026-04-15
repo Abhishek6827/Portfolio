@@ -11,19 +11,13 @@ interface Props {
 const WorkImage = ({ projectName, alt, link }: Props) => {
   const images = getProjectImages(projectName);
   const [idx, setIdx] = useState(0);
-  const [fading, setFading] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  /* Auto-cycle images every 2.5s with a brief CSS-driven fade-out/in */
   useEffect(() => {
     if (images.length <= 1) return;
     timerRef.current = setInterval(() => {
-      setFading(true);
-      setTimeout(() => {
-        setIdx((prev) => (prev + 1) % images.length);
-        setFading(false);
-      }, 300);
-    }, 2500);
+      setIdx((prev) => (prev + 1) % images.length);
+    }, 3000);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
@@ -55,9 +49,11 @@ const WorkImage = ({ projectName, alt, link }: Props) => {
         )}
 
         <img
+          key={images[idx]} // Key helps React handle the change smoothly
           src={images[idx]}
           alt={`${alt || projectName} screenshot ${idx + 1}`}
-          className={`work-slide-img${fading ? " work-slide-fading" : ""}`}
+          className="work-slide-img"
+          loading="lazy"
         />
 
         {images.length > 1 && (
