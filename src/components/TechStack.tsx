@@ -173,58 +173,60 @@ const TechStack = () => {
     <div className="techstack">
       <h2> My Techstack</h2>
 
-      <Canvas
-        shadows
-        gl={{ 
-          alpha: true, 
-          stencil: false, 
-          depth: true, 
-          antialias: false,
-          powerPreference: "high-performance",
-        }}
-        dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state: any) => {
-          state.gl.toneMappingExposure = 1.5;
-          const gl = state.gl.getContext();
-          const handleContextLost = (e: Event) => {
-            e.preventDefault();
-            console.warn("TechStack: WebGL Context Lost");
-          };
-          gl.canvas.addEventListener("webglcontextlost", handleContextLost, false);
-        }}
-        className="tech-canvas"
-      >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-          {spheres.map((props, i) => (
-            <SphereGeo
-              key={i}
-              {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
-              isActive={isActive}
-            />
-          ))}
-        </Physics>
-        <Environment
-          files="models/char_enviorment.hdr"
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-        <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
-        </EffectComposer>
-      </Canvas>
+      {isActive && (
+        <Canvas
+          shadows
+          gl={{ 
+            alpha: true, 
+            stencil: false, 
+            depth: true, 
+            antialias: false,
+            powerPreference: "high-performance",
+          }}
+          dpr={[1, 1.5]}
+          camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+          onCreated={(state: any) => {
+            state.gl.toneMappingExposure = 1.5;
+            const gl = state.gl.getContext();
+            const handleContextLost = (e: Event) => {
+              e.preventDefault();
+              console.warn("TechStack: WebGL Context Lost");
+            };
+            gl.canvas.addEventListener("webglcontextlost", handleContextLost, false);
+          }}
+          className="tech-canvas"
+        >
+          <ambientLight intensity={1} />
+          <spotLight
+            position={[20, 20, 25]}
+            penumbra={1}
+            angle={0.2}
+            color="white"
+            castShadow
+            shadow-mapSize={[512, 512]}
+          />
+          <directionalLight position={[0, 5, -4]} intensity={2} />
+          <Physics gravity={[0, 0, 0]}>
+            <Pointer isActive={isActive} />
+            {spheres.map((props, i) => (
+              <SphereGeo
+                key={i}
+                {...props}
+                material={materials[Math.floor(Math.random() * materials.length)]}
+                isActive={isActive}
+              />
+            ))}
+          </Physics>
+          <Environment
+            files="models/char_enviorment.hdr"
+            environmentIntensity={0.5}
+            environmentRotation={[0, 4, 2]}
+          />
+          <EffectComposer enableNormalPass={false}>
+            <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
+          </EffectComposer>
+        </Canvas>
+      )}
     </div>
   );
 };

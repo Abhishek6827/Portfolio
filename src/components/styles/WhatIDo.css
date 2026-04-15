@@ -319,9 +319,9 @@
     flex-direction: column;
   }
   .what-box h2 {
-    margin: 50px 0;
-    font-size: 55px;
-    line-height: 53px;
+    margin: 40px 0;
+    font-size: 42px;
+    line-height: 1.1;
   }
   .what-box:first-child {
     justify-content: left;

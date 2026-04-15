@@ -19,13 +19,35 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     window.innerWidth > 1024
   );
 
+  const [showTechStack, setShowTechStack] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
+
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target.id === "work") {
+            setShowTechStack(entry.isIntersecting);
+          }
+          if (entry.target.classList.contains("landing-section") || entry.target.id === "home") {
+            setShowLanding(entry.isIntersecting);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const workSection = document.getElementById("work");
+    const landingSection = document.getElementById("home");
+    
+    if (workSection) observer.observe(workSection);
+    if (landingSection) observer.observe(landingSection);
+
     const resizeHandler = () => {
       setSplitText();
       setIsDesktopView(window.innerWidth > 1024);
     };
 
-    // Initial call after fonts are ready
     document.fonts.ready.then(() => {
       setSplitText();
     });
@@ -33,8 +55,9 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);
+      observer.disconnect();
     };
-  }, [isDesktopView]);
+  }, []);
 
   return (
     <div className="main-wrapper">
