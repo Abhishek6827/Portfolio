@@ -14,103 +14,176 @@
   margin: 0;
 }
 
-.contact-flex {
+.contact-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.career-info-box.contact-box-wrapper {
   display: flex;
   justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 60px;
 }
 
-.contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
-}
-
-.contact-box {
+.contact-social-container {
   display: flex;
   flex-direction: column;
-}
-
-.contact-flex p {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  gap: 15px;
+  margin-top: 30px;
 }
 
 a.contact-social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 25px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 0;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.contact-box h2 {
-  font-weight: 400;
-  font-size: 23px;
-  margin: 0;
-}
-
-.contact-box h2>span {
+a.contact-social:hover {
+  border-bottom-color: var(--accentColor);
   color: var(--accentColor);
 }
 
-.contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
+.contact-form-container {
+  width: 50%;
+}
+
+.contact-box-container {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-box-container h4 {
+  margin-bottom: 25px;
+  font-size: 24px;
+  fontWeight: 500;
+  color: #fff;
+}
+
+.contact-form {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accentColor);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: var(--accentColor);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+.submit-btn:disabled {
+  cursor: not-allowed;
   opacity: 0.5;
 }
 
-@media only screen and (max-width: 1600px) {
+.copyright-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+
+@media only screen and (max-width: 1024px) {
   .contact-section h3 {
     font-size: 50px;
   }
 
-  .contact-box h2 {
-    font-size: 20px;
-  }
-
-  a.contact-social {
-    font-size: 22px;
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
-
-  .contact-box h2 {
-    font-size: 18px;
-  }
-
-  a.contact-social {
-    font-size: 20px;
-  }
-
-  .contact-flex p {
-    margin-top: 0px;
+  .career-info-box.contact-box-wrapper {
+    gap: 30px;
   }
 }
 
 @media only screen and (max-width: 900px) {
-  .contact-flex {
+  .career-info-box.contact-box-wrapper {
     flex-direction: column;
     gap: 40px;
   }
 
-  .contact-flex p {
-    margin-bottom: 0px;
+  .contact-form-container,
+  .copyright-section {
+    width: 100%;
   }
 
-  .contact-flex h4 {
-    margin-top: 20px;
+  .career-info-in {
+    width: 100% !important;
   }
 
+  .contact-box-container {
+    padding: 30px;
+  }
+
+  .contact-section h3 {
+    font-size: 45px;
+    text-align: center;
+  }
+
+  .career-timeline {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .contact-section {
-    margin-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
+    margin-top: 60px;
   }
 
-  .contact-container {
-    width: calc(100% - 25px);
+  .contact-section h3 {
+    font-size: 35px;
+  }
+
+  a.contact-social {
+    font-size: 20px;
+  }
+
+  .contact-box-container {
+    padding: 20px;
+  }
+
+  .contact-box-container h4 {
+    font-size: 20px;
+  }
+
+  .career-role h4 {
+    font-size: 28px !important;
   }
 }

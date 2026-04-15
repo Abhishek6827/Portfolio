@@ -48,21 +48,20 @@ const Contact = () => {
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
         <h3>Contact</h3>
-        <div className="career-info" style={{ width: '100%', maxWidth: '1000px', margin: '60px auto 0' }}>
-          <div className="career-timeline" style={{ backgroundImage: "linear-gradient(to top, #14b8a6 20%, var(--accentColor) 50%, transparent 95%)", maxHeight: "100%" }}></div>
+        <div className="career-info">
+          <div className="career-timeline"></div>
 
-          <div className="career-info-box">
+          <div className="career-info-box contact-box-wrapper">
             <div className="career-info-in">
-              <div className="career-role" style={{ width: '100%' }}>
-                <h4 style={{ fontSize: '33px', fontWeight: 500, margin: 0 }}>Social</h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '30px' }}>
+              <div className="career-role">
+                <h4>Social</h4>
+                <div className="contact-social-container">
                   <a
                     href="https://github.com/Abhishek6827"
                     target="_blank"
                     rel="noreferrer"
                     data-cursor="disable"
                     className="contact-social"
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
                     GitHub <MdArrowOutward />
                   </a>
@@ -72,7 +71,6 @@ const Contact = () => {
                     rel="noreferrer"
                     data-cursor="disable"
                     className="contact-social"
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
                     LinkedIn <MdArrowOutward />
                   </a>
@@ -82,7 +80,6 @@ const Contact = () => {
                     rel="noreferrer"
                     data-cursor="disable"
                     className="contact-social"
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
                     Email <MdArrowOutward />
                   </a>
@@ -90,10 +87,10 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="career-info-right" style={{ width: "40%" }}>
-              <div className="contact-box" style={{ backgroundColor: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '15px' }}>
-                <h4 style={{ marginBottom: '20px', fontSize: '20px', fontWeight: 500, color: '#fff' }}>Send a Message</h4>
-                <form onSubmit={sendEmail} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }} data-cursor="disable">
+            <div className="contact-form-container">
+              <div className="contact-box-container">
+                <h4>Send a Message</h4>
+                <form onSubmit={sendEmail} className="contact-form" data-cursor="disable">
                   <div>
                     <input
                       type="text"
@@ -101,7 +98,6 @@ const Contact = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '12px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px' }}
                     />
                   </div>
                   <div>
@@ -111,7 +107,6 @@ const Contact = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '12px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px' }}
                     />
                   </div>
                   <div>
@@ -121,13 +116,12 @@ const Contact = () => {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required
                       rows={4}
-                      style={{ width: '100%', padding: '12px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '8px', resize: 'vertical' }}
                     />
                   </div>
                   <button
                     type="submit"
+                    className="submit-btn"
                     disabled={isLoading}
-                    style={{ width: '100%', padding: '15px', background: 'var(--accentColor)', color: '#000', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: isLoading ? 'not-allowed' : 'pointer' }}
                   >
                     {isLoading ? "Sending..." : "Send Message"}
                   </button>
@@ -141,15 +135,15 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="career-info-box" style={{ marginTop: '60px' }}>
+          <div className="career-info-box contact-box-wrapper" style={{ marginTop: '60px' }}>
             <div className="career-info-in">
               <div className="career-role">
-                <h4 style={{ fontSize: '33px', fontWeight: 500, margin: 0 }}>Education</h4>
-                <p style={{ marginTop: '15px', color: '#9ca3af' }}>Postgraduate in Computer Applications <br /> 2022-24</p>
+                <h4>Education</h4>
+                <p style={{ marginTop: '15px', color: '#9ca3af', fontSize: '18px' }}>Postgraduate in Computer Applications <br /> 2022-24</p>
               </div>
             </div>
 
-            <div className="career-info-right" style={{ width: "40%", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="copyright-section">
               <h2 style={{ fontSize: '23px', margin: 0, fontWeight: 400 }}>
                 Designed and Developed <br /> by <span style={{ color: 'var(--accentColor)' }}>Abhishek Tiwari</span>
               </h2>
