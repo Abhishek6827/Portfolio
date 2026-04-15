@@ -32,27 +32,29 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   }, [isDesktopView]);
 
   return (
-    <div className="container-main">
+    <div className="main-wrapper">
       <Cursor />
       <Navbar />
-      <SocialIcons />
-      {isDesktopView && children}
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
-            <About />
-            <WhatIDo />
-            <Skills />
-            <Career />
-            <Certifications />
-            <Work />
-            {isDesktopView && (
-              <Suspense fallback={<div>Loading....</div>}>
-                <TechStack />
-              </Suspense>
-            )}
-            <Contact />
+      <div className="container-main">
+        <SocialIcons />
+        {isDesktopView && children}
+        <div id="smooth-wrapper">
+          <div id="smooth-content">
+            <div className="container-main">
+              <Landing>{!isDesktopView && children}</Landing>
+              <About />
+              <WhatIDo />
+              <Skills />
+              <Career />
+              <Certifications />
+              <Work />
+              {isDesktopView && (
+                <Suspense fallback={<div>Loading....</div>}>
+                  <TechStack />
+                </Suspense>
+              )}
+              <Contact />
+            </div>
           </div>
         </div>
       </div>

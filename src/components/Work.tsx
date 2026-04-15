@@ -1,172 +1,298 @@
 import { useState, useCallback, useEffect } from "react";
 import "./styles/Work.css";
+import "./styles/Career.css";
 import WorkImage from "./WorkImage";
-import { MdArrowBack, MdArrowForward, MdStar, MdDateRange, MdCode, MdOpenInNew, MdLayers } from "react-icons/md";
+import { MdPlayArrow, MdPause, MdChevronLeft, MdChevronRight, MdVisibility, MdCode } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
-import { fetchProjects } from "../store/projectsSlice";
+import { fetchProjects, selectFeaturedProjects, selectOtherProjects } from "../store/projectsSlice";
+import { motion, AnimatePresence } from "framer-motion";
+import { getTechIcon } from "./utils/techIcons";
+import { MdFolder } from "react-icons/md";
 
 const Work = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { items: projects, status } = useSelector((state: RootState) => state.projects);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const projects = useSelector(selectFeaturedProjects);
+  const otherProjects = useSelector(selectOtherProjects);
+  const { status } = useSelector((state: RootState) => state.projects);
+  const [currentProject, setCurrentProject] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const INTERVAL_TIME = 6000;
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchProjects());
-    }
+    if (status === "idle") dispatch(fetchProjects());
   }, [status, dispatch]);
 
-  const goToSlide = useCallback(
-    (index: number) => {
-      if (isAnimating) return;
-      setIsAnimating(true);
-      setCurrentIndex(index);
-      setTimeout(() => setIsAnimating(false), 500);
-    },
-    [isAnimating]
-  );
+  const handleProjectSelect = useCallback((index: number) => {
+    setDirection(index > currentProject ? 1 : -1);
+    setCurrentProject(index);
+    setProgress(0);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 15000);
+  }, [currentProject]);
 
-  const goToPrev = useCallback(() => {
-    if (projects.length === 0) return;
-    const newIndex =
-      currentIndex === 0 ? projects.length - 1 : currentIndex - 1;
-    goToSlide(newIndex);
-  }, [currentIndex, goToSlide, projects.length]);
+  const goToPrevious = useCallback(() => {
+    if (!projects.length) return;
+    const prevIndex = currentProject === 0 ? projects.length - 1 : currentProject - 1;
+    handleProjectSelect(prevIndex);
+  }, [currentProject, projects.length, handleProjectSelect]);
 
   const goToNext = useCallback(() => {
-    if (projects.length === 0) return;
-    const newIndex =
-      currentIndex === projects.length - 1 ? 0 : currentIndex + 1;
-    goToSlide(newIndex);
-  }, [currentIndex, goToSlide, projects.length]);
+    if (!projects.length) return;
+    const nextIndex = (currentProject + 1) % projects.length;
+    handleProjectSelect(nextIndex);
+  }, [currentProject, projects.length, handleProjectSelect]);
 
-  if (status === 'loading') {
-    return <div className="work-section" id="work"><div className="work-container section-container"><h2>Loading <span>Projects...</span></h2></div></div>;
+  // Auto-switching
+  useEffect(() => {
+    if (!isAutoPlaying || projects.length <= 1) return;
+
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          setCurrentProject((current) => {
+            const next = (current + 1) % projects.length;
+            setDirection(1);
+            return next;
+          });
+          return 0;
+        }
+        return prev + (100 / (INTERVAL_TIME / 100));
+      });
+    }, 100);
+
+    return () => clearInterval(progressInterval);
+  }, [isAutoPlaying, projects.length]);
+
+  const slideVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.8,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (dir: number) => ({
+      zIndex: 0,
+      x: dir < 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.8,
+    }),
+  };
+
+  if (status === "loading") {
+    return (
+      <div className="work-section" id="work">
+        <div className="work-container">
+          <h2 className="work-section-title">Loading <span>Projects...</span></h2>
+        </div>
+      </div>
+    );
   }
 
-  if (status === 'failed' || projects.length === 0) {
-    return <div className="work-section" id="work"><div className="work-container section-container"><h2>No <span>Projects</span> Found</h2></div></div>;
+  if (status === "failed" || projects.length === 0) {
+    return (
+      <div className="work-section" id="work">
+        <div className="work-container">
+          <h2 className="work-section-title">No <span>Projects</span> Found</h2>
+        </div>
+      </div>
+    );
   }
+
+  const project = projects[currentProject];
 
   return (
     <div className="work-section" id="work">
-      <div className="work-container section-container">
-        <h2>
+      <div className="work-container">
+        
+        <h2 className="work-section-title">
           My <span>Work</span>
         </h2>
 
-        <div className="carousel-wrapper">
-          {/* Navigation Arrows */}
-          <button
-            className="carousel-arrow carousel-arrow-left"
-            onClick={goToPrev}
-            aria-label="Previous project"
-            data-cursor="disable"
-          >
-            <MdArrowBack />
-          </button>
-          <button
-            className="carousel-arrow carousel-arrow-right"
-            onClick={goToNext}
-            aria-label="Next project"
-            data-cursor="disable"
-          >
-            <MdArrowForward />
-          </button>
+        {/* ── Hero Card ── */}
+        <div className="work-hero-card">
+          
+          {/* Header */}
+          <div className="work-card-header">
+            <h3>Featured Projects</h3>
+            {projects.length > 1 && (
+              <div className="work-card-controls">
+                <div className="work-card-dots">
+                  {projects.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleProjectSelect(index)}
+                      className={`work-card-dot ${index === currentProject ? "active" : ""}`}
+                    >
+                      {index === currentProject && isAutoPlaying && (
+                        <div
+                          className="work-card-dot-progress"
+                          style={{ width: `${progress}%` }}
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                  className={`play-pause-btn ${isAutoPlaying ? "playing" : "paused"}`}
+                  title={isAutoPlaying ? "Pause auto-play" : "Play auto-play"}
+                >
+                  {isAutoPlaying ? <MdPause size={14} /> : <MdPlayArrow size={14} />}
+                </button>
+              </div>
+            )}
+          </div>
 
-          {/* Slides */}
-          <div className="carousel-track-container">
-            <div
-              className="carousel-track"
-              style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
-              }}
-            >
-              {projects.map((project, index) => (
-                <div className="carousel-slide" key={index}>
-                  <div className="carousel-content">
-                    <div className="carousel-info">
-                      <div className="carousel-number">
-                        <h3>0{index + 1}</h3>
-                      </div>
-                    <div className="carousel-details">
-                        <div className="carousel-header-meta">
-                          <h4>{project.name}</h4>
-                          <span className="project-badge">
-                            <MdStar className="meta-icon" /> {project.stargazers_count || 0}
-                          </span>
-                        </div>
+          {/* Slider */}
+          <div className="work-slider-window group">
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              <motion.div
+                key={currentProject}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.3 },
+                  scale: { duration: 0.3 },
+                }}
+              >
+                {/* Image Wrapper */}
+                <div className="work-image-wrapper">
+                  <WorkImage
+                    projectName={project.name}
+                    alt={project.name}
+                  />
 
-                        <div className="project-sub-meta">
-                          <span className="meta-item"><MdLayers className="meta-icon" /> {project.category || "Other"}</span>
-                          <span className="meta-item"><MdDateRange className="meta-icon" /> {new Date(project.updated_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
-                        </div>
+                  {/* Overlay and Controls */}
+                  <div className="work-img-overlay" />
+                  
+                  {projects.length > 1 && (
+                    <>
+                      <button onClick={goToPrevious} className="work-nav-btn work-nav-left" title="Previous Project">
+                        <MdChevronLeft size={24} />
+                      </button>
+                      <button onClick={goToNext} className="work-nav-btn work-nav-right" title="Next Project">
+                        <MdChevronRight size={24} />
+                      </button>
+                    </>
+                  )}
 
-                        <p className="carousel-description">
-                          {project.description}
-                        </p>
+                  <div className="work-demo-layer">
+                    {(project.demo || project.homepage) && (
+                      <a
+                        href={project.demo || project.homepage || undefined}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="work-btn-demo"
+                        title="View Live Demo"
+                      >
+                        <MdVisibility size={16} /> Live Demo
+                      </a>
+                    )}
+                    {project.backend && (
+                      <a
+                        href={project.backend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="work-btn-demo work-btn-source"
+                        style={{ borderColor: "rgba(20, 184, 166, 0.4)", color: "#2dd4bf" }}
+                        title="View Backend API/Repo"
+                      >
+                        <MdCode size={16} /> Backend
+                      </a>
+                    )}
+                  </div>
+                </div>
 
-                        <div className="carousel-tools">
-                          <span className="tools-label">Technologies</span>
-                          <div className="tech-tags-container">
-                            {project.technologies.slice(0, 5).map(tech => (
-                              <span key={tech} className="tech-badge">{tech}</span>
-                            ))}
-                            {project.technologies.length > 5 && (
-                              <span className="tech-badge">+{project.technologies.length - 5}</span>
-                            )}
-                          </div>
-                        </div>
+                {/* Content Below */}
+                <div className="work-content">
+                  <div className="work-content-header">
+                    <h4>{project.name}</h4>
+                  </div>
+                  <p className="work-desc">{project.description}</p>
+                  <div className="work-tech-list">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="work-tech-badge">
+                        {getTechIcon(tech)}
+                        <span>{tech}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-                        <div className="project-action-links">
-                          {(project.demo || project.homepage) && (
-                            <a href={project.demo || project.homepage || undefined} target="_blank" rel="noreferrer" className="action-btn demo-btn">
-                              <MdOpenInNew /> Live Demo
-                            </a>
-                          )}
-                          {project.backend && (
-                            <a href={project.backend} target="_blank" rel="noreferrer" className="action-btn backend-btn">
-                              <MdCode /> Backend
-                            </a>
-                          )}
-                          {project.html_url && (
-                            <a href={project.html_url} target="_blank" rel="noreferrer" className="action-btn github-btn">
-                              <FaGithub /> Source
-                            </a>
-                          )}
-                        </div>
-                      </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Helpers */}
+          {projects.length > 1 && (
+            <div className="work-helper-text">
+              Hover over image to view links • Click dots to navigate
+            </div>
+          )}
+
+        </div>
+
+        {/* ── Other Notable Projects List ── */}
+        {otherProjects.length > 0 && (
+          <div className="other-projects-section" style={{ width: '100%', maxWidth: '1000px', margin: '80px auto 0' }}>
+            <h2 className="work-section-title" style={{ marginBottom: "60px" }}>
+              Other <span>Projects</span>
+            </h2>
+            <div className="career-info">
+              <div className="career-timeline" style={{ backgroundImage: "linear-gradient(to top, #14b8a6 20%, var(--accentColor) 50%, transparent 95%)", maxHeight: "100%" }}></div>
+
+              {otherProjects.map((proj, idx) => (
+                <div key={proj.id || idx} className="career-info-box">
+                  <div className="career-info-in">
+                    <div className="career-role">
+                      <h4>{proj.name}</h4>
+                      <h5 style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                        {proj.category}
+                        {(proj.demo || proj.homepage) && (
+                          <a
+                            href={proj.demo || proj.homepage || undefined}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Live Demo"
+                            style={{ color: "inherit", transition: "color 0.2s" }}
+                            onMouseOver={(e) => e.currentTarget.style.color = "#fff"}
+                            onMouseOut={(e) => e.currentTarget.style.color = "inherit"}
+                          >
+                            <MdVisibility size={18} />
+                          </a>
+                        )}
+                      </h5>
                     </div>
-                    <div className="carousel-image-wrapper">
-                      <WorkImage
-                        projectName={project.name}
-                        alt={project.name}
-                        link={project.demo || project.html_url || undefined}
-                      />
-                    </div>
+                    <h3>{proj.updated_at ? new Date(proj.updated_at).getFullYear() : new Date().getFullYear()}</h3>
+                  </div>
+                  <div className="career-info-right" style={{ width: "40%" }}>
+                    <p style={{ width: "100%", margin: "0 0 10px 0" }}>
+                      {proj.description}
+                    </p>
+                    <h5 style={{ fontSize: "12px", color: "var(--accentColor)", margin: 0 }}>
+                      Skills: {proj.technologies.join(", ")}
+                    </h5>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+        )}
 
-          {/* Dot Indicators */}
-          <div className="carousel-dots">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""
-                  }`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to project ${index + 1}`}
-                data-cursor="disable"
-              />
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );

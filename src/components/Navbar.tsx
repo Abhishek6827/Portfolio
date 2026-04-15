@@ -4,6 +4,7 @@ import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
+import { FaGithub } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
@@ -46,13 +47,14 @@ const Navbar = () => {
           AT
         </a>
         <a
-          href="https://www.linkedin.com/in/abhishek-tiwariiii"
+          href="https://www.github.com/Abhishek6827"
           className="navbar-connect"
           data-cursor="disable"
           target="_blank"
           rel="noreferrer"
+          title="GitHub Profile"
         >
-          linkedin.com/in/abhishek-tiwariiii
+          <FaGithub size={24} style={{ color: "var(--accentColor)", transition: "color 0.3s" }} />
         </a>
         <ul>
           <li>

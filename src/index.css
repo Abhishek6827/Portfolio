@@ -85,6 +85,11 @@ body {
   position: relative;
 }
 
+.main-wrapper {
+  width: 100%;
+  position: relative;
+}
+
 #smooth-wrapper {
   position: relative;
   z-index: 15 !important;

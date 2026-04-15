@@ -1,14 +1,12 @@
 .header {
   display: flex;
-  max-width: var(--cMaxWidth);
-  width: var(--cWidth);
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
+  padding: 10px 3%; /* Provides consistent horizontal offset */
   box-sizing: border-box;
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   top: 0;
   z-index: 9999;
   background: rgba(10, 14, 23, 0.85);
@@ -50,7 +48,7 @@
 
 @media only screen and (min-width: 1024px) {
   .header {
-    padding: 20px 0px;
+    padding: 20px 3%;
   }
   
   .header ul {

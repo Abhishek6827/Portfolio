@@ -1,0 +1,66 @@
+import { ReactNode } from "react";
+import {
+  FaReact,
+  FaJsSquare,
+  FaCss3Alt,
+  FaHtml5,
+  FaBootstrap,
+  FaNodeJs,
+  FaPython,
+  FaAngular,
+} from "react-icons/fa";
+import {
+  SiRedux,
+  SiTailwindcss,
+  SiDjango,
+  SiNextdotjs,
+  SiFirebase,
+  SiNotion,
+  SiTypescript,
+  SiPostgresql,
+  SiMongodb,
+  SiExpress,
+  SiPrisma,
+  SiSocketdotio,
+  SiWebrtc,
+  SiFfmpeg,
+} from "react-icons/si";
+import { Code, Database, Sparkles, Clock, Shield, Zap } from "lucide-react";
+
+export const getTechIcon = (tech: string): ReactNode => {
+  const iconMap: Record<string, ReactNode> = {
+    React: <FaReact style={{ color: "#60a5fa" }} />,
+    Redux: <SiRedux style={{ color: "#c084fc" }} />,
+    JavaScript: <FaJsSquare style={{ color: "#facc15" }} />,
+    CSS: <FaCss3Alt style={{ color: "#3b82f6" }} />,
+    HTML: <FaHtml5 style={{ color: "#f97316" }} />,
+    Bootstrap: <FaBootstrap style={{ color: "#a855f7" }} />,
+    "Tailwind CSS": <SiTailwindcss style={{ color: "#22d3ee" }} />,
+    Django: <SiDjango style={{ color: "#16a34a" }} />,
+    "Next.js": <SiNextdotjs style={{ color: "#fff" }} />,
+    Firebase: <SiFirebase style={{ color: "#eab308" }} />,
+    "Notion Database": <SiNotion style={{ color: "#fff" }} />,
+    TypeScript: <SiTypescript style={{ color: "#3b82f6" }} />,
+    "Node.js": <FaNodeJs style={{ color: "#22c55e" }} />,
+    PostgreSQL: <SiPostgresql style={{ color: "#60a5fa" }} />,
+    MongoDB: <SiMongodb style={{ color: "#22c55e" }} />,
+    Express: <SiExpress style={{ color: "#d1d5db" }} />,
+    Python: <FaPython style={{ color: "#60a5fa" }} />,
+    Recharts: <Code style={{ color: "#22d3ee" }} />,
+    "Binance API": <Database style={{ color: "#facc15" }} />,
+    "RESTful APIs": <Code style={{ color: "#4ade80" }} />,
+    Prisma: <SiPrisma style={{ color: "#3b82f6" }} />,
+    Angular: <FaAngular style={{ color: "#dc2626" }} />,
+    "Generative AI": <Sparkles style={{ color: "#facc15" }} />,
+    "Socket.io": <SiSocketdotio style={{ color: "#fff" }} />,
+    WebRTC: <SiWebrtc style={{ color: "#4ade80" }} />,
+    AssemblyAI: <Zap style={{ color: "#60a5fa" }} />,
+    FFmpeg: <SiFfmpeg style={{ color: "#22c55e" }} />,
+    Tailwind: <SiTailwindcss style={{ color: "#22d3ee" }} />,
+    NextAuth: <Shield style={{ color: "#c084fc" }} />,
+    "node-cron": <Clock style={{ color: "#fb923c" }} />,
+    "Material UI": <Code style={{ color: "#93c5fd" }} />,
+    "Passport.js": <Shield style={{ color: "#4ade80" }} />,
+  };
+  return iconMap[tech] || <Code style={{ color: "#9ca3af" }} />;
+};

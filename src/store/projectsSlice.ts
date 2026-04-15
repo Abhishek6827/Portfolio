@@ -261,5 +261,9 @@ export const selectFeaturedProjects = createSelector(
   [selectAllProjects],
   (projects) => projects.filter(p => p.featured)
 );
+export const selectOtherProjects = createSelector(
+  [selectAllProjects],
+  (projects) => projects.filter(p => !p.featured)
+);
 
 export default projectsSlice.reducer;
