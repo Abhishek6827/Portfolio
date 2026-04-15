@@ -140,12 +140,18 @@ a.contact-social:hover {
 
   .contact-form-container,
   .copyright-section {
-    width: 100%;
+    width: 100% !important;
   }
 
   .career-info-in {
     width: 100% !important;
+    padding-left: 0 !important;
   }
+
+  .contact-box-wrapper {
+    align-items: center;
+  }
+
 
   .contact-box-container {
     padding: 30px;
@@ -172,16 +178,31 @@ a.contact-social:hover {
   }
 
   a.contact-social {
-    font-size: 20px;
+    font-size: 18px;
+    padding: 12px 10px;
   }
 
+
   .contact-box-container {
-    padding: 20px;
+    padding: 25px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .contact-box-container h4 {
     font-size: 20px;
+    text-align: center;
   }
+
+  .contact-container {
+    width: 95%;
+  }
+
+  .career-info {
+    width: 100%;
+    margin: 0;
+  }
+
 
   .career-role h4 {
     font-size: 28px !important;
