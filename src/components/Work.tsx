@@ -3,13 +3,11 @@ import "./styles/Work.css";
 import "./styles/Career.css";
 import WorkImage from "./WorkImage";
 import { MdPlayArrow, MdPause, MdChevronLeft, MdChevronRight, MdVisibility, MdCode } from "react-icons/md";
-import { FaGithub } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { fetchProjects, selectFeaturedProjects, selectOtherProjects } from "../store/projectsSlice";
 import { motion, AnimatePresence } from "framer-motion";
 import { getTechIcon } from "./utils/techIcons";
-import { MdFolder } from "react-icons/md";
 
 const Work = () => {
   const dispatch = useDispatch<AppDispatch>();
