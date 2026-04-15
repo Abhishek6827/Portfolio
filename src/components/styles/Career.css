@@ -196,16 +196,23 @@
   }
 
   .career-info-in,
-  .career-info-box p,
   .career-info-right {
     width: 100% !important;
-    padding-left: 10%;
+    padding-left: 35px;
     box-sizing: border-box;
+  }
+
+  .career-info-box p,
+  .career-info-right p,
+  .career-info-right ul {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
   }
 
   .career-info-in {
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
     align-items: flex-start;
   }
 
@@ -260,9 +267,14 @@
   }
 
   .career-info-in,
-  .career-info-box p,
   .career-info-right {
-    padding-left: 5%;
+    padding-left: 30px;
+  }
+
+  .career-info-box p,
+  .career-info-right p,
+  .career-info-right ul {
+    padding-left: 0 !important;
   }
 
   .career-section {

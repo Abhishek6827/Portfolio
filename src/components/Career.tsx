@@ -21,7 +21,7 @@ const Career = () => {
               <h3>11/2025 - 03/2026</h3>
             </div>
             <div className="career-info-right">
-              <ul style={{ color: "var(--paraColor)", fontSize: "16px", paddingLeft: "20px", margin: "0 0 10px 0" }}>
+              <ul style={{ color: "var(--paraColor)", fontSize: "16px", margin: "0 0 10px 0" }}>
                 <li>Developed secure payment gateway integration using Stripe and Zoho Payments.</li>
                 <li>Built scalable backend services with Next.js and Firebase for real-time data handling.</li>
                 <li>Implemented automated webhooks for transaction status updates and Resend API notifications.</li>
@@ -42,7 +42,7 @@ const Career = () => {
               <h3>08/2024 - 10/2025</h3>
             </div>
             <div className="career-info-right">
-              <ul style={{ color: "var(--paraColor)", fontSize: "16px", paddingLeft: "20px", margin: "0 0 10px 0" }}>
+              <ul style={{ color: "var(--paraColor)", fontSize: "16px", margin: "0 0 10px 0" }}>
                 <li>Developed and maintained the official Vasnaani Education website with a focus on performance and scalability.</li>
                 <li>Collaborated with cross-functional teams to design and implement user-centric, responsive web interfaces.</li>
                 <li>Integrated Django REST APIs with React frontend modules, ensuring seamless data flow and consistency.</li>
@@ -63,7 +63,7 @@ const Career = () => {
               <h3>01/2024 - 06/2024</h3>
             </div>
             <div className="career-info-right">
-              <ul style={{ color: "var(--paraColor)", fontSize: "16px", paddingLeft: "20px", margin: "0 0 10px 0" }}>
+              <ul style={{ color: "var(--paraColor)", fontSize: "16px", margin: "0 0 10px 0" }}>
                 <li>Developed and maintained web applications using React, Redux, and Django</li>
                 <li>Collaborated with cross-functional teams to deliver high-quality software solutions</li>
                 <li>Implemented responsive designs and optimized application performance</li>
@@ -84,7 +84,7 @@ const Career = () => {
               <h3>11/2023 - 12/2023</h3>
             </div>
             <div className="career-info-right">
-              <ul style={{ color: "var(--paraColor)", fontSize: "16px", paddingLeft: "20px", margin: "0 0 10px 0" }}>
+              <ul style={{ color: "var(--paraColor)", fontSize: "16px", margin: "0 0 10px 0" }}>
                 <li>Built interactive quiz applications with modern web technologies</li>
                 <li>Coordinated with team members to ensure project deliverables</li>
                 <li>Implemented user authentication and data management features</li>
