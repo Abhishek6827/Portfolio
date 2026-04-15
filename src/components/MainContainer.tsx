@@ -19,8 +19,8 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     window.innerWidth > 1024
   );
 
-  const [showTechStack, setShowTechStack] = useState(false);
-  const [showLanding, setShowLanding] = useState(true);
+  const [_showTechStack, setShowTechStack] = useState(false);
+  const [_showLanding, setShowLanding] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
