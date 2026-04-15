@@ -48,10 +48,10 @@ function SphereGeo({
   const api = useRef<RapierRigidBody | null>(null);
 
   useFrame((_state: any, delta: number) => {
-    if (!isActive) return;
+    if (!isActive || !api.current) return;
     delta = Math.min(0.1, delta);
     const impulse = vec
-      .copy(api.current!.translation())
+      .copy(api.current.translation())
       .normalize()
       .multiply(
         new THREE.Vector3(
