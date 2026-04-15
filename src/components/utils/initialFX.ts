@@ -3,6 +3,10 @@ import gsap from "gsap";
 import { smoother } from "../Navbar";
 
 export function initialFX() {
+  if (document.fonts.status !== 'loaded') {
+    document.fonts.ready.then(() => initialFX());
+    return;
+  }
   document.body.style.overflowY = "auto";
   smoother.paused(false);
   document.getElementsByTagName("main")[0].classList.add("main-active");

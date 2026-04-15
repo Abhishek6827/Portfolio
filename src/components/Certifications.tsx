@@ -20,7 +20,7 @@ const Certifications = () => {
               </div>
               <h3>2025</h3>
             </div>
-            <div style={{ width: "40%" }}>
+            <div className="career-info-right">
               <p style={{ width: "100%", margin: "0 0 10px 0" }}>
                 Advanced React concepts including hooks, context, and performance optimization
               </p>
@@ -38,7 +38,7 @@ const Certifications = () => {
               </div>
               <h3>2024</h3>
             </div>
-            <div style={{ width: "40%" }}>
+            <div className="career-info-right">
               <p style={{ width: "100%", margin: "0 0 10px 0" }}>
                 Comprehensive full-stack development covering frontend and backend technologies
               </p>
@@ -56,7 +56,7 @@ const Certifications = () => {
               </div>
               <h3>2023</h3>
             </div>
-            <div style={{ width: "40%" }}>
+            <div className="career-info-right">
               <p style={{ width: "100%", margin: "0 0 10px 0" }}>
                 Advanced JavaScript programming and algorithmic problem solving
               </p>

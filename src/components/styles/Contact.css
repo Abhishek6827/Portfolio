@@ -12,6 +12,7 @@
   font-weight: 400;
   text-transform: uppercase;
   margin: 0;
+  margin-bottom: 60px;
 }
 
 .contact-container {
@@ -39,20 +40,39 @@ a.contact-social {
   justify-content: space-between;
   align-items: center;
   font-size: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.05);
   padding: 15px 0;
   color: #fff;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+a.contact-social::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accentColor), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
 }
 
 a.contact-social:hover {
-  border-bottom-color: var(--accentColor);
   color: var(--accentColor);
+  padding-left: 10px;
+  background: linear-gradient(90deg, rgba(20, 184, 166, 0.05), transparent);
+}
+
+a.contact-social:hover::after {
+  transform: translateX(0);
 }
 
 .contact-form-container {
-  width: 50%;
+  width: 45%;
 }
 
 .contact-box-container {
@@ -78,19 +98,28 @@ a.contact-social:hover {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--accentColor);
+  background: rgba(20, 184, 166, 0.05);
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.1);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .submit-btn {
@@ -107,7 +136,12 @@ a.contact-social:hover {
 }
 
 .submit-btn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
 }
 
 .submit-btn:disabled {
@@ -140,18 +174,12 @@ a.contact-social:hover {
 
   .contact-form-container,
   .copyright-section {
-    width: 100% !important;
+    width: 100%;
   }
 
   .career-info-in {
     width: 100% !important;
-    padding-left: 0 !important;
   }
-
-  .contact-box-wrapper {
-    align-items: center;
-  }
-
 
   .contact-box-container {
     padding: 30px;
@@ -160,6 +188,7 @@ a.contact-social:hover {
   .contact-section h3 {
     font-size: 45px;
     text-align: center;
+    margin-bottom: 40px;
   }
 
   .career-timeline {
@@ -175,34 +204,20 @@ a.contact-social:hover {
 
   .contact-section h3 {
     font-size: 35px;
+    margin-bottom: 30px;
   }
 
   a.contact-social {
-    font-size: 18px;
-    padding: 12px 10px;
+    font-size: 20px;
   }
 
-
   .contact-box-container {
-    padding: 25px;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 20px;
   }
 
   .contact-box-container h4 {
     font-size: 20px;
-    text-align: center;
   }
-
-  .contact-container {
-    width: 95%;
-  }
-
-  .career-info {
-    width: 100%;
-    margin: 0;
-  }
-
 
   .career-role h4 {
     font-size: 28px !important;

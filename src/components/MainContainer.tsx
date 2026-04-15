@@ -24,7 +24,12 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       setSplitText();
       setIsDesktopView(window.innerWidth > 1024);
     };
-    resizeHandler();
+
+    // Initial call after fonts are ready
+    document.fonts.ready.then(() => {
+      setSplitText();
+    });
+
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);

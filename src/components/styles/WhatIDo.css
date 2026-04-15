@@ -329,13 +329,14 @@
   .what-box:last-child {
     height: 500px;
   }
-  .what-box {
-    width: 500px;
-    max-width: calc(100% - 50px);
-    margin: auto;
-  }
   .what-content {
     width: 100%;
+    padding: 30px 20px;
+  }
+  .what-box {
+    width: 100%;
+    max-width: calc(100% - 30px);
+    margin: auto;
   }
   .what-box-in {
     margin-left: 0px;

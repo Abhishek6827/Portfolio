@@ -130,11 +130,13 @@ const TechStack = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const workElem = document.getElementById("work");
+      if (workElem) {
+        const threshold = workElem.getBoundingClientRect().top;
+        setIsActive(scrollY > threshold);
+      }
     };
+    
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
       element.addEventListener("click", () => {
@@ -151,6 +153,7 @@ const TechStack = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const materials = useMemo(() => {
     return textures.map(
       (texture) =>
@@ -172,9 +175,24 @@ const TechStack = () => {
 
       <Canvas
         shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
+        gl={{ 
+          alpha: true, 
+          stencil: false, 
+          depth: true, 
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
+        dpr={[1, 1.5]}
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state: any) => (state.gl.toneMappingExposure = 1.5)}
+        onCreated={(state: any) => {
+          state.gl.toneMappingExposure = 1.5;
+          const gl = state.gl.getContext();
+          const handleContextLost = (e: Event) => {
+            e.preventDefault();
+            console.warn("TechStack: WebGL Context Lost");
+          };
+          gl.canvas.addEventListener("webglcontextlost", handleContextLost, false);
+        }}
         className="tech-canvas"
       >
         <ambientLight intensity={1} />

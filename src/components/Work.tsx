@@ -277,7 +277,7 @@ const Work = () => {
                     </div>
                     <h3>{proj.updated_at ? new Date(proj.updated_at).getFullYear() : new Date().getFullYear()}</h3>
                   </div>
-                  <div className="career-info-right" style={{ width: "40%" }}>
+                  <div className="career-info-right">
                     <p style={{ width: "100%", margin: "0 0 10px 0" }}>
                       {proj.description}
                     </p>
