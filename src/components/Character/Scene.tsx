@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import setCharacter from "./utils/character";
 import setLighting from "./utils/lighting";
@@ -6,9 +6,7 @@ import { useLoading } from "../../context/LoadingProvider";
 import handleResize from "./utils/resizeUtils";
 import {
   handleMouseMove,
-  handleTouchEnd,
   handleHeadRotation,
-  handleTouchMove,
 } from "./utils/mouseUtils";
 import setAnimations from "./utils/animationUtils";
 import { setProgress } from "../Loading";
@@ -85,14 +83,18 @@ const Scene = () => {
       });
 
       const observer = new IntersectionObserver(([entry]) => {
+        const wasVisible = isVisible;
         isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible && !disposed) {
+          animate();
+        }
       }, { threshold: 0.1 });
       observer.observe(canvasDiv.current);
 
-      let animationFrameId: number;
+      let animationFrameId: number = 0;
       const animate = () => {
+        if (!isVisible || contextLost || disposed) return;
         animationFrameId = requestAnimationFrame(animate);
-        if (contextLost || !isVisible) return;
 
         if (headBone) {
           handleHeadRotation(headBone, mouse.x, mouse.y, 0.1, 0.2, THREE.MathUtils.lerp);
@@ -132,10 +134,9 @@ const Scene = () => {
 
         scene.clear();
         renderer.dispose();
-        renderer.forceContextLoss();
       };
     }
-  }, [setLoading]);
+  }, []);
 
   return (
     <div className="character-container">
