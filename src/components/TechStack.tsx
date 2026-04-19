@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import {
   BallCollider,
   Physics,
@@ -28,13 +27,14 @@ const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
 const spheres = [...Array(30)].map(() => ({
   scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
+  materialIndex: Math.floor(Math.random() * 8),
 }));
 
 type SphereProps = {
   vec?: THREE.Vector3;
   scale: number;
   r?: typeof THREE.MathUtils.randFloatSpread;
-  material: THREE.MeshPhysicalMaterial;
+  material: THREE.MeshStandardMaterial;
   isActive: boolean;
 };
 
@@ -91,12 +91,7 @@ function SphereGeo({
   );
 }
 
-type PointerProps = {
-  vec?: THREE.Vector3;
-  isActive: boolean;
-};
-
-function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
+function Pointer({ vec = new THREE.Vector3(), isActive }: { vec?: THREE.Vector3; isActive: boolean }) {
   const ref = useRef<RapierRigidBody>(null);
 
   useFrame(({ pointer, viewport }: any) => {
@@ -113,12 +108,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   });
 
   return (
-    <RigidBody
-      position={[100, 100, 100]}
-      type="kinematicPosition"
-      colliders={false}
-      ref={ref}
-    >
+    <RigidBody position={[100, 100, 100]} type="kinematicPosition" colliders={false} ref={ref}>
       <BallCollider args={[2]} />
     </RigidBody>
   );
@@ -126,107 +116,64 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
 
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const workElem = document.getElementById("work");
-      if (workElem) {
-        const threshold = workElem.getBoundingClientRect().top;
-        setIsActive(scrollY > threshold);
-      }
-    };
-    
-    document.querySelectorAll(".header a").forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", () => {
-        const interval = setInterval(() => {
-          handleScroll();
-        }, 10);
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 1000);
-      });
-    });
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsActive(entry.isIntersecting);
+    }, { threshold: 0.1 });
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
   }, []);
 
   const materials = useMemo(() => {
     return textures.map(
       (texture) =>
-        new THREE.MeshPhysicalMaterial({
+        new THREE.MeshStandardMaterial({
           map: texture,
           emissive: "#ffffff",
           emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
+          emissiveIntensity: 0.2,
+          metalness: 0.4,
+          roughness: 0.7,
         })
     );
   }, []);
 
   return (
-    <div className="techstack">
+    <div className="techstack" ref={containerRef}>
       <h2> My Techstack</h2>
-
-      {isActive && (
+      <div className="tech-canvas-wrapper" style={{ 
+        width: '100%', height: '500px', 
+        opacity: isActive ? 1 : 0, transition: 'opacity 0.5s ease',
+        pointerEvents: isActive ? 'auto' : 'none'
+      }}>
         <Canvas
           shadows
-          gl={{ 
-            alpha: true, 
-            stencil: false, 
-            depth: true, 
-            antialias: false,
-            powerPreference: "high-performance",
-          }}
-          dpr={[1, 1.5]}
+          gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
           camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-          onCreated={(state: any) => {
-            state.gl.toneMappingExposure = 1.5;
-            const gl = state.gl.getContext();
-            const handleContextLost = (e: Event) => {
-              e.preventDefault();
-              console.warn("TechStack: WebGL Context Lost");
-            };
-            gl.canvas.addEventListener("webglcontextlost", handleContextLost, false);
-          }}
-          className="tech-canvas"
+          onCreated={(state: any) => { state.gl.toneMappingExposure = 1.2; }}
+          frameloop={isActive ? "always" : "never"}
         >
-          <ambientLight intensity={1} />
-          <spotLight
-            position={[20, 20, 25]}
-            penumbra={1}
-            angle={0.2}
-            color="white"
-            castShadow
-            shadow-mapSize={[512, 512]}
-          />
+          <ambientLight intensity={1.5} />
+          <spotLight position={[20, 20, 25]} penumbra={1} angle={0.2} color="white" castShadow />
+          <spotLight position={[-20, -20, -25]} intensity={0.1} />
           <directionalLight position={[0, 5, -4]} intensity={2} />
+          <directionalLight position={[-10, -10, -10]} intensity={0.5} />
           <Physics gravity={[0, 0, 0]}>
             <Pointer isActive={isActive} />
-            {spheres.map((props, i) => (
+            {isActive && spheres.map((props, i) => (
               <SphereGeo
                 key={i}
                 {...props}
-                material={materials[Math.floor(Math.random() * materials.length)]}
+                material={materials[props.materialIndex % materials.length] as any}
                 isActive={isActive}
               />
             ))}
           </Physics>
-          <Environment
-            files="models/char_enviorment.hdr"
-            environmentIntensity={0.5}
-            environmentRotation={[0, 4, 2]}
-          />
-          <EffectComposer enableNormalPass={false}>
-            <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
-          </EffectComposer>
+          <Environment files="models/char_enviorment.hdr" environmentIntensity={0.8} />
         </Canvas>
-      )}
+      </div>
     </div>
   );
 };
