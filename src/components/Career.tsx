@@ -37,13 +37,13 @@ const Career = () => {
             <div className="career-info-in">
               <div className="career-role">
                 <h4>Software Developer</h4>
-                <h5>Vasnaani Education</h5>
+                <h5>Vasnaani Sanskaran</h5>
               </div>
               <h3>08/2024 - 10/2025</h3>
             </div>
             <div className="career-info-right">
               <ul style={{ color: "var(--paraColor)", fontSize: "16px", margin: "0 0 10px 0" }}>
-                <li>Developed and maintained the official Vasnaani Education website with a focus on performance and scalability.</li>
+                <li>Developed and maintained the official Vasnaani Sanskaran website with a focus on performance and scalability.</li>
                 <li>Collaborated with cross-functional teams to design and implement user-centric, responsive web interfaces.</li>
                 <li>Integrated Django REST APIs with React frontend modules, ensuring seamless data flow and consistency.</li>
                 <li>Optimized website performance, improved database structure, and resolved critical UI/UX bugs.</li>
