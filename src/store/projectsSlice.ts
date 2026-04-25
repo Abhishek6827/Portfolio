@@ -31,135 +31,142 @@ const initialState: ProjectsState = {
 
 const projectDetails: Record<string, any> = {
   Myntra: {
-    description: "A fully responsive e-commerce fashion website clone with modern UI/UX, product catalog, shopping cart, and user authentication features.",
-    technologies: ["React", "Redux", "CSS", "JavaScript"],
+    description:
+      "A fully responsive e-commerce fashion website clone with modern UI/UX, product catalog, shopping cart, and user authentication features.",
+    technologies: ["React", "Node.js", "Redux", "CSS", "JavaScript"],
     demo: "https://Abhishek6827.github.io/Myntra/",
     category: "E-commerce",
     featured: true,
-    image: "images/projects/Myntra/image1.png"
   },
   Amazon: {
-    description: "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
+    description:
+      "A comprehensive Amazon-inspired e-commerce platform with product listings, search functionality, and responsive design.",
     technologies: ["CSS", "HTML"],
-    demo: "https://Abhishek6827.github.io/Amazon/",
+    // demo: "https://Abhishek6827.github.io/Amazon/",
     category: "E-commerce",
     featured: false,
-    image: "images/projects/Amazon/image1.png"
   },
   Skill_Up: {
-    description: "An educational platform for skill development with course listings, progress tracking, and interactive learning modules.",
-    technologies: ["React", "Bootstrap", "JavaScript"],
+    description:
+      "An educational platform for skill development with course listings, progress tracking, and interactive learning modules.",
+    technologies: ["React", "Bootstrap", "JavaScript", "Tailwind CSS", "Firebase"],
     demo: "https://Abhishek6827.github.io/Skill_Up/",
     category: "Education",
     featured: true,
-    image: "images/projects/Skill_Up/image1.png"
   },
+
   Calculator: {
-    description: "A modern calculator application with scientific functions, memory operations, and responsive design.",
+    description:
+      "A modern calculator application with scientific functions, memory operations, and responsive design.",
     technologies: ["JavaScript", "CSS", "HTML"],
     demo: "https://Abhishek6827.github.io/Calculator/",
     category: "Utility",
     featured: false,
-    image: "images/projects/Calculator/image1.png"
   },
   Elante_Mall: {
-    description: "A shopping mall website with store directory, event listings, and interactive mall map functionality.",
+    description:
+      "A shopping mall website with store directory, event listings, and interactive mall map functionality.",
     technologies: ["React", "CSS", "JavaScript"],
     demo: "https://Abhishek6827.github.io/Elante_Mall/",
     category: "Business",
     featured: true,
-    image: "images/projects/Elante_Mall/Image1.png"
   },
   Kanban_WorkBoard: {
-    description: "A full-stack project management dashboard with Django backend and React frontend. Features task tracking, team collaboration, and intuitive drag-and-drop interface.",
+    description:
+      "A full-stack project management dashboard with Django backend and React frontend. Features task tracking, team collaboration, and intuitive drag-and-drop interface.",
     technologies: ["Django", "React", "Redux", "Tailwind CSS"],
     demo: "https://Abhishek6827.github.io/Kanban_WorkBoard/",
     backend: "https://abhishektiwari6827.pythonanywhere.com/",
     category: "Productivity",
     featured: true,
-    image: "images/projects/Workboard/image1.png"
   },
   "Market-Seasonality-Explorer": {
-    description: "A calendar application highlighting seasonal market trends and patterns for traders and investors.",
+    description:
+      "A calendar application highlighting seasonal market trends and patterns for traders and investors.",
     technologies: ["React", "Tailwind CSS", "Recharts", "Binance API"],
     demo: "https://abhishek6827.github.io/Market-Seasonality-Explorer/",
     category: "Productivity",
     featured: true,
-    image: "images/projects/Market-Seasonality-Explorer/image1.png"
   },
   "E-commerce": {
-    description: "A modern e-commerce platform with product listings, shopping cart, and user authentication.",
-    technologies: ["React", "JavaScript", "CSS", "HTML"],
+    description:
+      "A modern e-commerce platform with product listings, shopping cart, and user authentication.",
+    technologies: ["React", "JavaScript", "Tailwind CSS", "HTML"],
     demo: "https://abhishek6827.github.io/E-commerce/",
     category: "E-commerce",
     featured: false,
-    image: "images/projects/E-commerce/image1.png"
   },
   Currency_Converter: {
-    description: "A currency converter application with real-time exchange rates and intuitive interface.",
+    description:
+      "A currency converter application with real-time exchange rates and intuitive interface.",
     technologies: ["JavaScript", "CSS", "HTML", "API"],
     demo: "https://abhishek6827.github.io/Currency_Converter/",
     category: "Utility",
     featured: false,
-    image: "images/projects/Currency_Converter/image1.png"
   },
   Password_Generator: {
-    description: "A secure password generator with customizable options for length and character types.",
+    description:
+      "A secure password generator with customizable options for length and character types.",
     technologies: ["JavaScript", "CSS", "HTML"],
     demo: "https://abhishek6827.github.io/Password_Generator/",
     category: "Utility",
     featured: false,
-    image: "images/projects/Password_Generator/image1.png"
   },
   RPS: {
-    description: "A Rock Paper Scissors game with interactive UI and score tracking.",
+    description:
+      "A Rock Paper Scissors game with interactive UI and score tracking.",
     technologies: ["JavaScript", "CSS", "HTML"],
     demo: "https://abhishek6827.github.io/RPS/",
     category: "Game",
     featured: false,
-    image: "images/projects/RPS/image1.png"
   },
   "Tic-Tac-Toe": {
-    description: "A Tic Tac Toe game with multiplayer functionality and win detection.",
+    description:
+      "A Tic Tac Toe game with multiplayer functionality and win detection.",
     technologies: ["JavaScript", "CSS", "HTML"],
     demo: "https://abhishek6827.github.io/Tic-Tac-Toe/",
     category: "Game",
     featured: false,
-    image: "images/projects/Tic-Tac-Toe/image1.png"
   },
   "Bharat-Clock": {
-    description: "A beautiful digital clock application showing Indian time zones with elegant design and smooth animations.",
+    description:
+      "A beautiful digital clock application showing Indian time zones with elegant design and smooth animations.",
     technologies: ["JavaScript", "CSS", "HTML"],
     demo: "https://Abhishek6827.github.io/Bharat-Clock/",
     category: "Utility",
     featured: false,
-    image: "images/projects/Bharat-Clock/image1.png"
   },
   Tempusmail: {
-    description: "A temporary email service with real-time email receiving, Firebase backend integration, and modern UI. Features include disposable email addresses, automatic email cleanup, and instant email notifications.",
-    technologies: ["Next.js", "Notion Database", "Tailwind CSS", "Firebase"],
+    description:
+      "A temporary email service with real-time email receiving, Firebase backend integration, and modern UI. Features include disposable email addresses, automatic email cleanup, and instant email notifications.",
+    technologies: [
+      "Next.js",
+      "Notion Database",
+      "Tailwind CSS",
+      "Firebase",
+    ],
     demo: "https://tempusmail-backend--tempusmail6827.us-central1.hosted.app/",
     category: "Utility",
     featured: true,
-    image: "images/projects/Tempusmail/1.png"
   },
   Social_Connect: {
-    description: "A full-stack real-time social platform with Socket.io-powered chat (text, image, audio, voice & file messages), WebRTC peer-to-peer video/audio calls, emoji reactions, message editing & deletion, read receipts, typing indicators, online/offline presence tracking, JWT + Google/Facebook OAuth via Passport.js, and user profiles with avatar & cover uploads.",
+    description:
+      "A full-stack real-time social platform with Socket.io-powered chat (text, image, audio, voice & file messages), WebRTC peer-to-peer video/audio calls, emoji reactions, message editing & deletion, read receipts, typing indicators, online/offline presence tracking, JWT + Google/Facebook OAuth via Passport.js, and user profiles with avatar & cover uploads.",
     technologies: ["Angular", "TypeScript", "Node.js", "Express", "MongoDB", "Socket.io", "WebRTC", "Passport.js", "Material UI"],
     demo: "https://social-media-lemon-six.vercel.app/login",
     category: "Social",
     featured: true,
-    image: "images/projects/Social_Connect/Image1.png"
   },
   Youtube_Automation: {
-    description: "An AI-powered automated YouTube upload pipeline: scans Google Drive folders, generates metadata via 3-tier AI system (AssemblyAI transcription → Gemini Vision frame analysis → filename fallback), uploads to YouTube with configurable scheduling, and includes copyright claim detection with auto-revert protection. Features multi-job cron automation and draft/preview workflows.",
+    description:
+      "An AI-powered automated YouTube upload pipeline: scans Google Drive folders, generates metadata via 3-tier AI system (AssemblyAI transcription → Gemini Vision frame analysis → filename fallback), uploads to YouTube with configurable scheduling, and includes copyright claim detection with auto-revert protection. Features multi-job cron automation and draft/preview workflows.",
     technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Generative AI", "AssemblyAI", "FFmpeg", "Tailwind CSS", "NextAuth"],
     demo: "https://yt-automation-beta.vercel.app/",
     category: "Productivity",
     featured: true,
-    image: "images/projects/Youtube_Automation/Image1.png"
   },
 };
+
 
 export const fetchProjects = createAsyncThunk('projects/fetchProjects', async () => {
   const response = await fetch('https://api.github.com/users/Abhishek6827/repos?per_page=100');
@@ -194,7 +201,7 @@ export const fetchProjects = createAsyncThunk('projects/fetchProjects', async ()
   projectsToKeep.forEach(name => {
     const repo = data.find((r: any) => r.name === name);
     const details = projectDetails[name] || {};
-    
+
     if (repo) {
       mappedProjects.push({
         id: repo.id,
